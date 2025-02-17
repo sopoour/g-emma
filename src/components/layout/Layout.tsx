@@ -48,7 +48,7 @@ const Layout: FC<Props> = ({ children }) => {
     <AppShell
       header={{ height: 64 }}
       bg={'g-light.1'}
-      navbar={{ width: '100%', breakpoint: 'sm', collapsed: { desktop: true, mobile: !opened } }}
+      navbar={{ width: '100%', breakpoint: 'md', collapsed: { desktop: true, mobile: !opened } }}
       padding="md"
       styles={{
         root: { '--app-shell-border-color': 'transparent' },
@@ -68,7 +68,16 @@ const Layout: FC<Props> = ({ children }) => {
           </Group>
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar py="md" px={4} bg={'g-dark.9'} style={{ justifyContent: 'right', gap: 8 }}>
+      <AppShell.Navbar
+        py="md"
+        px={4}
+        bg={'g-dark.9'}
+        style={{
+          justifyContent: 'right',
+          gap: 8,
+          width: '50%',
+        }}
+      >
         <Group
           style={{
             flexDirection: 'column',
