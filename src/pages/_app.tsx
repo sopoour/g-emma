@@ -1,8 +1,8 @@
 import React from 'react';
+import '@mantine/core/styles.css';
 import { AppProps } from 'next/app';
 import Layout from '@app/components/layout/Layout';
-import { GlobalStyle } from '@app/styles/global';
-import { ThemeProvider } from 'styled-components';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import theme from '@app/styles/theme';
 import Head from 'next/head';
 
@@ -26,12 +26,12 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta key="og:site_name" property="og:site_name" content="Sophia Auer" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
+      <ColorSchemeScript forceColorScheme="light" />
+      <MantineProvider theme={theme} withGlobalClasses withCssVariables forceColorScheme="light">
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </ThemeProvider>
+      </MantineProvider>
     </>
   );
 };

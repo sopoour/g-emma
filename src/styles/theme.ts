@@ -1,23 +1,33 @@
-import { getMedia } from './media';
+import { createTheme } from '@mantine/core';
 
-const theme = {
-  media: getMedia,
-  colors: {
-    bg: {
-      default: '#111647',
-      soft: '#BCC1EB',
-    },
-    fg: {
-      default: '#FFFFFF',
-      contrast: '#000000',
-      inactive: 'rgba(255, 255, 255, 0.75)',
-    },
-    accent: {
-      pink: '#F535AA',
-      orange: '#FF4F09',
-      green: '#30FF7F',
-    },
-  },
-} as const;
+const theme = createTheme({
+    primaryColor: "g-light",
+    colors: {
+      'g-dark': [
+        "#F9E8FA",
+        "#F1D0F3",
+        "#E3B8E8",
+        "#CEA0DB",
+        "#B989CD",
+        "#A375BD",
+        "#8E61AD",
+        "#784E9D",
+        "#623B8D",
+        "#4D297C"
+      ],
+      'g-light': [
+        "#E6DBEC",
+        "#CFB9D9",
+        "#B998C7",
+        "#A277B5",
+        "#8C57A3",
+        "#763792",
+        "#62237E",
+        "#4E1A65",
+        "#3A124D",
+        "#270A36"
+      ]
+    }
+});
 
 export default theme;

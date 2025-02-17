@@ -1,0 +1,21 @@
+.navLink {
+    font-weight: 700;
+    color: var(--mantine-color-g-light-1);
+    transition: all 0.3s ease-in-out;
+
+    span {
+        font-size: var(--mantine-font-size-sm);
+    }
+
+    &:hover {
+        color: var(--mantine-color-g-light-2);
+        background-color: transparent;
+        scale: 1.1;
+    }
+}
+
+.linkContainerMobile {
+    padding-inline: var(--mantine-spacing-xl);
+    padding-block: var(--mantine-spacing-xl);
+    margin-left: 8px;
+}
