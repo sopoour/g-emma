@@ -1,10 +1,11 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import styles from './Layout.module.scss';
 import Logo from '@app/assets/Logo.png';
 import { AppShell, Burger, Flex, Group, Image, NavLink, Text } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useIntersection } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer';
 import { IconLink } from '@app/types';
+import Hero from '../sections/Hero/Hero';
 
 const links: IconLink[] = [
   { type: 'instagram' },
@@ -30,8 +31,15 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
-  // small comment
-  const navLinkItems = navLinks.map((item, index) => (
+  const currentYear = new Date().getFullYear();
+  const [scrolled, setScrolled] = useState<Boolean>(false);
+  const { ref, entry } = useIntersection({
+    root: null,
+    threshold: 0.1,
+  });
+  const navbarClass = scrolled ? `${styles.navbarBg} ${styles.navbarScrolled}` : styles.navbarBg;
+
+  const navLinkItems = navLinks.map((item) => (
     <NavLink
       label={item.label}
       key={item.label}
@@ -45,6 +53,10 @@ const Layout: FC<Props> = ({ children }) => {
     />
   ));
 
+  useEffect(() => {
+    setScrolled(entry?.isIntersecting === false);
+  }, [entry]);
+
   return (
     <AppShell
       header={{ height: 64 }}
@@ -55,7 +67,7 @@ const Layout: FC<Props> = ({ children }) => {
         root: { '--app-shell-border-color': 'transparent' },
       }}
     >
-      <AppShell.Header bg={'g-dark.9'}>
+      <AppShell.Header className={navbarClass}>
         <Group h="100%" px="xl" w="100%">
           <Group justify="space-between" style={{ flex: 1 }}>
             <Group gap={2} visibleFrom="md">
@@ -65,7 +77,13 @@ const Layout: FC<Props> = ({ children }) => {
             <Group visibleFrom="md">
               <LinkContainer iconLinks={links} />
             </Group>
-            <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" color="g-light.1" />
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="md"
+              size="sm"
+              color={scrolled ? 'g-light.1' : 'g-dark.9'}
+            />
           </Group>
         </Group>
       </AppShell.Header>
@@ -91,10 +109,13 @@ const Layout: FC<Props> = ({ children }) => {
         </Group>
         <LinkContainer size="small" iconLinks={links} className={styles.linkContainerMobile} />
       </AppShell.Navbar>
+      <AppShell.Section>
+        <Hero ref={ref} />
+      </AppShell.Section>
       <AppShell.Main>{children}</AppShell.Main>
       <AppShell.Footer bg="g-dark.9" color="g-light.1">
         <Flex direction={'row'} align={'center'} justify={'center'} h={64}>
-          <Text c={'g-light.1'}>Copyright 2025 © G&apos;emma GbR</Text>
+          <Text c={'g-light.1'}>Copyright {currentYear} © G&apos;emma GbR</Text>
         </Flex>
       </AppShell.Footer>
     </AppShell>
