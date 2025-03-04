@@ -30,6 +30,7 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   const [opened, { toggle }] = useDisclosure();
+  // small comment
   const navLinkItems = navLinks.map((item, index) => (
     <NavLink
       label={item.label}
