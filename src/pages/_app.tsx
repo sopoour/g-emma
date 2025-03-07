@@ -1,5 +1,6 @@
 import React from 'react';
 import '@mantine/core/styles.css';
+import '@app/styles/globals.css';
 import { AppProps } from 'next/app';
 import Layout from '@app/components/layout/Layout';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
@@ -9,7 +10,7 @@ import Head from 'next/head';
 const App = ({ Component, pageProps }: AppProps) => {
   // TODO: Change description and title
   const metaDescription = 'Sophias portfolio description';
-  const metaTitle = 'Sophias website';
+  const metaTitle = "G'emma";
   return (
     <>
       <Head>
@@ -23,7 +24,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta key="og:title" property="og:title" content={metaTitle} />
         <meta key="og:type" property="og:type" content="website" />
         <meta key="og:description" property="og:description" content={metaDescription} />
-        <meta key="og:site_name" property="og:site_name" content="Sophia Auer" />
+        <meta key="og:site_name" property="og:site_name" content="G'emma" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ColorSchemeScript forceColorScheme="light" />
