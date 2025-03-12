@@ -1,9 +1,9 @@
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useRef, useEffect } from 'react';
 import styles from './Hero.module.scss';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { GetServerSideProps } from 'next';
+import { useIntersection, useInViewport } from '@mantine/hooks';
 
 gsap.registerPlugin(useGSAP);
 
@@ -27,8 +27,11 @@ const butterFlyFiles = [
 ];
 
 const Hero = forwardRef<HTMLDivElement>((props, ref) => {
-  const container = useRef<HTMLDivElement>(null);
   const butterflyRefs = useRef<Array<HTMLImageElement | null>>([null]);
+  const { ref: intersectionRef, entry } = useIntersection({
+    threshold: 0.75,
+  });
+
   const animateProperty = (target: HTMLImageElement, prop: string, min: number, max: number) => {
     gsap?.to(target, {
       duration: random(2, 4),
@@ -59,25 +62,32 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
     });
   };
 
-  useGSAP(
-    () => {
-      if (!container.current) return;
+  const startAnimations = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+    butterflyRefs.current.forEach((butterfly, index) => {
+      if (!butterfly) return;
+      animateButterfly(butterfly, width, height);
+    });
+  };
 
-      butterflyRefs.current.forEach((butterfly, index) => {
-        if (!butterfly) return;
-        animateButterfly(butterfly, width, height);
-      });
-    },
-    { scope: container },
-  );
+  const stopAnimations = () => {
+    gsap.globalTimeline.clear();
+  };
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      startAnimations();
+    } else {
+      stopAnimations();
+    }
+  }, [entry?.isIntersecting]);
 
   return (
     <div className={styles.background} ref={ref}>
       <div
-        ref={container}
+        ref={intersectionRef}
         id="wrapperBirds"
         style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}
       >
