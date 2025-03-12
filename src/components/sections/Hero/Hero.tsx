@@ -1,118 +1,84 @@
-import { FC, forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useRef } from 'react';
 import styles from './Hero.module.scss';
 import Image from 'next/image';
-import { motion, Variants } from 'framer-motion';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 
-type Butterfly = {
-  id: number;
-  x: number;
-  y: number;
-  delay: number;
-  rotation: number;
-  scale: number;
-  butterflySrc: string;
-  endX: number;
-  endY: number;
-};
+gsap.registerPlugin(useGSAP);
 
-// List of available butterfly SVGs
-const butterflyFiles = [
-  '/assets/butterfly_0.svg',
-  '/assets/butterfly_1.svg',
-  '/assets/butterfly_2.svg',
-  '/assets/butterfly_3.svg',
-  '/assets/butterfly_4.svg',
+function random(min: number, max: number) {
+  if (max == null) {
+    max = min;
+    min = 0;
+  }
+  return Math.random() * (max - min) + min;
+}
+
+const butterFlyFiles = [
+  'assets/hero/butterfly_0.svg',
+  'assets/hero/butterfly_1.svg',
+  'assets/hero/butterfly_2.svg',
+  'assets/hero/butterfly_3.svg',
+  'assets/hero/butterfly_4.svg',
 ];
 
 const Hero = forwardRef<HTMLDivElement>((props, ref) => {
-  const [butterflies, setButterflies] = useState<Butterfly[]>([]);
+  const container = useRef<HTMLDivElement>(null);
+  const butterflyRefs = useRef<Array<HTMLImageElement | null>>([null]);
 
-  const [mounted, setMounted] = useState(false);
-
-  // Variants for infinite flying effect with random end locations
-  const flyIn = (
-    startX: number,
-    startY: number,
-    endX: number,
-    endY: number,
-    delay: number,
-    rotation: number,
-  ): Variants => ({
-    initial: { x: startX, y: startY, rotate: rotation, opacity: 1 },
-    animate: {
-      x: endX, // End at random X position
-      y: endY, // End at random Y position
-      rotate: 0, // Return to default rotation
-      opacity: 1,
-      transition: {
-        duration: 5,
-        delay,
-        ease: 'easeInOut',
-        repeat: Infinity, // Infinite loop
-        repeatType: 'mirror',
-      },
-    },
-  });
-
-  // Update the butterfly's position after each animation cycle
-  const updateButterflyPosition = (id: number) => {
-    setButterflies((prevButterflies) =>
-      prevButterflies.map((butterfly) =>
-        butterfly.id === id
-          ? {
-              ...butterfly,
-              x: butterfly.endX, // New start position = previous end position
-              y: butterfly.endY, // New start position = previous end position
-              endX: Math.random() * (window.innerWidth - 100), // New random destination
-              endY: Math.random() * (window.innerHeight - 100), // New random destination
-            }
-          : butterfly,
-      ),
-    );
+  const animateProperty = (target: HTMLImageElement, prop: string, min: number, max: number) => {
+    gsap?.to(target, {
+      duration: random(2, 4),
+      [prop]: random(min, max),
+      ease: 'sine.inAndOut',
+      onComplete: animateProperty,
+      onCompleteParams: [target, prop, min, max],
+    });
   };
 
-  useEffect(() => {
-    setMounted(true);
-    const generateButterflies = Array.from({ length: 5 }, (_, id) => ({
-      id,
-      x: Math.random() > 0.5 ? -200 : 200, // Random left (-) or right (+) off-screen start
-      y: Math.random() * window.innerHeight - 300, // Random height off-screen
-      delay: Math.random() * 1.5, // Random delay for natural entry
-      rotation: Math.random() * 60 - 30, // Random rotation between -30 and +30 degrees
-      scale: Math.random() > 0.5 ? 1 : -1, // Random flip effect
-      butterflySrc: butterflyFiles[id], // Random butterfly
-      // Bound end locations within the visible window (taking into account the butterfly's size)
-      endX: Math.random() * (window.innerWidth - 100), // Avoid going out of view horizontally
-      endY: Math.random() * (window.innerHeight - 100), // Avoid going out of view vertically
-    }));
-    setButterflies(generateButterflies);
-  }, []);
+  useGSAP(
+    () => {
+      if (!container.current) return;
+
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      butterflyRefs.current.forEach((butterfly, index) => {
+        if (!butterfly) return;
+        const dx = width * 0.8;
+        const dy = height * 0.8;
+
+        gsap.set(butterfly, { xPercent: -50, yPercent: -50 });
+
+        animateProperty(butterfly, 'scale', random(0.7, 1), random(0.5, 1));
+        animateProperty(butterfly, 'x', 0, dx);
+        animateProperty(butterfly, 'y', 0, dy);
+      });
+    },
+    { scope: container },
+  );
 
   return (
     <div className={styles.background} ref={ref}>
-      {butterflies.map(({ id, x, y, endX, endY, delay, rotation, scale, butterflySrc }) => (
-        <motion.div
-          key={id}
-          variants={flyIn(x, y, endX, endY, delay, rotation)}
-          initial="initial"
-          animate={'animate'} // Pause on scroll
-          onAnimationComplete={() => updateButterflyPosition(id)}
-          style={{
-            position: 'absolute',
-            width: '60px',
-            height: '60px',
-            transform: `scaleX(${scale})`, // Flip effect
-          }}
-        >
+      <div
+        ref={container}
+        id="wrapperBirds"
+        style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}
+      >
+        {butterFlyFiles.map((butterfly, index) => (
           <Image
-            src={butterflySrc} // Dynamically select the butterfly SVG
-            alt={`Butterfly ${id}`}
-            width={60}
-            height={60}
+            key={index}
+            alt={`Butterfly ${index}`}
+            src={butterfly}
+            width={70}
+            height={70}
             priority
+            ref={(ref) => {
+              butterflyRefs.current[index] = ref;
+            }}
           />
-        </motion.div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 });
