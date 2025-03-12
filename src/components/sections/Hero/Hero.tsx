@@ -96,8 +96,8 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
             key={index}
             alt={`Butterfly ${index}`}
             src={butterfly}
-            width={70}
-            height={70}
+            width={80}
+            height={80}
             priority
             ref={(ref) => {
               butterflyRefs.current[index] = ref;
