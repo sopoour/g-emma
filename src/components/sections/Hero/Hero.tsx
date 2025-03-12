@@ -3,6 +3,7 @@ import styles from './Hero.module.scss';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { GetServerSideProps } from 'next';
 
 gsap.registerPlugin(useGSAP);
 
@@ -20,12 +21,14 @@ const butterFlyFiles = [
   'assets/hero/butterfly_2.svg',
   'assets/hero/butterfly_3.svg',
   'assets/hero/butterfly_4.svg',
+  'assets/hero/butterfly_5.svg',
+  'assets/hero/butterfly_6.svg',
+  'assets/hero/butterfly_7.svg',
 ];
 
 const Hero = forwardRef<HTMLDivElement>((props, ref) => {
   const container = useRef<HTMLDivElement>(null);
   const butterflyRefs = useRef<Array<HTMLImageElement | null>>([null]);
-
   const animateProperty = (target: HTMLImageElement, prop: string, min: number, max: number) => {
     gsap?.to(target, {
       duration: random(2, 4),
@@ -33,6 +36,26 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
       ease: 'sine.inAndOut',
       onComplete: animateProperty,
       onCompleteParams: [target, prop, min, max],
+    });
+  };
+
+  const animateButterfly = (butterfly: HTMLImageElement, width: number, height: number) => {
+    const dx = width * 0.8;
+    const dy = height * 0.8;
+    const newX = random(0, dx);
+    const newY = random(0, dy);
+    const angle = Math.atan2(newY - butterfly.y, newX - butterfly.x) * (180 / Math.PI);
+
+    gsap.set(butterfly, { xPercent: -50, yPercent: -50 });
+
+    animateProperty(butterfly, 'scale', random(0.7, 1), random(0.5, 1));
+    gsap.to(butterfly, {
+      duration: random(2, 4),
+      x: newX,
+      y: newY,
+      rotation: angle,
+      ease: 'sine.inAndOut',
+      onComplete: () => animateButterfly(butterfly, width, height),
     });
   };
 
@@ -45,14 +68,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
 
       butterflyRefs.current.forEach((butterfly, index) => {
         if (!butterfly) return;
-        const dx = width * 0.8;
-        const dy = height * 0.8;
-
-        gsap.set(butterfly, { xPercent: -50, yPercent: -50 });
-
-        animateProperty(butterfly, 'scale', random(0.7, 1), random(0.5, 1));
-        animateProperty(butterfly, 'x', 0, dx);
-        animateProperty(butterfly, 'y', 0, dy);
+        animateButterfly(butterfly, width, height);
       });
     },
     { scope: container },
