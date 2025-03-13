@@ -3,7 +3,7 @@ import styles from './Hero.module.scss';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { useIntersection, useInViewport } from '@mantine/hooks';
+import { useIntersection } from '@mantine/hooks';
 
 gsap.registerPlugin(useGSAP);
 
