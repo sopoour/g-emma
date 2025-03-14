@@ -3,7 +3,7 @@ import styles from './Layout.module.scss';
 import Logo from '@app/assets/Logo.png';
 import { AppShell, Burger, Flex, Group, Image, NavLink, Text } from '@mantine/core';
 import { useDisclosure, useIntersection } from '@mantine/hooks';
-import LinkContainer from '../LinkContainer';
+import LinkContainer from '../LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
 import Hero from '../sections/Hero/Hero';
 
@@ -45,8 +45,6 @@ const Layout: FC<Props> = ({ children }) => {
       key={item.label}
       w="max-content"
       variant="subtle"
-      color="g-light.1"
-      active
       py={4}
       px={8}
       className={styles.navLink}
@@ -90,12 +88,14 @@ const Layout: FC<Props> = ({ children }) => {
       <AppShell.Navbar
         py="md"
         px={4}
-        bg={'g-dark.9'}
+        bg={scrolled ? 'g-dark.9' : 'g-light.1'}
         style={{
           justifyContent: 'right',
           gap: 8,
           width: '50%',
+          top: 0,
         }}
+        className={navbarClass}
       >
         <Group
           style={{
