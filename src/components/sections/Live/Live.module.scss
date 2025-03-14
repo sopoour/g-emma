@@ -1,3 +1,14 @@
 .liveGrid {
-    width: 80%;
+    width: 100%;
+    flex: 1;
+}
+
+.liveRow {
+    padding: 16px 0;
+    border-top: 1px solid var(--mantine-color-g-dark-7);
+    width: 100%;
+
+    &:last-child {
+        border-bottom: 1px solid var(--mantine-color-g-dark-7);
+    }
 }
