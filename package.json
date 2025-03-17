@@ -45,6 +45,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/react-infinite-scroll-component": "5.0.0",
+    "@types/react-scroll": "^1.8.10",
     "cypress": "10.11.0",
     "cypress-recurse": "1.27.0",
     "eslint": "latest",

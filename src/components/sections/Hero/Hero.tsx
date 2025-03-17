@@ -45,8 +45,8 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
   const animateButterfly = (butterfly: HTMLImageElement, width: number, height: number) => {
     const dx = width * 0.8;
     const dy = height * 0.8;
-    const newX = random(0, dx);
-    const newY = random(0, dy);
+    const newX = random(-dx / 10, dx);
+    const newY = random(-dy / 10, dy);
     const angle = Math.atan2(newY - butterfly.y, newX - butterfly.x) * (180 / Math.PI);
 
     gsap.set(butterfly, { xPercent: -50, yPercent: -50 });
@@ -88,7 +88,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
     <div className={styles.background} ref={ref}>
       <div
         ref={intersectionRef}
-        id="wrapperBirds"
+        id="wrapperButterflies"
         style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}
       >
         {butterFlyFiles.map((butterfly, index) => (

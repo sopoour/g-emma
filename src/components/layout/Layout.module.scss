@@ -1,18 +1,18 @@
 .navLink {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--mantine-color-g-dark-9);
     transition: all 0.3s ease-in-out;
-
-    span {
-        font-size: var(--mantine-font-size-sm);
-    }
+    text-decoration: none;
+    margin-right: 12px;
+    font-size: var(--mantine-font-size-md);
 
     &:hover {
-        color: var(--mantine-color-g-dark-7);
+        color: var(--mantine-color-g-dark-6);
         background-color: transparent;
         scale: 1.1;
     }
 }
+
 
 .linkContainerMobile {
     padding-inline: var(--mantine-spacing-xl);
@@ -35,14 +35,29 @@
     transition: all 0.3s ease;
 
     .navLink {
-        color: var(--mantine-color-g-light-1);
+        color: var(--mantine-color-g-dark-3);
 
         &:hover {
-            color: var(--mantine-color-g-light-2);
+            color: var(--mantine-color-g-dark-0);
         }
+
+        &:not(.active) {
+            cursor: pointer;
+        }
+
+        &.active {
+            color: var(--mantine-color-g-dark-0);
+            background-color: transparent;
+        }
+
+
     }
 
     svg>path {
-        fill: var(--mantine-color-g-light-1) !important;
+        fill: var(--mantine-color-g-dark-1) !important;
+
+        &:hover {
+            fill: var(--mantine-color-g-dark-0);
+        }
     }
 }

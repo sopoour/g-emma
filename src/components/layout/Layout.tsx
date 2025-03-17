@@ -1,11 +1,12 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import styles from './Layout.module.scss';
 import Logo from '@app/assets/Logo.png';
-import { AppShell, Burger, Flex, Group, Image, NavLink, Text } from '@mantine/core';
+import { AppShell, Burger, Flex, Group, Image, Text } from '@mantine/core';
 import { useDisclosure, useIntersection } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
 import Hero from '../sections/Hero/Hero';
+import { animateScroll, Link } from 'react-scroll';
 
 const links: IconLink[] = [
   { type: 'instagram' },
@@ -30,7 +31,7 @@ type Props = {
 };
 
 const Layout: FC<Props> = ({ children }) => {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, { toggle, close }] = useDisclosure();
   const currentYear = new Date().getFullYear();
   const [scrolled, setScrolled] = useState<Boolean>(false);
   const { ref, entry } = useIntersection({
@@ -39,17 +40,26 @@ const Layout: FC<Props> = ({ children }) => {
   });
   const navbarClass = scrolled ? `${styles.navbarBg} ${styles.navbarScrolled}` : styles.navbarBg;
 
-  const navLinkItems = navLinks.map((item) => (
-    <NavLink
-      label={item.label}
-      key={item.label}
-      w="max-content"
-      variant="subtle"
-      py={4}
-      px={8}
-      className={styles.navLink}
-    />
-  ));
+  const navLinkItems = navLinks.map((item, index) => {
+    const itemHref = item.label.toLowerCase();
+    return (
+      <Link
+        key={item.label + index}
+        id={item.label}
+        activeClass={styles.active}
+        href={`#${itemHref}`}
+        to={itemHref}
+        className={styles.navLink}
+        spy
+        smooth
+        offset={-100}
+        duration={700}
+        onClick={close}
+      >
+        {item.label}
+      </Link>
+    );
+  });
 
   useEffect(() => {
     setScrolled(entry?.isIntersecting === false);
@@ -71,7 +81,12 @@ const Layout: FC<Props> = ({ children }) => {
             <Group gap={2} visibleFrom="md">
               {navLinkItems}
             </Group>
-            <Image src={Logo.src} alt="Logo" style={{ maxHeight: '45px' }} />
+            <Image
+              src={Logo.src}
+              alt="Logo"
+              style={{ maxHeight: '45px', cursor: 'pointer' }}
+              onClick={() => animateScroll.scrollTo(0, { smooth: true, duration: 800 })}
+            />
             <Group visibleFrom="md">
               <LinkContainer iconLinks={links} />
             </Group>
@@ -103,6 +118,7 @@ const Layout: FC<Props> = ({ children }) => {
             alignItems: 'flex-start',
             paddingInline: 'var(--mantine-spacing-xl)',
             paddingBlock: 'var(--mantine-spacing-xl)',
+            scrollBehavior: 'smooth',
           }}
         >
           {navLinkItems}
@@ -113,9 +129,9 @@ const Layout: FC<Props> = ({ children }) => {
         <Hero ref={ref} />
       </AppShell.Section>
       <AppShell.Main>{children}</AppShell.Main>
-      <AppShell.Footer bg="g-dark.9" color="g-light.1">
+      <AppShell.Footer bg="g-dark.9" color="g-light.0">
         <Flex direction={'row'} align={'center'} justify={'center'} h={64}>
-          <Text c={'g-light.1'}>Copyright {currentYear} © G&apos;emma GbR</Text>
+          <Text c={'g-light.0'}>Copyright {currentYear} © G&apos;emma GbR</Text>
         </Flex>
       </AppShell.Footer>
     </AppShell>
