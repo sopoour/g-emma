@@ -22,7 +22,16 @@ class DocumentApp extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@200..800&display=swap"
+            crossOrigin="anonymous"
+            as="font"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
