@@ -12,3 +12,34 @@
         border-bottom: 1px solid var(--mantine-color-g-dark-7);
     }
 }
+
+.liveGridSections {
+    margin-top: 48px;
+
+    @media (max-width: 48em) {
+        margin-top: 0;
+    }
+
+
+}
+
+.showMore {
+    display: flex;
+    justify-content: center;
+
+    button {
+        border-radius: 10px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--mantine-color-g-light-1) 100%);
+        transition: opacity 0.3s ease;
+    }
+}
