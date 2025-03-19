@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useIntersection } from '@mantine/hooks';
+import useGeneralContent from '@app/hooks/contentful/useGeneralContent';
+import { convertContentfulImage } from '@app/utils/contentful';
 
 gsap.registerPlugin(useGSAP);
 
@@ -27,10 +29,16 @@ const butterFlyFiles = [
 ];
 
 const Hero = forwardRef<HTMLDivElement>((props, ref) => {
+  const { generalContent, loading } = useGeneralContent();
   const butterflyRefs = useRef<Array<HTMLImageElement | null>>([null]);
   const { ref: intersectionRef, entry } = useIntersection({
     threshold: 0.75,
   });
+
+  /* const formattedBackgroundImage =
+    !loading &&
+    !!generalContent?.heroImage.fields.file.url &&
+    convertContentfulImage(generalContent?.heroImage.fields.file.url); */
 
   const animateProperty = (target: HTMLImageElement, prop: string, min: number, max: number) => {
     gsap?.to(target, {
@@ -85,7 +93,13 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
   }, [entry?.isIntersecting]);
 
   return (
-    <div className={styles.background} ref={ref}>
+    <div
+      className={styles.background}
+      ref={ref}
+      style={{
+        backgroundImage: `url(https://images.ctfassets.net/pfus6eibra5d/yM8RDme5OT5tLdIb6dwL8/746b7b07d5e1271f0ed6762159de2a76/hero.png)`,
+      }}
+    >
       <div
         ref={intersectionRef}
         id="wrapperButterflies"
