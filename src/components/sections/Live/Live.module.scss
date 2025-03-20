@@ -1,15 +1,13 @@
-.liveGrid {
-    width: 100%;
-    flex: 1;
-}
-
 .liveRow {
-    padding: 16px 0;
+    padding: 12px 4px;
     border-top: 1px solid var(--mantine-color-g-dark-7);
     width: 100%;
+    display: flex;
+}
 
-    &:last-child {
-        border-bottom: 1px solid var(--mantine-color-g-dark-7);
+.liveRowLinked {
+    &:hover {
+        background: rgba(255, 255, 255, 20%);
     }
 }
 
@@ -18,14 +16,18 @@
     justify-content: center;
 }
 
-.liveGridSections {
+.liveGridPastShows {
     margin-top: 36px;
 
     @media (max-width: 48em) {
         margin-top: 0;
     }
+}
 
-
+.liveGridSection {
+    >div:last-child {
+        border-bottom: 1px solid var(--mantine-color-g-dark-7);
+    }
 }
 
 .showMore {

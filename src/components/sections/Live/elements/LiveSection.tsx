@@ -18,12 +18,26 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
 
   return (
     <>
-      <Grid.Col span={{ base: 12, sm: 4 }} className={hasShowAll ? styles.liveGridSections : ''}>
+      <Grid.Col
+        span={{ base: 12, sm: 4 }}
+        className={
+          hasShowAll
+            ? `${styles.liveGridPastShows} ${styles.liveGridSection}`
+            : styles.liveGridSection
+        }
+      >
         <Text size="lg" fw={700} ff="BioRhyme" c={'g-dark.9'}>
           {title}
         </Text>
       </Grid.Col>
-      <Grid.Col span={{ base: 12, sm: 8 }} className={hasShowAll ? styles.liveGridSections : ''}>
+      <Grid.Col
+        span={{ base: 12, sm: 8 }}
+        className={
+          hasShowAll
+            ? `${styles.liveGridPastShows} ${styles.liveGridSection}`
+            : styles.liveGridSection
+        }
+      >
         {liveShows?.map((live) => (
           <LiveRow
             key={live.date}
@@ -31,6 +45,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
             constellation={live.constellation}
             eventType={live.eventType}
             location={live.location}
+            ticketLink={live.ticketLink}
           />
         ))}
         {!showAll && hasShowAll && (
