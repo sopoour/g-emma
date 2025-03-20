@@ -4,6 +4,9 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useIntersection } from '@mantine/hooks';
+import { GeneralContent } from '@app/services/graphql/types';
+import { fetcher } from '@app/hooks/fetch/useFetch';
+import useSWR from 'swr';
 
 gsap.registerPlugin(useGSAP);
 
@@ -27,6 +30,10 @@ const butterFlyFiles = [
 ];
 
 const Hero = forwardRef<HTMLDivElement>((props, ref) => {
+  const { data: generalContentData } = useSWR<GeneralContent | null>(
+    '/api/generalContent',
+    fetcher,
+  );
   const butterflyRefs = useRef<Array<HTMLImageElement | null>>([null]);
   const { ref: intersectionRef, entry } = useIntersection({
     threshold: 0.75,
@@ -85,7 +92,13 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
   }, [entry?.isIntersecting]);
 
   return (
-    <div className={styles.background} ref={ref}>
+    <div
+      className={styles.background}
+      ref={ref}
+      style={{
+        backgroundImage: `url(${generalContentData?.heroImage?.url})`,
+      }}
+    >
       <div
         ref={intersectionRef}
         id="wrapperButterflies"

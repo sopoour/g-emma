@@ -2,6 +2,9 @@ import { Button, Container, Grid, Text } from '@mantine/core';
 import { FC, useState } from 'react';
 import styles from './Live.module.scss';
 import LiveRow from './elements/LiveRow';
+import useSWR from 'swr';
+import { LiveEvents } from '@app/services/graphql/types';
+import { fetcher } from '@app/hooks/fetch/useFetch';
 
 const liveData = [
   {
@@ -43,18 +46,19 @@ const liveData = [
 ];
 
 const Live: FC = () => {
+  const { data, isLoading } = useSWR<LiveEvents[] | null>('/api/liveEvents', fetcher);
   const today = new Date();
 
-  const upcomingShows = liveData.filter((live) => new Date(live.date) >= today);
-  const pastShows = liveData.filter((live) => new Date(live.date) < today);
+  const upcomingShows = data?.filter((live) => new Date(live.date) >= today);
+  const pastShows = data?.filter((live) => new Date(live.date) < today);
 
   const [showAll, setShowAll] = useState(false);
-  const visibleShows = showAll ? pastShows : pastShows.slice(0, 3);
+  const visiblPastShows = showAll ? pastShows : pastShows?.slice(0, 3);
 
   return (
     <Container size={'md'} component={'section'} id="live">
       <Grid gutter="xl" style={{ position: 'relative' }}>
-        {upcomingShows.length > 0 && (
+        {upcomingShows && upcomingShows?.length > 0 && (
           <>
             <Grid.Col span={{ base: 12, sm: 4 }}>
               <Text size="lg" fw={700} ff="BioRhyme" c={'g-dark.9'}>
@@ -63,7 +67,13 @@ const Live: FC = () => {
             </Grid.Col>
             <Grid.Col span={{ base: 12, sm: 8 }}>
               {upcomingShows.map((live) => (
-                <LiveRow key={live.date} {...live} />
+                <LiveRow
+                  key={live.date}
+                  date={live.date}
+                  constellation={live.constellation}
+                  eventType={live.eventType}
+                  location={live.location}
+                />
               ))}
             </Grid.Col>
           </>
@@ -75,8 +85,14 @@ const Live: FC = () => {
           </Text>
         </Grid.Col>
         <Grid.Col span={{ base: 12, sm: 8 }} className={styles.liveGridSections}>
-          {visibleShows.map((live) => (
-            <LiveRow key={live.date} {...live} />
+          {visiblPastShows?.map((live) => (
+            <LiveRow
+              key={live.date}
+              date={live.date}
+              constellation={live.constellation}
+              eventType={live.eventType}
+              location={live.location}
+            />
           ))}
           {!showAll && (
             <div className={styles.showMore}>
