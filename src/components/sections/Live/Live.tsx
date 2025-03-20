@@ -53,7 +53,7 @@ const Live: FC = () => {
   const pastShows = data?.filter((live) => new Date(live.date) < today);
 
   const [showAll, setShowAll] = useState(false);
-  const visibleShows = showAll ? pastShows : pastShows?.slice(0, 3);
+  const visiblPastShows = showAll ? pastShows : pastShows?.slice(0, 3);
 
   return (
     <Container size={'md'} component={'section'} id="live">
@@ -85,7 +85,7 @@ const Live: FC = () => {
           </Text>
         </Grid.Col>
         <Grid.Col span={{ base: 12, sm: 8 }} className={styles.liveGridSections}>
-          {visibleShows?.map((live) => (
+          {visiblPastShows?.map((live) => (
             <LiveRow
               key={live.date}
               date={live.date}
