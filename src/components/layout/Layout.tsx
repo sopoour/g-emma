@@ -128,7 +128,7 @@ const Layout: FC<Props> = ({ children }) => {
       <AppShell.Section>
         <Hero ref={ref} />
       </AppShell.Section>
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main style={{ marginBottom: '65px' }}>{children}</AppShell.Main>
       <AppShell.Footer bg="g-dark.9" color="g-light.0">
         <Flex direction={'row'} align={'center'} justify={'center'} h={64}>
           <Text c={'g-light.0'}>Copyright {currentYear} © G&apos;emma GbR</Text>
