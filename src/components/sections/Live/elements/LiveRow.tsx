@@ -20,10 +20,10 @@ const LiveRow: FC<Props> = ({ date, location, eventType, constellation }) => {
         </Text>
         <Text c={'g-dark.9'}>{eventType}</Text>
       </Grid.Col>
-      <Grid.Col span={1} style={{ textAlign: 'center' }}>
+      <Grid.Col span={1} className={styles.liveRowCol}>
         <Text c={'g-dark.9'}> {location}</Text>
       </Grid.Col>
-      <Grid.Col span={1} style={{ textAlign: 'center' }}>
+      <Grid.Col span={1} className={styles.liveRowCol}>
         {constellation && <Text c={'g-dark.9'}>{constellation}</Text>}
       </Grid.Col>
     </Grid>

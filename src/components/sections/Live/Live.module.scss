@@ -13,8 +13,13 @@
     }
 }
 
+.liveRowCol {
+    display: flex;
+    justify-content: center;
+}
+
 .liveGridSections {
-    margin-top: 48px;
+    margin-top: 36px;
 
     @media (max-width: 48em) {
         margin-top: 0;
