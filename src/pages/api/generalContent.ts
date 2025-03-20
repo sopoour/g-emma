@@ -1,11 +1,24 @@
-import {client} from "@app/utils/contentful";
-import { NextApiRequest, NextApiResponse } from "next";
+import { fetchGraphQL } from '@app/lib/api';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function getGeneralContent(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const response = await client.getEntries({ content_type: "generalContent" });
-    res.status(200).json(response.items[0].fields);
+    const data = await fetchGraphQL(
+      `query {
+        generalContent(id: "pDQPa1PkSlTOC4H4Mxg1o") {
+            aboutDescription
+            aboutImage {
+              url
+            }
+            heroImage {
+              url
+            } 
+        }
+      }`,
+    );
+
+    res.status(200).json(data.data.generalContent);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch general content" });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
