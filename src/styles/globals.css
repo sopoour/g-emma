@@ -1,3 +1,11 @@
+:root {
+    --xs: 36em;
+    --sm: 48em;
+    --md: 62em;
+    --lg: 75em;
+    --xl: 88em;
+}
+
 :root[data-mantine-color-scheme='light'] {
     --mantine-color-body: var(--mantine-color-g-light-1) !important;
 }

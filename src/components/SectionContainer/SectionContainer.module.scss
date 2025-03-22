@@ -1,11 +1,13 @@
+@import '../../styles/variables.module.scss';
+
 .sectionContainer {
     height: 100vh;
     margin: 0 auto;
     display: flex;
     align-items: center;
 
-    @media (max-width: 48em) {
+    @media (max-width: $mantine-breakpoint-sm) {
         height: unset;
-        padding: 32px 0;
+        padding: 64px 0;
     }
 }

@@ -1,3 +1,5 @@
+@import '../../../styles/variables.module.scss';
+
 .liveRow {
     padding: 12px 4px;
     border-top: 1px solid var(--mantine-color-g-dark-7);
@@ -18,7 +20,7 @@
 .liveGridPastShows {
     margin-top: 36px;
 
-    @media (max-width: 48em) {
+    @media (max-width: $mantine-breakpoint-sm) {
         margin-top: 0;
     }
 }
