@@ -9,7 +9,7 @@ import Head from 'next/head';
 
 const App = ({ Component, pageProps }: AppProps) => {
   // TODO: Change description and title
-  const metaDescription = 'Sophias portfolio description';
+  const metaDescription = "G'emma";
   const metaTitle = "G'emma";
   return (
     <>
@@ -25,7 +25,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta key="og:type" property="og:type" content="website" />
         <meta key="og:description" property="og:description" content={metaDescription} />
         <meta key="og:site_name" property="og:site_name" content="G'emma" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <ColorSchemeScript forceColorScheme="light" />
       <MantineProvider theme={theme} withGlobalClasses withCssVariables forceColorScheme="light">

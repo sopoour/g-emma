@@ -9,6 +9,8 @@ export default async function getGeneralContent(req: NextApiRequest, res: NextAp
             aboutDescription
             aboutImage {
               url
+              width
+              height
             }
             heroImage {
               url

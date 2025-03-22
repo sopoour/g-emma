@@ -1,5 +1,6 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { createGetInitialProps, createStylesServer, ServerStyles } from '@mantine/next';
+import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 
 const stylesServer = createStylesServer();
 const getInitialProps = createGetInitialProps();
@@ -21,7 +22,7 @@ class DocumentApp extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" {...mantineHtmlProps}>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -31,6 +32,7 @@ class DocumentApp extends Document {
             crossOrigin="anonymous"
             as="font"
           />
+          <ColorSchemeScript />
         </Head>
         <body>
           <Main />

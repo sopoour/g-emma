@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { LiveEvents } from '@app/services/graphql/types';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import LiveSection from './elements/LiveSection';
+import SectionContainer from '@app/components/SectionContainer/SectionContainer';
 
 const Live: FC = () => {
   const { data, isLoading } = useSWR<LiveEvents[] | null>('/api/liveEvents', fetcher);
@@ -13,14 +14,14 @@ const Live: FC = () => {
   const pastShows = data?.filter((live) => new Date(live.date) < today);
 
   return (
-    <Container size={'md'} component={'section'} id="live">
+    <SectionContainer id="live">
       <Grid gutter="xl" style={{ position: 'relative' }}>
         {upcomingShows && upcomingShows?.length > 0 && (
           <LiveSection title="Upcoming shows" shows={upcomingShows} />
         )}
         <LiveSection title="Past shows" shows={pastShows} hasShowAll />
       </Grid>
-    </Container>
+    </SectionContainer>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useEffect, useState } from 'react';
 import styles from './Layout.module.scss';
 import Logo from '@app/assets/Logo.png';
 import { AppShell, Burger, Flex, Group, Image, Text } from '@mantine/core';
-import { useDisclosure, useIntersection } from '@mantine/hooks';
+import { useDisclosure, useIntersection, useMediaQuery } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
 import Hero from '../sections/Hero/Hero';
@@ -32,6 +32,7 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   const [opened, { toggle, close }] = useDisclosure();
+  const isMobile = useMediaQuery(`(max-width: 48em)`);
   const currentYear = new Date().getFullYear();
   const [scrolled, setScrolled] = useState<Boolean>(false);
   const { ref, entry } = useIntersection({
@@ -42,6 +43,7 @@ const Layout: FC<Props> = ({ children }) => {
 
   const navLinkItems = navLinks.map((item, index) => {
     const itemHref = item.label.toLowerCase();
+
     return (
       <Link
         key={item.label + index}
@@ -52,7 +54,7 @@ const Layout: FC<Props> = ({ children }) => {
         className={styles.navLink}
         spy
         smooth
-        offset={-100}
+        offset={isMobile ? -50 : 0}
         duration={700}
         onClick={close}
       >
@@ -128,7 +130,7 @@ const Layout: FC<Props> = ({ children }) => {
       <AppShell.Section>
         <Hero ref={ref} />
       </AppShell.Section>
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main style={{ marginBottom: '65px' }}>{children}</AppShell.Main>
       <AppShell.Footer bg="g-dark.9" color="g-light.0">
         <Flex direction={'row'} align={'center'} justify={'center'} h={64}>
           <Text c={'g-light.0'}>Copyright {currentYear} © G&apos;emma GbR</Text>
