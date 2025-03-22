@@ -2,7 +2,6 @@
     padding: 12px 4px;
     border-top: 1px solid var(--mantine-color-g-dark-7);
     width: 100%;
-    display: flex;
 }
 
 .liveRowLinked {
@@ -25,7 +24,7 @@
 }
 
 .liveGridSection {
-    >div:last-child {
+    >.liveRow:last-child {
         border-bottom: 1px solid var(--mantine-color-g-dark-7);
     }
 }

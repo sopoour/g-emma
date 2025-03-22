@@ -52,7 +52,6 @@ const Layout: FC<Props> = ({ children }) => {
         className={styles.navLink}
         spy
         smooth
-        offset={-100}
         duration={700}
         onClick={close}
       >

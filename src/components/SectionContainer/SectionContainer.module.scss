@@ -1,0 +1,11 @@
+.sectionContainer {
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 48em) {
+        height: unset;
+        padding: 32px 0;
+    }
+}
