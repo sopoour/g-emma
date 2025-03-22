@@ -131,11 +131,14 @@ const Layout: FC<Props> = ({ children }) => {
         <Hero ref={ref} />
       </AppShell.Section>
       <AppShell.Main style={{ marginBottom: '65px' }}>{children}</AppShell.Main>
-      <AppShell.Footer bg="g-dark.9" color="g-light.0">
-        <Flex direction={'row'} align={'center'} justify={'center'} h={64}>
-          <Text c={'g-light.0'}>Copyright {currentYear} © G&apos;emma GbR</Text>
-        </Flex>
-      </AppShell.Footer>
+      <AppShell.Section
+        component="footer"
+        bg="g-dark.9"
+        color="g-light.0"
+        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 64 }}
+      >
+        <Text c={'g-light.0'}>Copyright {currentYear} © G&apos;emma GbR</Text>
+      </AppShell.Section>
     </AppShell>
   );
 };
