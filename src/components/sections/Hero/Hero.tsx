@@ -7,6 +7,8 @@ import { useIntersection } from '@mantine/hooks';
 import { GeneralContent } from '@app/services/graphql/types';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useSWR from 'swr';
+import { IoIosArrowDown } from 'react-icons/io';
+import { scroller } from 'react-scroll';
 
 gsap.registerPlugin(useGSAP);
 
@@ -97,6 +99,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
       ref={ref}
       style={{
         backgroundImage: `url(${generalContentData?.heroImage?.url})`,
+        position: 'relative',
       }}
     >
       <div
@@ -117,6 +120,14 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
             }}
           />
         ))}
+        <button
+          className={styles.arrowButtonContainer}
+          onClick={() => scroller.scrollTo('live', { smooth: true, duration: 800 })}
+        >
+          <IoIosArrowDown />
+          <IoIosArrowDown className={styles.arrowFadeElement} />
+          <IoIosArrowDown className={styles.arrowFadeElement} />
+        </button>
       </div>
     </div>
   );
