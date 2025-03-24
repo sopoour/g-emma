@@ -636,7 +636,7 @@ export type Music = Entry & _Node & {
   linkedFrom?: Maybe<MusicLinkingCollections>;
   musicCover?: Maybe<Asset>;
   musicTitle?: Maybe<Scalars['String']['output']>;
-  releaseYear?: Maybe<Scalars['DateTime']['output']>;
+  releaseDate?: Maybe<Scalars['DateTime']['output']>;
   sys: Sys;
   url?: Maybe<Scalars['String']['output']>;
 };
@@ -674,7 +674,7 @@ export type MusicMusicTitleArgs = {
 
 
 /** Music Collection type für Album, Singles etc. [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/music) */
-export type MusicReleaseYearArgs = {
+export type MusicReleaseDateArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -714,15 +714,15 @@ export type MusicFilter = {
   musicTitle_not?: InputMaybe<Scalars['String']['input']>;
   musicTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
   musicTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  releaseYear?: InputMaybe<Scalars['DateTime']['input']>;
-  releaseYear_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  releaseYear_gt?: InputMaybe<Scalars['DateTime']['input']>;
-  releaseYear_gte?: InputMaybe<Scalars['DateTime']['input']>;
-  releaseYear_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  releaseYear_lt?: InputMaybe<Scalars['DateTime']['input']>;
-  releaseYear_lte?: InputMaybe<Scalars['DateTime']['input']>;
-  releaseYear_not?: InputMaybe<Scalars['DateTime']['input']>;
-  releaseYear_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  releaseDate?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseDate_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  releaseDate_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseDate_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseDate_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  releaseDate_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseDate_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseDate_not?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   sys?: InputMaybe<SysFilter>;
   url?: InputMaybe<Scalars['String']['input']>;
   url_contains?: InputMaybe<Scalars['String']['input']>;
@@ -753,8 +753,8 @@ export enum MusicOrder {
   IsAlbumDesc = 'isAlbum_DESC',
   MusicTitleAsc = 'musicTitle_ASC',
   MusicTitleDesc = 'musicTitle_DESC',
-  ReleaseYearAsc = 'releaseYear_ASC',
-  ReleaseYearDesc = 'releaseYear_DESC',
+  ReleaseDateAsc = 'releaseDate_ASC',
+  ReleaseDateDesc = 'releaseDate_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',

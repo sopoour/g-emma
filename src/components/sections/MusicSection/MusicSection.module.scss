@@ -1,0 +1,73 @@
+.musicSection {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 48px;
+}
+
+.musicCard {
+    --music-title: 'Music';
+    width: 120px;
+    height: 120px;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+    filter: brightness(0.8) opacity(0.8);
+
+    &::after,
+    &::before {
+        position: absolute;
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+    }
+
+    &::before {
+        content: var(--music-title, "");
+        font-weight: 600;
+        font-size: 12px;
+        bottom: -20%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: var(--mantine-color-g-dark-9);
+        z-index: 10;
+    }
+
+    &::after {
+        content: '';
+        bottom: 0;
+        border-radius: 8px;
+        width: 100%;
+        height: 70%;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--mantine-color-g-light-3) 100%);
+    }
+
+    &:hover {
+        transform: scale(1.2);
+        filter: none;
+
+        &:before {
+            bottom: 5%;
+        }
+
+        &::before,
+        &::after {
+            opacity: 1;
+        }
+    }
+}
+
+.hiddenText {
+    opacity: 0;
+    position: absolute;
+}
+
+.musicCardFirst {
+    filter: none;
+    width: 144px;
+    height: 144px;
+
+    &:hover {
+        transform: none;
+        filter: none;
+    }
+}
