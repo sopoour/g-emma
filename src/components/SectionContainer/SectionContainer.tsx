@@ -5,10 +5,16 @@ import styles from './SectionContainer.module.scss';
 type Props = {
   id: string;
   children: ReactNode;
+  className?: string;
 };
 
-const SectionContainer: FC<Props> = ({ id, children }) => (
-  <Container size={'md'} component={'section'} id={id} className={styles.sectionContainer}>
+const SectionContainer: FC<Props> = ({ id, children, className }) => (
+  <Container
+    size={'md'}
+    component={'section'}
+    id={id}
+    className={`${styles.sectionContainer} ${className}`}
+  >
     {children}
   </Container>
 );

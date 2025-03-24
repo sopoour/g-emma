@@ -23,6 +23,7 @@ const About: FC = () => {
               fill
               objectFit="cover"
               className={styles.aboutImage}
+              alt={'Emma Portrait'}
             />
           )}
         </span>
