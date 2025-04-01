@@ -57,7 +57,7 @@ const MusicSectionV1: FC = () => {
           <Text size={'24px'} fw={700} ff="BioRhyme" c={'g-dark.9'}>
             {musicCollection.musicCollectionTitle} ({ISOToYear(musicCollection.latestReleaseDate)})
           </Text>
-          <Flex direction="row" gap={'lg'} align={'center'} style={{ height: '144px' }}>
+          <Flex direction={'row'} gap={'lg'} align={'center'} className={styles.cardContainer}>
             {musicCollection.musicCollection.map((music) => (
               <Card
                 shadow="xs"
