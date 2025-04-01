@@ -5,10 +5,10 @@ import { ISOToYear } from '@app/utils/formatDate';
 import { Card, Flex, Text } from '@mantine/core';
 import { FC, useMemo, useState } from 'react';
 import useSWR from 'swr';
-import styles from './MusicSection.module.scss';
+import styles from './MusicSectionV1.module.scss';
 import ContentfulImage from '@app/lib/contentful-image';
 
-const MusicSection: FC = () => {
+const MusicSectionV1: FC = () => {
   const { data, isLoading } = useSWR<Music[] | null>('/api/music', fetcher);
   const groupedAlbumCollection = useMemo(() => {
     const grouped = data?.reduce<Record<string, Music[]>>((acc, item) => {
@@ -85,4 +85,4 @@ const MusicSection: FC = () => {
   );
 };
 
-export default MusicSection;
+export default MusicSectionV1;

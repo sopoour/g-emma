@@ -130,7 +130,7 @@ const Layout: FC<Props> = ({ children }) => {
       <AppShell.Section>
         <Hero ref={ref} />
       </AppShell.Section>
-      <AppShell.Main style={{ marginBottom: '65px' }}>{children}</AppShell.Main>
+      <AppShell.Main style={{ marginBottom: '65px', padding: '0' }}>{children}</AppShell.Main>
       <AppShell.Section
         component="footer"
         bg="g-dark.9"

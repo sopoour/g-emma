@@ -8,6 +8,7 @@
 
     @media (max-width: $mantine-breakpoint-sm) {
         height: unset;
-        padding: 64px 0;
+        padding-top: 64px;
+        padding-bottom: 64px;
     }
 }
