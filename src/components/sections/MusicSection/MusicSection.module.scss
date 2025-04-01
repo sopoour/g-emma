@@ -42,7 +42,8 @@
     }
 
     &:hover {
-        transform: scale(1.2);
+        width: 144px;
+        height: 144px;
         filter: none;
 
         &:before {
@@ -53,21 +54,5 @@
         &::after {
             opacity: 1;
         }
-    }
-}
-
-.hiddenText {
-    opacity: 0;
-    position: absolute;
-}
-
-.musicCardFirst {
-    filter: none;
-    width: 144px;
-    height: 144px;
-
-    &:hover {
-        transform: none;
-        filter: none;
     }
 }

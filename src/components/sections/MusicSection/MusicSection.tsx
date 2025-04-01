@@ -3,7 +3,7 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Music } from '@app/services/graphql/types';
 import { ISOToYear } from '@app/utils/formatDate';
 import { Card, Flex, Text } from '@mantine/core';
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import styles from './MusicSection.module.scss';
 import ContentfulImage from '@app/lib/contentful-image';
@@ -57,8 +57,8 @@ const MusicSection: FC = () => {
           <Text size={'24px'} fw={700} ff="BioRhyme" c={'g-dark.9'}>
             {musicCollection.musicCollectionTitle} ({ISOToYear(musicCollection.latestReleaseDate)})
           </Text>
-          <Flex direction="row" gap={'lg'} align={'center'}>
-            {musicCollection.musicCollection.map((music, index) => (
+          <Flex direction="row" gap={'lg'} align={'center'} style={{ height: '144px' }}>
+            {musicCollection.musicCollection.map((music) => (
               <Card
                 shadow="xs"
                 padding="xl"
@@ -67,7 +67,7 @@ const MusicSection: FC = () => {
                 href={music.url || ''}
                 target="_blank"
                 key={music.musicTitle}
-                className={`${styles.musicCard} ${index === 0 ? styles.musicCardFirst : ''}`}
+                className={styles.musicCard}
                 style={{ '--music-title': `"${music.musicTitle}"` }}
               >
                 <ContentfulImage
