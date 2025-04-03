@@ -13,7 +13,7 @@ import 'react-responsive-3d-carousel/dist/styles.css';
 
 const MusicSectionV2: FC = () => {
   const { data, isLoading } = useSWR<Music[] | null>('/api/music', fetcher);
-  const groupedAlbumCollection = useMemo(() => {
+  /* const groupedAlbumCollection = useMemo(() => {
     const grouped = data?.reduce<Record<string, Music[]>>((acc, item) => {
       if (item.albumCollection && !acc[item.albumCollection]) {
         acc[item.albumCollection] = [];
@@ -46,7 +46,7 @@ const MusicSectionV2: FC = () => {
             new Date(b.latestReleaseDate).getTime() - new Date(a.latestReleaseDate).getTime(),
         )
     );
-  }, [data]);
+  }, [data]); */
 
   const [activeCard, setActiveCard] = useState<number>(2);
   const handleNext = () => data && setActiveCard((prevIndex) => prevIndex + 1);
@@ -56,18 +56,12 @@ const MusicSectionV2: FC = () => {
   const arrowLeftPressed = useKeyPress('ArrowLeft');
 
   useEffect(() => {
-    if (arrowLeftPressed) handlePrev();
-    if (arrowRightPressed) handleNext();
+    if (arrowLeftPressed && activeCard !== 0) handlePrev();
+    if (arrowRightPressed && activeCard + 1 !== data?.length) handleNext();
   }, [arrowLeftPressed, arrowRightPressed]);
 
-  const bg = useMemo(() => {
-    if (!data) return 'g-dark.9';
-    const currentMusic = data[activeCard];
-    const albumCollection = currentMusic?.albumCollection;
-    if (albumCollection === 'resigned') return '#cfeab5';
-  }, [activeCard, data]);
   return (
-    <SectionContainer id="music" className={styles.musicSection}>
+    <SectionContainer id="music.v2" className={styles.musicSection}>
       {data && (
         <Text size={'32px'} fw={700} ff="BioRhyme" c={'g-dark.9'} ta="center">
           {data[activeCard]?.albumCollection} ({ISOToYear(data[activeCard]?.releaseDate)})

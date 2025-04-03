@@ -20,7 +20,8 @@ const links: IconLink[] = [
 const navLinks = [
   { label: 'Live' },
   { label: 'About' },
-  { label: 'Music' },
+  { label: 'Music.v1' },
+  { label: 'Music.v2' },
   { label: 'Videos' },
   { label: 'Shop' },
   { label: 'Contact' },

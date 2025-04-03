@@ -46,7 +46,7 @@ const MusicSectionV1: FC = () => {
   }, [data]);
 
   return (
-    <SectionContainer id="music" className={styles.musicSection}>
+    <SectionContainer id="music.v1" className={styles.musicSection}>
       {groupedAlbumCollection?.map((musicCollection) => (
         <Flex
           align="flex-start"
