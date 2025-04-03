@@ -48,7 +48,7 @@ const MusicSectionV2: FC = () => {
     );
   }, [data]); */
 
-  const [activeCard, setActiveCard] = useState<number>(2);
+  const [activeCard, setActiveCard] = useState<number>(0);
   const handleNext = () => data && setActiveCard((prevIndex) => prevIndex + 1);
   const handlePrev = () => data && setActiveCard((prevIndex) => prevIndex - 1);
 
