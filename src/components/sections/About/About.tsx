@@ -21,9 +21,10 @@ const About: FC = () => {
             <ContentfulImage
               src={data?.aboutImage?.url}
               fill
-              objectFit="cover"
               className={styles.aboutImage}
               alt={'Emma Portrait'}
+              sizes="(max-width: 768px) 100vw"
+              style={{ objectFit: 'cover' }}
             />
           )}
         </span>

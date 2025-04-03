@@ -9,6 +9,7 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import useSWR from 'swr';
 import { IoIosArrowDown } from 'react-icons/io';
 import { scroller } from 'react-scroll';
+import ContentfulImage from '@app/lib/contentful-image';
 
 gsap.registerPlugin(useGSAP);
 
@@ -98,7 +99,6 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
       className={styles.background}
       ref={ref}
       style={{
-        backgroundImage: `url(${generalContentData?.heroImage?.url})`,
         position: 'relative',
       }}
     >
@@ -107,6 +107,15 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
         id="wrapperButterflies"
         style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}
       >
+        {generalContentData?.heroImage?.url && (
+          <ContentfulImage
+            src={generalContentData?.heroImage?.url}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+            alt={'Hero Background'}
+          />
+        )}
         {butterFlyFiles.map((butterfly, index) => (
           <Image
             key={index}

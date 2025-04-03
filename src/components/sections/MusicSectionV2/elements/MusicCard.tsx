@@ -61,8 +61,9 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex }) => {
       <ContentfulImage
         src={music.musicCover?.url || ''}
         fill
-        objectFit="cover"
         alt={music.musicTitle}
+        sizes="(max-width: 768px) 100vw"
+        style={{ objectFit: 'cover' }}
       />
     </Card>
   );
