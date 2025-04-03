@@ -3,6 +3,7 @@ import Hero from '@app/components/sections/Hero/Hero';
 import Live from '@app/components/sections/Live/Live';
 import MusicSectionV1 from '@app/components/sections/MusicSectionV1/MusicSectionV1';
 import MusicSectionV2 from '@app/components/sections/MusicSectionV2/MusicSectionV2';
+import Videos from '@app/components/sections/Videos/Videos';
 import { NextPage } from 'next';
 
 const Home: NextPage = () => (
@@ -11,6 +12,7 @@ const Home: NextPage = () => (
     <About />
     <MusicSectionV1 />
     <MusicSectionV2 />
+    <Videos />
   </>
 );
 
