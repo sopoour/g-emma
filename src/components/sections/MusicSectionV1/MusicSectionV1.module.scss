@@ -9,7 +9,7 @@
 }
 
 .cardContainer {
-    height: 155px;
+    height: 160px;
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {
         height: 100%;
@@ -19,8 +19,8 @@
 
 .musicCard {
     --music-title: 'Music';
-    width: 144px;
-    height: 144px;
+    width: 150px;
+    height: 150px;
     padding: 0;
     transition: all 0.3s ease-in-out;
     filter: brightness(0.8) opacity(0.8);
@@ -34,8 +34,8 @@
 
     &::before {
         content: var(--music-title, "");
-        font-weight: 600;
-        font-size: 12px;
+        font-weight: 700;
+        font-size: 14px;
         bottom: -20%;
         left: 50%;
         transform: translateX(-50%);
@@ -54,8 +54,8 @@
     }
 
     &:hover {
-        width: 155px;
-        height: 155px;
+        width: 160px;
+        height: 160px;
         filter: none;
 
         &:before {
