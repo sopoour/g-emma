@@ -53,11 +53,17 @@
 
     }
 
-    svg>path {
-        fill: var(--mantine-color-g-dark-1) !important;
+    svg {
+        path {
+            fill: var(--mantine-color-g-dark-3) !important;
+        }
+
 
         &:hover {
-            fill: var(--mantine-color-g-dark-0);
+            path {
+                fill: var(--mantine-color-g-dark-0) !important;
+            }
+
         }
     }
 }
