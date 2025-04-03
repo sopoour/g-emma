@@ -3,13 +3,12 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Music } from '@app/services/graphql/types';
 import { ISOToYear } from '@app/utils/formatDate';
 import { Text } from '@mantine/core';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import styles from './MusicSectionV2.module.scss';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import useKeyPress from '@app/hooks/useKeyPress';
 import MusicCard from './elements/MusicCard';
-import 'react-responsive-3d-carousel/dist/styles.css';
 
 const MusicSectionV2: FC = () => {
   const { data, isLoading } = useSWR<Music[] | null>('/api/music', fetcher);
