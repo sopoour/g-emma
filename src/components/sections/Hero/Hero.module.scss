@@ -31,9 +31,9 @@
     -webkit-animation: fade-in 1.5s forwards 5.75s;
     transition: all 0.3s ease-in-out;
 
-    & svg {
-        width: 25px !important;
-        height: 25px !important;
+    svg {
+        width: 30px !important;
+        height: 30px !important;
 
         path {
             fill: var(--mantine-color-g-dark-9);
@@ -41,7 +41,6 @@
     }
 
     &:hover {
-        transform: scale(1.2);
 
         svg>path {
             fill: var(--mantine-color-g-dark-6);
@@ -53,7 +52,7 @@
     transition-duration: 400ms;
     opacity: 0.45;
     animation: downOne 3s ease-in-out infinite;
-    margin-top: -20px;
+    margin-top: -25px;
 
     &:last-of-type {
         opacity: 0.2;

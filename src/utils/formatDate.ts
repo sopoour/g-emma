@@ -36,3 +36,9 @@ export const ISOToDate = (isoString: string) => {
     year: 'numeric'
   }).format(new Date(isoString));
 }
+
+export const ISOToYear = (isoString: string) => {
+  return new Intl.DateTimeFormat('de-DE', {
+    year: 'numeric'
+  })?.format(new Date(isoString));
+}

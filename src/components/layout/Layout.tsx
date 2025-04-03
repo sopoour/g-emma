@@ -20,7 +20,8 @@ const links: IconLink[] = [
 const navLinks = [
   { label: 'Live' },
   { label: 'About' },
-  { label: 'Music' },
+  { label: 'Music.v1' },
+  { label: 'Music.v2' },
   { label: 'Videos' },
   { label: 'Shop' },
   { label: 'Contact' },
@@ -130,7 +131,7 @@ const Layout: FC<Props> = ({ children }) => {
       <AppShell.Section>
         <Hero ref={ref} />
       </AppShell.Section>
-      <AppShell.Main style={{ marginBottom: '65px' }}>{children}</AppShell.Main>
+      <AppShell.Main style={{ marginBottom: '65px', padding: '0' }}>{children}</AppShell.Main>
       <AppShell.Section
         component="footer"
         bg="g-dark.9"
