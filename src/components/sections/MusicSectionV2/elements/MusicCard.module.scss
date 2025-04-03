@@ -9,7 +9,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    width: 35%;
+    width: 50%;
     height: 100%;
     padding: 0;
     transition: all 0.3s ease-in-out;
@@ -18,7 +18,7 @@
     filter: blur(calc(var(--absOffset) * 0.75rem));
     box-shadow: 0 60px 50px -60px var(--mantine-color-g-dark-9);
 
-    &img {
+    img {
         filter: brightness(calc(100% - (var(--absOffset) * 50%)));
     }
 
@@ -66,7 +66,7 @@
     &::before {
         content: var(--music-title, "");
         font-weight: 600;
-        font-size: 18px;
+        font-size: 24px;
         bottom: -20%;
         left: 50%;
         transform: translateX(-50%);

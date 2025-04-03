@@ -2,16 +2,15 @@
 
 .musicSection {
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-    gap: 48px;
+    gap: 64px;
     position: relative;
     padding: 0;
 }
 
 .carousel {
     position: relative;
-    height: 20rem;
+    height: 30rem;
     width: 100%;
     perspective: 500px;
     margin: 0 auto;
@@ -51,21 +50,21 @@
     justify-content: center;
     top: 50%;
     z-index: 2;
-    color: var(--mantine-color-g-dark-9);
+    color: var(--mantine-color-g-dark-1);
     transition: all 0.3s ease-in-out;
 
     &.left {
         transform: translate(-100%, -50%);
-        left: 15%;
+        left: 20%;
     }
 
     &.right {
-        right: 15%;
+        right: 20%;
         transform: translate(100%, -50%);
     }
 
     &:hover {
-        color: var(--mantine-color-g-dark-6);
+        color: var(--mantine-color-g-dark-3);
     }
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {

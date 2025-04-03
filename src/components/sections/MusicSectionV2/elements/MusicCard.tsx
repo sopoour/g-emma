@@ -17,7 +17,6 @@ type Props = {
 
 const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex }) => {
   const ref = useRef<HTMLAnchorElement | null>(null);
-  /*  const isDesktop = useMedia(Breakpoints.xs); */
   const arrowRightPressed = useKeyPress('ArrowRight');
   const arrowLeftPressed = useKeyPress('ArrowLeft');
   const isMobile = useMediaQuery(`(max-width: 48em)`);
@@ -36,7 +35,6 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex }) => {
   }, [activeIndex, musicIndex, arrowLeftPressed, arrowRightPressed]);
   return (
     <Card
-      /*  shadow="xl" */
       padding="xl"
       radius="md"
       component="a"

@@ -6,14 +6,16 @@ type Props = {
   id: string;
   children: ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 };
 
-const SectionContainer: FC<Props> = ({ id, children, className }) => (
+const SectionContainer: FC<Props> = ({ id, children, className, style }) => (
   <Container
     size={'md'}
     component={'section'}
     id={id}
     className={`${styles.sectionContainer} ${className}`}
+    style={style}
   >
     {children}
   </Container>

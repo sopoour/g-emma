@@ -2,14 +2,14 @@ import SectionContainer from '@app/components/SectionContainer/SectionContainer'
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Music } from '@app/services/graphql/types';
 import { ISOToYear } from '@app/utils/formatDate';
-import { Card, Flex, Text } from '@mantine/core';
+import { Text } from '@mantine/core';
 import { FC, useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import styles from './MusicSectionV2.module.scss';
-import ContentfulImage from '@app/lib/contentful-image';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import useKeyPress from '@app/hooks/useKeyPress';
 import MusicCard from './elements/MusicCard';
+import 'react-responsive-3d-carousel/dist/styles.css';
 
 const MusicSectionV2: FC = () => {
   const { data, isLoading } = useSWR<Music[] | null>('/api/music', fetcher);
@@ -49,9 +49,8 @@ const MusicSectionV2: FC = () => {
   }, [data]);
 
   const [activeCard, setActiveCard] = useState<number>(2);
-  const handleNext = () => data && setActiveCard((prevIndex) => (prevIndex + 1) % data.length);
-  const handlePrev = () =>
-    data && setActiveCard((prevIndex) => (prevIndex - 1 + data.length) % data.length);
+  const handleNext = () => data && setActiveCard((prevIndex) => prevIndex + 1);
+  const handlePrev = () => data && setActiveCard((prevIndex) => prevIndex - 1);
 
   const arrowRightPressed = useKeyPress('ArrowRight');
   const arrowLeftPressed = useKeyPress('ArrowLeft');
@@ -61,42 +60,41 @@ const MusicSectionV2: FC = () => {
     if (arrowRightPressed) handleNext();
   }, [arrowLeftPressed, arrowRightPressed]);
 
+  const bg = useMemo(() => {
+    if (!data) return 'g-dark.9';
+    const currentMusic = data[activeCard];
+    const albumCollection = currentMusic?.albumCollection;
+    if (albumCollection === 'resigned') return '#cfeab5';
+  }, [activeCard, data]);
   return (
     <SectionContainer id="music" className={styles.musicSection}>
+      {data && (
+        <Text size={'32px'} fw={700} ff="BioRhyme" c={'g-dark.9'} ta="center">
+          {data[activeCard]?.albumCollection} ({ISOToYear(data[activeCard]?.releaseDate)})
+        </Text>
+      )}
       <div className={styles.carousel}>
-        <button className={`${styles.navButton} ${styles.left}`} onClick={handlePrev}>
-          <IoIosArrowBack focusable="false" aria-hidden="true" />
-          {/*  <span className="sr-only">Left Navigation</span> */}
-        </button>
-        <button className={`${styles.navButton} ${styles.right}`} onClick={handleNext}>
-          <IoIosArrowForward focusable="false" aria-hidden="true" />
-          {/*  <span className="sr-only">Right Navigation</span> */}
-        </button>
+        {activeCard !== 0 && (
+          <button className={`${styles.navButton} ${styles.left}`} onClick={handlePrev}>
+            <IoIosArrowBack focusable="false" aria-hidden="true" />
+          </button>
+        )}
+        {activeCard + 1 !== data?.length && (
+          <button className={`${styles.navButton} ${styles.right}`} onClick={handleNext}>
+            <IoIosArrowForward focusable="false" aria-hidden="true" />
+          </button>
+        )}
 
-        {data?.map((music, index) => (
-          <MusicCard
-            music={music}
-            musicIndex={index}
-            activeIndex={activeCard}
-            key={music.musicTitle}
-          />
-        ))}
-        {/* {groupedAlbumCollection?.map((musicCollection) => (
-          <>
-          <Flex
-            align="flex-start"
-            direction="column"
-            gap={'lg'}
-            key={musicCollection.musicCollectionTitle}
-          >
-            <Text size={'24px'} fw={700} ff="BioRhyme" c={'g-dark.9'}>
-              {musicCollection.musicCollectionTitle} ({ISOToYear(musicCollection.latestReleaseDate)}
-              )
-            </Text>
-          </Flex>
-          </>
-          
-        ))} */}
+        {data
+          ?.sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime())
+          .map((music, index) => (
+            <MusicCard
+              music={music}
+              musicIndex={index}
+              activeIndex={activeCard}
+              key={music.musicTitle}
+            />
+          ))}
       </div>
     </SectionContainer>
   );
