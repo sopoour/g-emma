@@ -62,7 +62,14 @@ const MusicSectionV2: FC = () => {
   return (
     <SectionContainer id="music.v2" className={styles.musicSection}>
       {data && (
-        <Text size={'32px'} fw={700} ff="BioRhyme" c={'g-dark.9'} ta="center">
+        <Text
+          size={'32px'}
+          fw={700}
+          ff="BioRhyme"
+          c={'g-dark.9'}
+          ta="center"
+          style={{ padding: '0 20px' }}
+        >
           {data[activeCard]?.albumCollection} ({ISOToYear(data[activeCard]?.releaseDate)})
         </Text>
       )}

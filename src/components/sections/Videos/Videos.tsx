@@ -16,13 +16,12 @@ const Videos: FC = () => {
             {video.title}
           </Text>
           <iframe
-            width="400"
-            height="250"
             src={video.videoLink || ''}
             title={video.title || ''}
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
+            className={styles.video}
           />
         </Flex>
       ))}

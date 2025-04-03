@@ -1,4 +1,17 @@
+@use '../.././../styles/variables.module.scss' as *;
+
 .videoSection {
     flex-wrap: wrap;
     gap: 40px;
+
+
+}
+
+.video {
+    width: auto;
+    height: 200px;
+
+    @media only screen and (max-width: $mantine-breakpoint-sm) {
+        width: 100% !important;
+    }
 }
