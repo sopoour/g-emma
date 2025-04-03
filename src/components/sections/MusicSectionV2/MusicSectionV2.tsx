@@ -74,7 +74,12 @@ const MusicSectionV2: FC = () => {
         </button>
 
         {data?.map((music, index) => (
-          <MusicCard music={music} musicIndex={index} activeIndex={activeCard} />
+          <MusicCard
+            music={music}
+            musicIndex={index}
+            activeIndex={activeCard}
+            key={music.musicTitle}
+          />
         ))}
         {/* {groupedAlbumCollection?.map((musicCollection) => (
           <>
