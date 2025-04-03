@@ -1,7 +1,7 @@
 import { LiveEvents } from '@app/services/graphql/types';
 import { Button, Grid, Text } from '@mantine/core';
 import { FC, useState } from 'react';
-import Arrow from '@app/assets/arrow.svg';
+import { IoIosArrowDown } from 'react-icons/io';
 import LiveRow from './LiveRow';
 import styles from '../Live.module.scss';
 
@@ -54,7 +54,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
               onClick={() => setShowAll(true)}
               variant="subtle"
               radius="md"
-              rightSection={<Arrow />}
+              rightSection={<IoIosArrowDown />}
             >
               Show all past shows
             </Button>
