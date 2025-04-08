@@ -4,7 +4,6 @@ import Logo from '@app/assets/Logo.png';
 import { AppShell, Burger, Group, Image, Text } from '@mantine/core';
 import { useDisclosure, useIntersection, useMediaQuery } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer/LinkContainer';
-import { IconLink } from '@app/types';
 import Hero from '../sections/Hero/Hero';
 import { animateScroll, Link } from 'react-scroll';
 import Sidebar from '../Sidebar/Sidebar';

@@ -1,20 +1,9 @@
 import SectionContainer from '@app/components/SectionContainer/SectionContainer';
 import { FC, useState } from 'react';
 import { useForm } from '@mantine/form';
-import {
-  Button,
-  Checkbox,
-  Group,
-  Stack,
-  Textarea,
-  TextInput,
-  Text,
-  Flex,
-  Tooltip,
-} from '@mantine/core';
+import { Button, Checkbox, Group, Textarea, TextInput, Text, Flex } from '@mantine/core';
 import styles from './Contact.module.scss';
-import LinkContainer, { linksDefault } from '@app/components/LinkContainer/LinkContainer';
-import copy from 'copy-to-clipboard';
+import LinkContainer from '@app/components/LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
 import EmailCopy from '@app/components/EmailCopy/EmailCopy';
 
