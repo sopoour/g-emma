@@ -92,7 +92,8 @@ const Contact: FC = () => {
         <Textarea
           label="Message"
           placeholder="Write your message..."
-          minRows={100}
+          minRows={4}
+          autosize
           {...form.getInputProps('message')}
           withAsterisk
           size="md"
