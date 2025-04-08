@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import styles from './Layout.module.scss';
 import Logo from '@app/assets/Logo.png';
-import { AppShell, Burger, Flex, Group, Image, Text } from '@mantine/core';
+import { AppShell, Burger, Group, Image, Text } from '@mantine/core';
 import { useDisclosure, useIntersection, useMediaQuery } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
@@ -125,31 +125,6 @@ const Layout: FC<Props> = ({ children }) => {
         </Group>
         <LinkContainer size="small" iconLinks={links} className={styles.linkContainerMobile} />
       </Sidebar>
-      {/* <AppShell.Navbar
-        py="md"
-        px={4}
-        bg={scrolled ? 'g-dark.9' : 'g-light.1'}
-        style={{
-          justifyContent: 'right',
-          gap: 8,
-          width: '50%',
-          top: 0,
-        }}
-        className={navbarClass}
-      >
-        <Group
-          style={{
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            paddingInline: 'var(--mantine-spacing-xl)',
-            paddingBlock: 'var(--mantine-spacing-xl)',
-            scrollBehavior: 'smooth',
-          }}
-        >
-          {navLinkItems}
-        </Group>
-        <LinkContainer size="small" iconLinks={links} className={styles.linkContainerMobile} />
-      </AppShell.Navbar> */}
       <AppShell.Section>
         <Hero ref={ref} />
       </AppShell.Section>

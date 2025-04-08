@@ -37,11 +37,11 @@
     transform: translate3d(-100%, 0, 0);
     -webkit-transform: translate3d(-100%, 0, 0);
     opacity: 0;
-    padding: 80px 20px;
+    padding: 100px 48px 100px 8px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    justify-content: space-between;
+    gap: 32px;
+    justify-content: flex-start;
     width: 250px;
 
     &.open {
