@@ -1,3 +1,5 @@
+@use '../../../styles/variables.module.scss' as *;
+
 @keyframes fade-in {
     0% {
         opacity: 0;
@@ -30,6 +32,10 @@
     animation: fade-in 1.5s forwards 5.75s;
     -webkit-animation: fade-in 1.5s forwards 5.75s;
     transition: all 0.3s ease-in-out;
+
+    @media only screen and (max-width: $mantine-breakpoint-sm) {
+        left: 43%;
+    }
 
     svg {
         width: 30px !important;
