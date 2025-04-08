@@ -73,7 +73,6 @@ const Layout: FC<Props> = ({ children }) => {
     <AppShell
       header={{ height: 64 }}
       bg={'g-light.1'}
-      /* navbar={{ width: '100%', breakpoint: 'md', collapsed: { desktop: true, mobile: !opened } }} */
       padding="md"
       styles={{
         root: { '--app-shell-border-color': 'transparent' },
