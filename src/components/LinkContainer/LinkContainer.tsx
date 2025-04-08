@@ -113,8 +113,9 @@ const LinkContainer: FC<Props> = ({
                   position="bottom"
                   offset={12}
                   openDelay={500}
+                  key={item.id}
                 >
-                  <Link href={item.link} key={item.id} target="_blank" aria-label={item.id}>
+                  <Link href={item.link} target="_blank" aria-label={item.id}>
                     {item.icon}
                   </Link>
                 </Tooltip>
