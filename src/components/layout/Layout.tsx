@@ -15,7 +15,7 @@ const navLinks = [
   { label: 'Music.v1' },
   { label: 'Music.v2' },
   { label: 'Videos' },
-  { label: 'Shop' },
+  /* { label: 'Shop' }, */
   { label: 'Contact' },
 ];
 
