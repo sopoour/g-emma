@@ -1,7 +1,7 @@
 import { createTheme } from '@mantine/core';
 
 const theme = createTheme({
-    primaryColor: "g-light",
+    primaryColor: "g-dark",
     colors: {
       'g-dark': [
         "#F9E8FA",

@@ -1,20 +1,50 @@
 import { FC, useMemo } from 'react';
 import Link from 'next/link';
 import styles from './LinkContainer.module.scss';
-import { Flex } from '@mantine/core';
+import { Flex, Tooltip } from '@mantine/core';
 import { IconLink } from '@app/types';
-import { FaEnvelope, FaInstagram, FaTiktok, FaSpotify, FaMusic, FaYoutube } from 'react-icons/fa';
+import {
+  FaEnvelope,
+  FaInstagram,
+  FaTiktok,
+  FaSpotify,
+  FaMusic,
+  FaYoutube,
+  FaBandcamp,
+} from 'react-icons/fa';
+
+const formatIdName = (input: string): string => {
+  return input
+    .replace(/([a-z])([A-Z])/g, '$1 $2') // insert space before capital letters
+    .replace(/^./, (str) => str.toUpperCase()); // capitalize first letter
+};
+
+export const linksDefault: IconLink[] = [
+  { type: 'instagram' },
+  { type: 'tiktok' },
+  { type: 'spotify' },
+  { type: 'appleMusic' },
+  { type: 'youtube' },
+  { type: 'email' },
+];
 
 type Size = 'small' | 'medium' | 'big';
 
 type Props = {
-  iconLinks: IconLink[];
+  iconLinks?: IconLink[];
   size?: Size;
   className?: string;
   ariaLabel?: string;
+  hasToolTip?: boolean;
 };
 
-const LinkContainer: FC<Props> = ({ iconLinks, className, ariaLabel, size = 'medium' }) => {
+const LinkContainer: FC<Props> = ({
+  iconLinks = linksDefault,
+  className,
+  ariaLabel,
+  size = 'medium',
+  hasToolTip = false,
+}) => {
   const links = useMemo(
     () =>
       iconLinks.map((icon) => {
@@ -51,6 +81,12 @@ const LinkContainer: FC<Props> = ({ iconLinks, className, ariaLabel, size = 'med
               icon: <FaYoutube />,
               link: 'https://youtube.com/channel/UCAIXGihT2_TrYTazM_hkz2w?si=_FBfx7tTdjTPl9on',
             };
+          case 'bandcamp':
+            return {
+              id: 'bandcamp',
+              icon: <FaBandcamp />,
+              link: 'https://gemmamusic.bandcamp.com/',
+            };
           default:
             return { id: 'email', icon: <FaEnvelope />, link: 'mailto:contact@g-emma.com' };
         }
@@ -67,14 +103,31 @@ const LinkContainer: FC<Props> = ({ iconLinks, className, ariaLabel, size = 'med
       className={`${styles.linkContainer} ${className}`}
       style={{ '--svg-size': `var(--svg-${size})` }}
     >
-      {links?.map(
-        (item) =>
-          item.link && (
-            <Link href={item.link} key={item.id} target="_blank" aria-label={item.id}>
-              {item.icon}
-            </Link>
-          ),
-      )}
+      {hasToolTip
+        ? links?.map(
+            (item) =>
+              item.link && (
+                <Tooltip
+                  label={formatIdName(item.id)}
+                  color="g-dark.7"
+                  position="bottom"
+                  offset={12}
+                  openDelay={500}
+                >
+                  <Link href={item.link} key={item.id} target="_blank" aria-label={item.id}>
+                    {item.icon}
+                  </Link>
+                </Tooltip>
+              ),
+          )
+        : links?.map(
+            (item) =>
+              item.link && (
+                <Link href={item.link} key={item.id} target="_blank" aria-label={item.id}>
+                  {item.icon}
+                </Link>
+              ),
+          )}
     </Flex>
   );
 };

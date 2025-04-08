@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { useIntersection } from '@mantine/hooks';
 import { GeneralContent } from '@app/services/graphql/types';
 import { fetcher } from '@app/hooks/fetch/useFetch';
-import useSWR from 'swr';
+import useSWR, { SWRConfiguration } from 'swr';
 import { IoIosArrowDown } from 'react-icons/io';
 import { scroller } from 'react-scroll';
 import ContentfulImage from '@app/lib/contentful-image';
@@ -36,6 +36,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
   const { data: generalContentData } = useSWR<GeneralContent | null>(
     '/api/generalContent',
     fetcher,
+    {},
   );
   const butterflyRefs = useRef<Array<HTMLImageElement | null>>([null]);
   const { ref: intersectionRef, entry } = useIntersection({

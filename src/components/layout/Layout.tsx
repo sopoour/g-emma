@@ -9,15 +9,6 @@ import Hero from '../sections/Hero/Hero';
 import { animateScroll, Link } from 'react-scroll';
 import Sidebar from '../Sidebar/Sidebar';
 
-const links: IconLink[] = [
-  { type: 'instagram' },
-  { type: 'tiktok' },
-  { type: 'spotify' },
-  { type: 'appleMusic' },
-  { type: 'youtube' },
-  { type: 'email' },
-];
-
 const navLinks = [
   { label: 'Live' },
   { label: 'About' },
@@ -91,7 +82,7 @@ const Layout: FC<Props> = ({ children }) => {
               onClick={() => animateScroll.scrollTo(0, { smooth: true, duration: 800 })}
             />
             <Group visibleFrom="md">
-              <LinkContainer iconLinks={links} />
+              <LinkContainer />
             </Group>
             <Burger
               opened={opened}
@@ -122,7 +113,7 @@ const Layout: FC<Props> = ({ children }) => {
         >
           {navLinkItems}
         </Group>
-        <LinkContainer size="small" iconLinks={links} className={styles.linkContainerMobile} />
+        <LinkContainer size="small" className={styles.linkContainerMobile} />
       </Sidebar>
       <AppShell.Section>
         <Hero ref={ref} />
