@@ -8,7 +8,7 @@
     padding: 64px 0;
 
     @media only screen and (max-width: $mantine-breakpoint-xs) {
-        gap: 0;
+        gap: 48px;
     }
 }
 
@@ -27,7 +27,7 @@
         align-items: center;
         margin: auto;
         width: 100%;
-        height: 30rem;
+        height: 100%;
         overflow-x: scroll;
         overflow-y: hidden;
         scroll-snap-type: x mandatory;

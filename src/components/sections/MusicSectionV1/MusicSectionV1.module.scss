@@ -67,4 +67,16 @@
             opacity: 1;
         }
     }
+
+    @media only screen and (max-width: $mantine-breakpoint-sm) {
+
+        &::before,
+        &::after {
+            opacity: 1 !important;
+        }
+
+        &:before {
+            bottom: 5% !important;
+        }
+    }
 }

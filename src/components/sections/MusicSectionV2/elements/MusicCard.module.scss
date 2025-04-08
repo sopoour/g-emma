@@ -24,9 +24,8 @@
 
     // Mobile only
     @media only screen and (max-width: $mantine-breakpoint-sm) {
-        width: 100%;
         position: unset;
-        height: 55%;
+        height: 300px;
         min-width: 80vw;
         box-shadow: none;
         scroll-snap-align: center;
@@ -53,6 +52,7 @@
 
         &:before {
             bottom: 5% !important;
+            font-size: 18px !important;
         }
     }
 
