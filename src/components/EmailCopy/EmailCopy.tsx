@@ -23,6 +23,7 @@ const EmailCopy: FC<Props> = ({ email, label }) => {
       position="bottom"
       color="g-dark.7"
       offset={12}
+      transitionProps={{ transition: 'pop', duration: 300 }}
     >
       <Text
         size="16px"
