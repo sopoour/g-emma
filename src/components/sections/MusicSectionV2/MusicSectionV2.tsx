@@ -2,7 +2,7 @@ import SectionContainer from '@app/components/SectionContainer/SectionContainer'
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Music } from '@app/services/graphql/types';
 import { ISOToYear } from '@app/utils/formatDate';
-import { Text } from '@mantine/core';
+import { Text, VisuallyHidden } from '@mantine/core';
 import { FC, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import styles from './MusicSectionV2.module.scss';
@@ -77,11 +77,13 @@ const MusicSectionV2: FC = () => {
         {activeCard !== 0 && (
           <button className={`${styles.navButton} ${styles.left}`} onClick={handlePrev}>
             <IoIosArrowBack focusable="false" aria-hidden="true" />
+            <VisuallyHidden>Previous button</VisuallyHidden>
           </button>
         )}
         {activeCard + 1 !== data?.length && (
           <button className={`${styles.navButton} ${styles.right}`} onClick={handleNext}>
             <IoIosArrowForward focusable="false" aria-hidden="true" />
+            <VisuallyHidden>Next button</VisuallyHidden>
           </button>
         )}
 

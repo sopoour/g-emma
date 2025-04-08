@@ -7,6 +7,7 @@ import LinkContainer from '../LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
 import Hero from '../sections/Hero/Hero';
 import { animateScroll, Link } from 'react-scroll';
+import Sidebar from '../Sidebar/Sidebar';
 
 const links: IconLink[] = [
   { type: 'instagram' },
@@ -72,7 +73,7 @@ const Layout: FC<Props> = ({ children }) => {
     <AppShell
       header={{ height: 64 }}
       bg={'g-light.1'}
-      navbar={{ width: '100%', breakpoint: 'md', collapsed: { desktop: true, mobile: !opened } }}
+      /* navbar={{ width: '100%', breakpoint: 'md', collapsed: { desktop: true, mobile: !opened } }} */
       padding="md"
       styles={{
         root: { '--app-shell-border-color': 'transparent' },
@@ -103,7 +104,28 @@ const Layout: FC<Props> = ({ children }) => {
           </Group>
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar
+      <Sidebar
+        open={opened}
+        close={close}
+        className={navbarClass}
+        style={{
+          backgroundColor: `${scrolled ? 'var(--mantine-color-g-dark-9)' : 'var(--mantine-color-g-dark-1)'}`,
+        }}
+      >
+        <Group
+          style={{
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            paddingInline: 'var(--mantine-spacing-xl)',
+            paddingBlock: 'var(--mantine-spacing-xl)',
+            scrollBehavior: 'smooth',
+          }}
+        >
+          {navLinkItems}
+        </Group>
+        <LinkContainer size="small" iconLinks={links} className={styles.linkContainerMobile} />
+      </Sidebar>
+      {/* <AppShell.Navbar
         py="md"
         px={4}
         bg={scrolled ? 'g-dark.9' : 'g-light.1'}
@@ -127,7 +149,7 @@ const Layout: FC<Props> = ({ children }) => {
           {navLinkItems}
         </Group>
         <LinkContainer size="small" iconLinks={links} className={styles.linkContainerMobile} />
-      </AppShell.Navbar>
+      </AppShell.Navbar> */}
       <AppShell.Section>
         <Hero ref={ref} />
       </AppShell.Section>
