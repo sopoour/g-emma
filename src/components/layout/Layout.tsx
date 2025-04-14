@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import styles from './Layout.module.scss';
-import Logo from '@app/assets/Logo.png';
+import Logo from '@app/assets/logo.png';
 import { AppShell, Burger, Group, Image, Text } from '@mantine/core';
 import { useDisclosure, useIntersection, useMediaQuery } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer/LinkContainer';
