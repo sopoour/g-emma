@@ -1,6 +1,5 @@
 import About from '@app/components/sections/About/About';
 import Contact from '@app/components/sections/Contact/Contact';
-import Hero from '@app/components/sections/Hero/Hero';
 import Live from '@app/components/sections/Live/Live';
 import MusicSectionV1 from '@app/components/sections/MusicSectionV1/MusicSectionV1';
 import MusicSectionV2 from '@app/components/sections/MusicSectionV2/MusicSectionV2';

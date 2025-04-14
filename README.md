@@ -1,26 +1,24 @@
-# Own Next.js template/boiler plate for quicker setup
+<div align="center">
+  <img alt="Logo" src="https://raw.githubusercontent.com/sopoour/g-emma/main/src/assets/logo.png" width="100" />
+</div>
+<h1 align="center">
+ G'emma website - g-emma.com - v2
+</h1>
+<p align="center">
+  A complete redesign and rebuilt of the website for a music project called G'emma <a href="https://g-emma.com" target="_blank">g-emma.com</a> built with React, Next.js, Mantine component library and hosted with Vercel
+</p>
 
-## Contains
+![demo](https://raw.githubusercontent.com/sopoour/g-emma/main/src/assets/demo.png)
 
-### Tech stack
+## Tech stack overview
 
-1. next.js and react written in Typescript
-2. styled-components for styling with global styles and theme
-4. custom hooks for data fetching, media queries and more to come
-5. basic components (Typography, Date, MaxWidthContainer)
-6. layout set-up
-7. more utils, hooks and components will be added
+1. Typescript, React and Next.js using Next13 pages route 
+2. SCSS Module for styling with Mantine theme
+3. GSAP and keyframes for animations
+4. Contentful as CMS. It's fetched via GraphQL through Next.js API route and SWR.
 
 
-### Main packages
-
-1. styled-components
-2. eslint & prettier
-3. gsap for animations
-4. various types
-5. react icons
-6. react loading skeleton
-7. suggestions for Markdown, context and data fetching
+## Planned features
 
 
 ## Getting Started
@@ -31,10 +29,5 @@ Run the development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
