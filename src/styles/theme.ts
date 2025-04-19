@@ -4,7 +4,7 @@ const theme = createTheme({
     primaryColor: "g-dark",
     colors: {
       'g-dark': [
-        "#E1E4ED",
+        "#F4F6FB",
         "#CACCE8",
         "#CEC6EC",
         "#9EA1CB",
