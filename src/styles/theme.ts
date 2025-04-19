@@ -4,29 +4,17 @@ const theme = createTheme({
     primaryColor: "g-dark",
     colors: {
       'g-dark': [
-        "#F9E8FA",
-        "#F1D0F3",
-        "#E3B8E8",
-        "#CEA0DB",
-        "#B989CD",
-        "#A375BD",
-        "#8E61AD",
-        "#784E9D",
-        "#623B8D",
+        "#E1E4ED",
+        "#CACCE8",
+        "#CEC6EC",
+        "#9EA1CB",
+        "#7D61A5",
+        "#71549B",
+        "#67439A",
+        "#4F2985",
+        "#3F206D",
         "#4D297C"
       ],
-      'g-light': [
-        "#E6DBEC",
-        "#CFB9D9",
-        "#B998C7",
-        "#A277B5",
-        "#8C57A3",
-        "#763792",
-        "#62237E",
-        "#4E1A65",
-        "#3A124D",
-        "#270A36"
-      ]
     }
 });
 

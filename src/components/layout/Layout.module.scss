@@ -7,7 +7,7 @@
     font-size: var(--mantine-font-size-md);
 
     &:hover {
-        color: var(--mantine-color-g-dark-6);
+        color: var(--mantine-color-g-dark-5);
         background-color: transparent;
         scale: 1.1;
     }
@@ -31,14 +31,15 @@
 }
 
 .navbarScrolled {
-    background-color: var(--mantine-color-g-dark-9);
+    background: rgba(17, 22, 71, 0.1);
+    backdrop-filter: blur(8px);
     transition: all 0.3s ease;
 
     .navLink {
-        color: var(--mantine-color-g-dark-3);
+        color: var(--mantine-color-g-dark-9);
 
         &:hover {
-            color: var(--mantine-color-g-dark-0);
+            color: var(--mantine-color-g-dark-4);
         }
 
         &:not(.active) {
@@ -46,7 +47,7 @@
         }
 
         &.active {
-            color: var(--mantine-color-g-dark-0);
+            color: var(--mantine-color-g-dark-4);
             background-color: transparent;
         }
 
@@ -55,13 +56,13 @@
 
     svg {
         path {
-            fill: var(--mantine-color-g-dark-3) !important;
+            fill: var(--mantine-color-g-dark-9) !important;
         }
 
 
         &:hover {
             path {
-                fill: var(--mantine-color-g-dark-0) !important;
+                fill: var(--mantine-color-g-dark-4) !important;
             }
 
         }

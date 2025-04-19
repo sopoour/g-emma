@@ -5,7 +5,7 @@ import { ISOToYear } from '@app/utils/formatDate';
 import { Text, VisuallyHidden } from '@mantine/core';
 import { FC, useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
-import styles from './MusicSectionV2.module.scss';
+import styles from './MusicSection.module.scss';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import useKeyPress from '@app/hooks/useKeyPress';
 import MusicCard from './elements/MusicCard';
@@ -27,12 +27,12 @@ const MusicSectionV2: FC = () => {
   }, [arrowLeftPressed, arrowRightPressed]);
 
   return (
-    <SectionContainer id="music.v2" className={styles.musicSection}>
+    <SectionContainer id="music" className={styles.musicSection}>
       {data && (
         <Text
           size={isMobile ? '24px' : '32px'}
           fw={700}
-          ff="BioRhyme"
+          ff="Lexend"
           c={'g-dark.9'}
           ta="center"
           style={{ padding: '0 16px' }}

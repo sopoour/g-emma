@@ -103,7 +103,7 @@ const Contact: FC = () => {
         {status === 'error' && <Text c="red">Something went wrong. Please try again.</Text>}
       </form>
       <Flex gap={'32px'} direction={'column'} align={{ base: 'center', sm: 'flex-start' }}>
-        <Text size="24px" ff={'BioRhyme'} c={'g-dark.9'} fw={700}>
+        <Text size="24px" ff={'Lexend'} c={'g-dark.9'} fw={700}>
           Or reach us at
         </Text>
         <EmailCopy email="contact@g-emma.com" label="Email" />

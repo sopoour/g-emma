@@ -59,16 +59,16 @@
 
     &.left {
         transform: translate(-100%, -50%);
-        left: 20%;
+        left: 23%;
     }
 
     &.right {
-        right: 20%;
+        right: 23%;
         transform: translate(100%, -50%);
     }
 
     &:hover {
-        color: var(--mantine-color-g-dark-3);
+        color: var(--mantine-color-g-dark-4);
     }
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {

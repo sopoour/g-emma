@@ -112,7 +112,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
           <ContentfulImage
             src={generalContentData?.heroImage?.url}
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'center 13%' }}
             priority
             alt={'Hero Background'}
           />
