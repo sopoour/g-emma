@@ -26,6 +26,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta key="og:description" property="og:description" content={metaDescription} />
         <meta key="og:site_name" property="og:site_name" content="G'emma" />
         <link rel="icon" href="/favicon.svg" />
+        <title>{metaTitle}</title>
       </Head>
       <ColorSchemeScript forceColorScheme="light" />
       <MantineProvider theme={theme} withGlobalClasses withCssVariables forceColorScheme="light">
