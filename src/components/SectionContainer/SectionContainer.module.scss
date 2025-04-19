@@ -6,9 +6,14 @@
     display: flex;
     align-items: center;
 
+
     @media (max-width: $mantine-breakpoint-sm) {
         height: unset;
         padding-top: 64px;
         padding-bottom: 64px;
+
+        &:first-child {
+            padding-top: 85px;
+        }
     }
 }

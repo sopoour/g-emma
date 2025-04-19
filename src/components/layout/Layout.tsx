@@ -104,7 +104,7 @@ const Layout: FC<Props> = ({ children }) => {
         >
           {navLinkItems}
         </Group>
-        <LinkContainer size="small" className={styles.linkContainerMobile} />
+        <LinkContainer className={styles.linkContainerMobile} />
       </Sidebar>
       <AppShell.Section>
         <Hero ref={ref} />

@@ -13,7 +13,7 @@ const About: FC = () => {
     <SectionContainer id="about">
       <SimpleGrid
         cols={{ base: 1, sm: 2 }}
-        spacing={64}
+        spacing={{ base: 32, sm: 64 }}
         style={{ height: '75%', alignItems: 'center' }}
       >
         <span style={{ position: 'relative' }}>

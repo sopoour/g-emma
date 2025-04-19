@@ -1,3 +1,5 @@
+@use '../../styles/variables.module.scss' as *;
+
 .navLink {
     font-weight: 600;
     color: var(--mantine-color-g-dark-9);
@@ -5,6 +7,11 @@
     text-decoration: none;
     margin-right: 12px;
     font-size: var(--mantine-font-size-md);
+
+    @media (max-width: $mantine-breakpoint-sm) {
+
+        font-size: var(--mantine-font-size-lg);
+    }
 
     &:hover {
         color: var(--mantine-color-g-dark-5);
@@ -17,7 +24,6 @@
 .linkContainerMobile {
     padding-inline: var(--mantine-spacing-xl);
     padding-block: var(--mantine-spacing-xl);
-    margin-left: 8px;
     flex-wrap: wrap;
 }
 
