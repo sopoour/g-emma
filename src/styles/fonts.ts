@@ -1,7 +1,7 @@
-import { Montserrat, Roboto_Mono } from 'next/font/google';
+import { Hind Vadodara, Roboto_Mono } from 'next/font/google';
 
 // define your variable fonts
-const montserrat = Montserrat({
+const Hind Vadodara = Hind Vadodara({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
@@ -17,4 +17,4 @@ const robotoMono = Roboto_Mono({
   preload: true,
 });
 
-export { montserrat, robotoMono };
+export { Hind Vadodara, robotoMono };

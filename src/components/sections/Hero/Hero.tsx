@@ -10,6 +10,7 @@ import useSWR, { SWRConfiguration } from 'swr';
 import { IoIosArrowDown } from 'react-icons/io';
 import { scroller } from 'react-scroll';
 import ContentfulImage from '@app/lib/contentful-image';
+import { Title, VisuallyHidden } from '@mantine/core';
 
 gsap.registerPlugin(useGSAP);
 
@@ -108,6 +109,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
         id="wrapperButterflies"
         style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}
       >
+        <VisuallyHidden component={'h1'}>G'emma Music</VisuallyHidden>
         {generalContentData?.heroImage?.url && (
           <ContentfulImage
             src={generalContentData?.heroImage?.url}
@@ -133,6 +135,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
         <button
           className={styles.arrowButtonContainer}
           onClick={() => scroller.scrollTo('live', { smooth: true, duration: 800 })}
+          title="Scroll down to see the latest live shows"
         >
           <IoIosArrowDown />
           <IoIosArrowDown className={styles.arrowFadeElement} />

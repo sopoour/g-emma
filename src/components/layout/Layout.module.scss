@@ -1,17 +1,10 @@
-@use '../../styles/variables.module.scss' as *;
-
 .navLink {
     font-weight: 600;
     color: var(--mantine-color-g-dark-9);
     transition: all 0.3s ease-in-out;
     text-decoration: none;
     margin-right: 12px;
-    font-size: var(--mantine-font-size-md);
-
-    @media (max-width: $mantine-breakpoint-sm) {
-
-        font-size: var(--mantine-font-size-lg);
-    }
+    font-size: var(--mantine-font-size-lg);
 
     &:hover {
         color: var(--mantine-color-g-dark-5);
