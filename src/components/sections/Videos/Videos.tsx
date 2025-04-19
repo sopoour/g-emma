@@ -13,7 +13,7 @@ const Videos: FC = () => {
       <VisuallyHidden component={'h2'}>Videos</VisuallyHidden>
       {data?.map((video) => (
         <Flex key={video.title} direction={'column'} gap={32} className={styles.videoContainer}>
-          <Text c={'g-dark.9'} size="20px" fw={700} ff="Hind Vadodara" component="h3">
+          <Text c={'g-dark.9'} size="20px" fw={600} ff="Hind Vadodara" component="h3">
             {video.title}
           </Text>
           <iframe
