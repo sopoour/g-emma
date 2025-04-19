@@ -1,10 +1,11 @@
 import ContentfulImage from '@app/lib/contentful-image';
 import { Music } from '@app/services/graphql/types';
-import { Card } from '@mantine/core';
-import { FC, useEffect, useRef } from 'react';
+import { Card, Text } from '@mantine/core';
+import { FC, useEffect, useRef, useState } from 'react';
 import styles from './MusicCard.module.scss';
 import useKeyPress from '@app/hooks/useKeyPress';
-import { useIntersection, useMediaQuery } from '@mantine/hooks';
+import { useClickOutside, useIntersection, useMediaQuery } from '@mantine/hooks';
+import LinkContainer from '@app/components/LinkContainer/LinkContainer';
 
 const MAX_VISIBILITY = 3;
 
@@ -16,11 +17,13 @@ type Props = {
 };
 
 const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChange }) => {
-  const ref = useRef<HTMLAnchorElement | null>(null);
+  const ref = useRef<HTMLButtonElement | null>(null);
   const arrowRightPressed = useKeyPress('ArrowRight');
   const arrowLeftPressed = useKeyPress('ArrowLeft');
   const isMobile = useMediaQuery(`(max-width: 48em)`);
+  const [view, setView] = useState<boolean>(false);
 
+  /* useClickOutside(ref, () => setView(false)); */
   const { ref: intersectionRef, entry } = useIntersection({
     root: null,
     threshold: 0.6,
@@ -51,11 +54,11 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChan
     <Card
       padding="xl"
       radius="md"
-      component="a"
-      href={music.url || ''}
-      target="_blank"
+      component="button"
+      /*  href={music.url || ''} */
+      /* target="_blank" */
       key={music.musicTitle}
-      className={styles.musicCard}
+      className={`${styles.musicCard} ${view ? styles.musicCardContentViewed : ''}`}
       style={
         isMobile
           ? {
@@ -71,7 +74,15 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChan
       ref={ref}
       aria-label={`${music.musicTitle}-music-card`}
       tabIndex={activeIndex === musicIndex ? 0 : -1}
+      onClick={() => !isMobile && setView((prev) => !prev)}
     >
+      <div className={styles.musicCardConten}>
+        <div className={styles.musicCardHeader}>
+          <Text>{music.musicTitle}</Text>
+          <LinkContainer />
+        </div>
+        {music.description && <Text>{music.description}</Text>}
+      </div>
       <ContentfulImage
         src={music.musicCover?.url || ''}
         fill
