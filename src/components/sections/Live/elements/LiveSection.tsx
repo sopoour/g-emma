@@ -26,7 +26,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
             : styles.liveGridSection
         }
       >
-        <Text size="20px" fw={600} ff="Lexend" c={'g-dark.9'} id="showTitle">
+        <Text size="20px" fw={600} ff="Hind Vadodara" c={'g-dark.9'} id="showTitle" component="h3">
           {title}
         </Text>
       </Grid.Col>
@@ -55,7 +55,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
               variant="subtle"
               radius="md"
               rightSection={<IoIosArrowDown />}
-              style={{ color: 'var(--mantine-color-g-dark-9)' }}
+              style={{ color: 'var(--mantine-color-g-dark-9)', fontSize: '16px' }}
             >
               Show all past shows
             </Button>

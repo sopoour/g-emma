@@ -75,21 +75,28 @@ const Layout: FC<Props> = ({ children }) => {
             </Group>
             <Image
               src={Logo.src}
-              alt="Logo"
+              alt="G'emma Logo"
               style={{ maxHeight: '45px', cursor: 'pointer' }}
               onClick={() => animateScroll.scrollTo(0, { smooth: true, duration: 800 })}
             />
             <Group visibleFrom="md">
               <LinkContainer />
             </Group>
-            <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" color="g-dark.9" />
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="md"
+              size="sm"
+              color="g-dark.9"
+              aria-label="Toggle navigation menu"
+            />
           </Group>
         </Group>
       </AppShell.Header>
       <Sidebar open={opened} close={close} className={navbarClass}>
         <Image
           src={Logo.src}
-          alt="Logo"
+          alt="G'emma Logo"
           style={{ height: '45px', width: '45%', cursor: 'pointer', paddingLeft: '20px' }}
           onClick={() => animateScroll.scrollTo(0, { smooth: true, duration: 800 })}
         />

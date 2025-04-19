@@ -28,7 +28,7 @@ class DocumentApp extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap"
             crossOrigin="anonymous"
             as="font"
           />

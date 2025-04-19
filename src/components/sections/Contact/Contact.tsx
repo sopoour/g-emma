@@ -1,7 +1,16 @@
 import SectionContainer from '@app/components/SectionContainer/SectionContainer';
 import { FC, useState } from 'react';
 import { useForm } from '@mantine/form';
-import { Button, Checkbox, Group, Textarea, TextInput, Text, Flex } from '@mantine/core';
+import {
+  Button,
+  Checkbox,
+  Group,
+  Textarea,
+  TextInput,
+  Text,
+  Flex,
+  VisuallyHidden,
+} from '@mantine/core';
 import styles from './Contact.module.scss';
 import LinkContainer from '@app/components/LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
@@ -59,6 +68,7 @@ const Contact: FC = () => {
 
   return (
     <SectionContainer id="contact" className={styles.contactSection}>
+      <VisuallyHidden component={'h2'}>Contact</VisuallyHidden>
       <form onSubmit={form.onSubmit(handleSubmit)} className={styles.contactContainer}>
         <TextInput
           label="Name"
@@ -103,7 +113,7 @@ const Contact: FC = () => {
         {status === 'error' && <Text c="red">Something went wrong. Please try again.</Text>}
       </form>
       <Flex gap={'32px'} direction={'column'} align={{ base: 'center', sm: 'flex-start' }}>
-        <Text size="24px" ff={'Lexend'} c={'g-dark.9'} fw={700}>
+        <Text size="24px" ff={'Hind Vadodara'} c={'g-dark.9'} fw={600} component="h3">
           Or reach us at
         </Text>
         <EmailCopy email="contact@g-emma.com" label="Email" />

@@ -28,14 +28,16 @@ const MusicSectionV2: FC = () => {
 
   return (
     <SectionContainer id="music" className={styles.musicSection}>
+      <VisuallyHidden component={'h2'}>Music</VisuallyHidden>
       {data && (
         <Text
           size={isMobile ? '24px' : '32px'}
-          fw={700}
-          ff="Lexend"
+          fw={600}
+          ff="Hind Vadodara"
           c={'g-dark.9'}
           ta="center"
           style={{ padding: '0 16px' }}
+          component="h3"
         >
           {data[activeCard]?.albumCollection} ({ISOToYear(data[activeCard]?.releaseDate)})
         </Text>

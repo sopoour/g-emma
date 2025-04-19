@@ -21,16 +21,24 @@ const LiveRow: FC<Props> = ({ date, location, eventType, constellation, ticketLi
       className={isLinked ? `${styles.liveRowLinked} ${styles.liveRow}` : styles.liveRow}
     >
       <Grid.Col span={1}>
-        <Text fw={600} c={'g-dark.9'}>
+        <Text fw={600} c={'g-dark.9'} size="lg">
           {date && ISOToDate(date)}
         </Text>
-        <Text c={'g-dark.9'}>{eventType}</Text>
+        <Text c={'g-dark.9'} size="lg">
+          {eventType}
+        </Text>
       </Grid.Col>
       <Grid.Col span={1} className={styles.liveRowCol}>
-        <Text c={'g-dark.9'}> {location}</Text>
+        <Text c={'g-dark.9'} size="lg">
+          {location}
+        </Text>
       </Grid.Col>
       <Grid.Col span={1} className={styles.liveRowCol}>
-        {constellation && <Text c={'g-dark.9'}>{constellation}</Text>}
+        {constellation && (
+          <Text c={'g-dark.9'} size="lg">
+            {constellation}
+          </Text>
+        )}
       </Grid.Col>
     </Grid>
   );

@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mantine/core';
+import { Container, Grid, VisuallyHidden } from '@mantine/core';
 import { FC } from 'react';
 import useSWR from 'swr';
 import { LiveEvents } from '@app/services/graphql/types';
@@ -15,6 +15,7 @@ const Live: FC = () => {
 
   return (
     <SectionContainer id="live">
+      <VisuallyHidden component={'h2'}>Live Shows</VisuallyHidden>
       <Grid gutter="xl" style={{ position: 'relative' }}>
         {upcomingShows && upcomingShows?.length > 0 && (
           <LiveSection title="Upcoming shows" shows={upcomingShows} />
