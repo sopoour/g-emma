@@ -18,9 +18,10 @@
 
 .video {
     width: auto;
-    height: 250px;
-    min-width: 400px;
+    height: 300px;
+    min-width: 450px;
     border-radius: 10px;
+    box-shadow: 0 60px 50px -60px var(--mantine-color-g-dark-8);
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {
         width: 100% !important;
@@ -31,6 +32,8 @@
 }
 
 .videoContainer {
+    align-items: center;
+
     @media only screen and (max-width: $mantine-breakpoint-sm) {
         width: 100%;
     }

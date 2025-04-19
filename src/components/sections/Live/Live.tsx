@@ -10,8 +10,12 @@ const Live: FC = () => {
   const { data, isLoading } = useSWR<LiveEvents[] | null>('/api/liveEvents', fetcher);
   const today = new Date();
 
-  const upcomingShows = data?.filter((live) => new Date(live.date) >= today);
-  const pastShows = data?.filter((live) => new Date(live.date) < today);
+  const upcomingShows = data
+    ?.filter((live) => new Date(live.date) >= today)
+    ?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const pastShows = data
+    ?.filter((live) => new Date(live.date) < today)
+    ?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div style={{ background: 'linear-gradient(165deg, #BDD3E8 0%, #F4F6FB 50%)' }}>
