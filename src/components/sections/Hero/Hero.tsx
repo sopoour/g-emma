@@ -109,7 +109,7 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
         id="wrapperButterflies"
         style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}
       >
-        <VisuallyHidden component={'h1'}>G'emma Music</VisuallyHidden>
+        <VisuallyHidden component={'h1'}>G&apos;emma Music</VisuallyHidden>
         {generalContentData?.heroImage?.url && (
           <ContentfulImage
             src={generalContentData?.heroImage?.url}
