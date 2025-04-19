@@ -10,7 +10,7 @@ import styles from './About.module.scss';
 const About: FC = () => {
   const { data, isLoading } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
   return (
-    <div style={{ background: 'linear-gradient(180deg, #F4F6FB 50%, #85AE74 100%)' }}>
+    <div style={{ background: 'linear-gradient(210deg, #F4F6FB 50%, #99BD89 100%)' }}>
       <SectionContainer id="about">
         <VisuallyHidden component={'h2'}>About</VisuallyHidden>
         <SimpleGrid
