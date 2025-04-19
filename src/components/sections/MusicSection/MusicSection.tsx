@@ -27,49 +27,51 @@ const MusicSectionV2: FC = () => {
   }, [arrowLeftPressed, arrowRightPressed]);
 
   return (
-    <SectionContainer id="music" className={styles.musicSection}>
-      <VisuallyHidden component={'h2'}>Music</VisuallyHidden>
-      {data && (
-        <Text
-          size={isMobile ? '24px' : '32px'}
-          fw={600}
-          ff="Hind Vadodara"
-          c={'g-dark.9'}
-          ta="center"
-          style={{ padding: '0 16px' }}
-          component="h3"
-        >
-          {data[activeCard]?.albumCollection} ({ISOToYear(data[activeCard]?.releaseDate)})
-        </Text>
-      )}
-      <div className={styles.carousel}>
-        {activeCard !== 0 && (
-          <button className={`${styles.navButton} ${styles.left}`} onClick={handlePrev}>
-            <IoIosArrowBack focusable="false" aria-hidden="true" />
-            <VisuallyHidden>Previous button</VisuallyHidden>
-          </button>
+    <div style={{ background: 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 50%)' }}>
+      <SectionContainer id="music" className={styles.musicSection}>
+        <VisuallyHidden component={'h2'}>Music</VisuallyHidden>
+        {data && (
+          <Text
+            size={isMobile ? '24px' : '32px'}
+            fw={600}
+            ff="Hind Vadodara"
+            c={'g-dark.9'}
+            ta="center"
+            style={{ padding: '0 16px' }}
+            component="h3"
+          >
+            {data[activeCard]?.albumCollection} ({ISOToYear(data[activeCard]?.releaseDate)})
+          </Text>
         )}
-        {activeCard + 1 !== data?.length && (
-          <button className={`${styles.navButton} ${styles.right}`} onClick={handleNext}>
-            <IoIosArrowForward focusable="false" aria-hidden="true" />
-            <VisuallyHidden>Next button</VisuallyHidden>
-          </button>
-        )}
+        <div className={styles.carousel}>
+          {activeCard !== 0 && (
+            <button className={`${styles.navButton} ${styles.left}`} onClick={handlePrev}>
+              <IoIosArrowBack focusable="false" aria-hidden="true" />
+              <VisuallyHidden>Previous button</VisuallyHidden>
+            </button>
+          )}
+          {activeCard + 1 !== data?.length && (
+            <button className={`${styles.navButton} ${styles.right}`} onClick={handleNext}>
+              <IoIosArrowForward focusable="false" aria-hidden="true" />
+              <VisuallyHidden>Next button</VisuallyHidden>
+            </button>
+          )}
 
-        {data
-          ?.sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime())
-          .map((music, index) => (
-            <MusicCard
-              music={music}
-              musicIndex={index}
-              activeIndex={activeCard}
-              key={music.musicTitle}
-              data-index={index}
-              onActiveCardChange={setActiveCard}
-            />
-          ))}
-      </div>
-    </SectionContainer>
+          {data
+            ?.sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime())
+            .map((music, index) => (
+              <MusicCard
+                music={music}
+                musicIndex={index}
+                activeIndex={activeCard}
+                key={music.musicTitle}
+                data-index={index}
+                onActiveCardChange={setActiveCard}
+              />
+            ))}
+        </div>
+      </SectionContainer>
+    </div>
   );
 };
 

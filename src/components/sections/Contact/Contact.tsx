@@ -67,60 +67,62 @@ const Contact: FC = () => {
   };
 
   return (
-    <SectionContainer id="contact" className={styles.contactSection}>
-      <VisuallyHidden component={'h2'}>Contact</VisuallyHidden>
-      <form onSubmit={form.onSubmit(handleSubmit)} className={styles.contactContainer}>
-        <TextInput
-          label="Name"
-          placeholder="Your name"
-          {...form.getInputProps('name')}
-          withAsterisk
-          size="md"
-          radius="md"
-          key={form.key('name')}
-        />
-        <TextInput
-          label="Email"
-          placeholder="you@example.com"
-          {...form.getInputProps('email')}
-          withAsterisk
-          size="md"
-          radius="md"
-          key={form.key('email')}
-        />
-        <Textarea
-          label="Message"
-          placeholder="Write your message..."
-          minRows={4}
-          autosize
-          {...form.getInputProps('message')}
-          withAsterisk
-          size="md"
-          radius="md"
-        />
-        <Checkbox
-          style={{ maxWidth: '400px' }}
-          label="I agree that this data may be stored and processed for the purpose of contacting me. I am aware that I can withdraw my consent at any time."
-          {...form.getInputProps('gdpr', { type: 'checkbox' })}
-        />
-        <Group mt="md">
-          <Button type="submit" loading={status === 'sending'}>
-            Send
-          </Button>
-        </Group>
+    <div style={{ background: 'linear-gradient(160deg, #F4F6FB 35%, #bfc2e2 100% )' }}>
+      <SectionContainer id="contact" className={styles.contactSection}>
+        <VisuallyHidden component={'h2'}>Contact</VisuallyHidden>
+        <form onSubmit={form.onSubmit(handleSubmit)} className={styles.contactContainer}>
+          <TextInput
+            label="Name"
+            placeholder="Your name"
+            {...form.getInputProps('name')}
+            withAsterisk
+            size="md"
+            radius="md"
+            key={form.key('name')}
+          />
+          <TextInput
+            label="Email"
+            placeholder="you@example.com"
+            {...form.getInputProps('email')}
+            withAsterisk
+            size="md"
+            radius="md"
+            key={form.key('email')}
+          />
+          <Textarea
+            label="Message"
+            placeholder="Write your message..."
+            minRows={4}
+            autosize
+            {...form.getInputProps('message')}
+            withAsterisk
+            size="md"
+            radius="md"
+          />
+          <Checkbox
+            style={{ maxWidth: '400px' }}
+            label="I agree that this data may be stored and processed for the purpose of contacting me. I am aware that I can withdraw my consent at any time."
+            {...form.getInputProps('gdpr', { type: 'checkbox' })}
+          />
+          <Group mt="md">
+            <Button type="submit" loading={status === 'sending'}>
+              Send
+            </Button>
+          </Group>
 
-        {status === 'sent' && <Text c="g-dark.5">Message sent successfully!</Text>}
-        {status === 'error' && <Text c="red">Something went wrong. Please try again.</Text>}
-      </form>
-      <Flex gap={'32px'} direction={'column'} align={{ base: 'center', sm: 'flex-start' }}>
-        <Text size="24px" ff={'Hind Vadodara'} c={'g-dark.9'} fw={600} component="h3">
-          Or reach us at
-        </Text>
-        <EmailCopy email="contact@g-emma.com" label="Email" />
-        <EmailCopy email="booking@g-emma.com" label="Booking" />
-        <LinkContainer className={styles.contactLinkContainer} iconLinks={links} hasToolTip />
-      </Flex>
-    </SectionContainer>
+          {status === 'sent' && <Text c="g-dark.5">Message sent successfully!</Text>}
+          {status === 'error' && <Text c="red">Something went wrong. Please try again.</Text>}
+        </form>
+        <Flex gap={'32px'} direction={'column'} align={{ base: 'center', sm: 'flex-start' }}>
+          <Text size="24px" ff={'Hind Vadodara'} c={'g-dark.9'} fw={600} component="h3">
+            Or reach us at
+          </Text>
+          <EmailCopy email="contact@g-emma.com" label="Email" />
+          <EmailCopy email="booking@g-emma.com" label="Booking" />
+          <LinkContainer className={styles.contactLinkContainer} iconLinks={links} hasToolTip />
+        </Flex>
+      </SectionContainer>
+    </div>
   );
 };
 
