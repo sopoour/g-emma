@@ -26,7 +26,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
             : styles.liveGridSection
         }
       >
-        <Text size="20px" fw={700} ff="BioRhyme" c={'g-dark.9'} id="showTitle">
+        <Text size="20px" fw={600} ff="Lexend" c={'g-dark.9'} id="showTitle">
           {title}
         </Text>
       </Grid.Col>

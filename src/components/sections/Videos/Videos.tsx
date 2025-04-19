@@ -12,7 +12,7 @@ const Videos: FC = () => {
     <SectionContainer id="videos" className={styles.videoSection}>
       {data?.map((video) => (
         <Flex key={video.title} direction={'column'} gap={32} className={styles.videoContainer}>
-          <Text c={'g-dark.9'} size="20px" fw={700} ff="BioRhyme">
+          <Text c={'g-dark.9'} size="20px" fw={700} ff="Lexend">
             {video.title}
           </Text>
           <iframe
