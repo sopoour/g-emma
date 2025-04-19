@@ -26,7 +26,7 @@
     justify-content: center;
     cursor: pointer;
     position: absolute;
-    bottom: 8%;
+    bottom: 3%;
     left: 50%;
     opacity: 0;
     animation: fade-in 1.5s forwards 5.75s;
@@ -35,6 +35,12 @@
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {
         left: 43%;
+
+        svg {
+            path {
+                fill: var(--mantine-color-g-dark-9) !important;
+            }
+        }
     }
 
     svg {
@@ -42,7 +48,7 @@
         height: 30px !important;
 
         path {
-            fill: var(--mantine-color-g-dark-9);
+            fill: var(--mantine-color-g-dark-2);
         }
     }
 
