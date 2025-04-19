@@ -632,7 +632,7 @@ export type Music = Entry & _Node & {
   _id: Scalars['ID']['output'];
   albumCollection?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
-  isAlbum?: Maybe<Scalars['Boolean']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<MusicLinkingCollections>;
   musicCover?: Maybe<Asset>;
   musicTitle?: Maybe<Scalars['String']['output']>;
@@ -649,7 +649,7 @@ export type MusicAlbumCollectionArgs = {
 
 
 /** Music Collection type für Album, Singles etc. [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/music) */
-export type MusicIsAlbumArgs = {
+export type MusicDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -703,9 +703,13 @@ export type MusicFilter = {
   albumCollection_not_contains?: InputMaybe<Scalars['String']['input']>;
   albumCollection_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  isAlbum?: InputMaybe<Scalars['Boolean']['input']>;
-  isAlbum_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  isAlbum_not?: InputMaybe<Scalars['Boolean']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   musicCover_exists?: InputMaybe<Scalars['Boolean']['input']>;
   musicTitle?: InputMaybe<Scalars['String']['input']>;
   musicTitle_contains?: InputMaybe<Scalars['String']['input']>;
@@ -749,8 +753,6 @@ export type MusicLinkingCollectionsEntryCollectionArgs = {
 export enum MusicOrder {
   AlbumCollectionAsc = 'albumCollection_ASC',
   AlbumCollectionDesc = 'albumCollection_DESC',
-  IsAlbumAsc = 'isAlbum_ASC',
-  IsAlbumDesc = 'isAlbum_DESC',
   MusicTitleAsc = 'musicTitle_ASC',
   MusicTitleDesc = 'musicTitle_DESC',
   ReleaseDateAsc = 'releaseDate_ASC',
@@ -770,6 +772,7 @@ export enum MusicOrder {
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
+  _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   entryCollection?: Maybe<EntryCollection>;
@@ -786,6 +789,13 @@ export type Query = {
 
 export type Query_NodeArgs = {
   id: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type Query_NodesArgs = {
+  ids: Array<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
 };
