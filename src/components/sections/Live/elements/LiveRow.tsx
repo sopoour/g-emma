@@ -30,7 +30,6 @@ const LiveRow: FC<Props> = ({ date, location, eventType, constellation, ticketLi
       </Grid.Col>
       <Grid.Col span={1} className={styles.liveRowCol}>
         <Text c={'g-dark.9'} size="lg">
-          {' '}
           {location}
         </Text>
       </Grid.Col>

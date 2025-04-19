@@ -88,7 +88,7 @@ const Layout: FC<Props> = ({ children }) => {
               hiddenFrom="md"
               size="sm"
               color="g-dark.9"
-              aria-label="Burger mobile menu"
+              aria-label="Toggle navigation menu"
             />
           </Group>
         </Group>
