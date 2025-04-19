@@ -99,7 +99,7 @@ const Contact: FC = () => {
           </Button>
         </Group>
 
-        {status === 'sent' && <Text c="green">Message sent successfully!</Text>}
+        {status === 'sent' && <Text c="g-dark.5">Message sent successfully!</Text>}
         {status === 'error' && <Text c="red">Something went wrong. Please try again.</Text>}
       </form>
       <Flex gap={'32px'} direction={'column'} align={{ base: 'center', sm: 'flex-start' }}>
