@@ -82,7 +82,7 @@ const Layout: FC<Props> = ({ children }) => {
             <Group visibleFrom="md">
               <LinkContainer />
             </Group>
-            <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
+            <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" color="g-dark.9" />
           </Group>
         </Group>
       </AppShell.Header>
