@@ -76,7 +76,7 @@ const Layout: FC<Props> = ({ children }) => {
             <Image
               src={Logo.src}
               alt="Logo"
-              style={{ maxHeight: '70px', cursor: 'pointer' }}
+              style={{ maxHeight: '45px', cursor: 'pointer' }}
               onClick={() => animateScroll.scrollTo(0, { smooth: true, duration: 800 })}
             />
             <Group visibleFrom="md">
@@ -90,7 +90,7 @@ const Layout: FC<Props> = ({ children }) => {
         <Image
           src={Logo.src}
           alt="Logo"
-          style={{ height: '60px', width: '65%', cursor: 'pointer', paddingLeft: '10px' }}
+          style={{ height: '45px', width: '45%', cursor: 'pointer', paddingLeft: '20px' }}
           onClick={() => animateScroll.scrollTo(0, { smooth: true, duration: 800 })}
         />
         <Group
