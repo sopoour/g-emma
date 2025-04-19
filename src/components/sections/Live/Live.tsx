@@ -14,15 +14,17 @@ const Live: FC = () => {
   const pastShows = data?.filter((live) => new Date(live.date) < today);
 
   return (
-    <SectionContainer id="live">
-      <VisuallyHidden component={'h2'}>Live Shows</VisuallyHidden>
-      <Grid gutter="xl" style={{ position: 'relative' }}>
-        {upcomingShows && upcomingShows?.length > 0 && (
-          <LiveSection title="Upcoming shows" shows={upcomingShows} />
-        )}
-        <LiveSection title="Past shows" shows={pastShows} hasShowAll />
-      </Grid>
-    </SectionContainer>
+    <div style={{ background: 'linear-gradient(180deg, #BDD3E8 0%, #F4F6FB 50%)' }}>
+      <SectionContainer id="live">
+        <VisuallyHidden component={'h2'}>Live Shows</VisuallyHidden>
+        <Grid gutter="xl" style={{ position: 'relative' }}>
+          {upcomingShows && upcomingShows?.length > 0 && (
+            <LiveSection title="Upcoming shows" shows={upcomingShows} />
+          )}
+          <LiveSection title="Past shows" shows={pastShows} hasShowAll />
+        </Grid>
+      </SectionContainer>
+    </div>
   );
 };
 
