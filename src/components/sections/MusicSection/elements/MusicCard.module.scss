@@ -1,8 +1,29 @@
 @use '../../../../styles/variables.module.scss' as *;
 
+@mixin slow-transition {
+    transition: all 0.6s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+}
+
+@mixin music-info {
+    position: absolute;
+    bottom: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 50;
+    padding: 0 28px;
+}
+
+
 .musicCard {
-    --music-title: 'Music';
-    --absOffset: 0;
+    --content: "View Details";
+    --bg-content: "transparent"
+        --absOffset: 0;
     --offset: 0;
     --direction: 0;
     position: absolute;
@@ -12,12 +33,13 @@
     width: 50%;
     height: 100%;
     padding: 0;
-    transition: all 0.3s ease-in-out;
+    background-color: var(--mantine-color-g-dark-2);
     transform-style: preserve-3d;
     cursor: pointer;
     transform: rotateY(calc(var(--offset) * 50deg)) scaleY(calc(1 + var(--absOffset) * -0.4)) translateZ(calc(var(--absOffset) * -30rem)) translateX(calc(var(--direction) * -5rem));
     filter: blur(calc(var(--absOffset) * 0.75rem));
     box-shadow: 0 60px 50px -60px var(--mantine-color-g-dark-9);
+    @include slow-transition;
 
     img {
         filter: brightness(calc(100% - (var(--absOffset) * 65%)));
@@ -52,22 +74,21 @@
         }
 
         &:before {
-            bottom: 5% !important;
-            font-size: 18px !important;
+            content: "" !important;
+            background-color: transparent !important;
         }
     }
 
     &::after,
     &::before {
         position: absolute;
-        transition: all 0.3s ease-in-out;
+        @include slow-transition;
         opacity: 0;
     }
 
     &::before {
-        content: "show Details";
-        content: 'View details';
-        font-weight: 500;
+        content: var(--content);
+        font-weight: 600;
         width: max-content;
         height: max-content;
         bottom: -20%;
@@ -78,7 +99,7 @@
         padding: 4px 12px;
         color: var(--mantine-color-g-dark-9);
         z-index: 10;
-        background-color: var(--mantine-color-g-dark-2);
+        background-color: var(--bg-content);
     }
 
     &::after {
@@ -94,6 +115,11 @@
     &:hover {
         filter: none;
 
+        .musicCardNoDescription {
+            opacity: 1;
+            bottom: 6% !important;
+        }
+
         &:before {
             bottom: 5%;
         }
@@ -105,39 +131,49 @@
     }
 }
 
+
+.musicCardContentMobile {
+    display: none;
+
+    @media only screen and (max-width: $mantine-breakpoint-sm) {
+        bottom: 18px !important;
+        @include music-info;
+    }
+
+}
+
+// In case desktop and no description, we show some details on hover
+.musicCardNoDescription {
+    opacity: 0;
+    @include music-info;
+    @include slow-transition;
+}
+
+// CONTENT SHOWN ONCLICK
+
 .musicCardContent {
-    /* box-shadow: 0 60px 50px -60px; */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    box-shadow: 0 60px 50px -60px var(--mantine-color-g-dark-2);
     padding: 32px;
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: all 0.6s ease-in-out;
-    -webkit-transition: all 0.6s ease-in-out;
-    -moz-transition: all 0.6s ease-in-out;
-    -o-transition: all 0.6s ease-in-out;
-    background-color: var(--mantine-color-g-dark-4);
+    @include slow-transition;
+    background-color: var(--mantine-color-g-dark-2);
     background-image: none;
     border-radius: 10px;
     position: relative;
     z-index: 2;
-
-    p {
-        color: var(--mantine-color-g-dark-9);
-        font-size: 16px;
-        line-height: 1.5;
-    }
 }
+
 
 .musicCardHeader {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     gap: 16px;
-
-    >p {
-        font-size: 16px;
-
-    }
 }
 
 .musicCardContentViewed {
@@ -150,7 +186,7 @@
         z-index: -1;
     }
 
-    &.musicCardContent {
+    .musicCardContent {
         opacity: 1;
         transform: rotateY(180deg);
     }

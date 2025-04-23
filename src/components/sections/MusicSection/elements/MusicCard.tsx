@@ -4,8 +4,10 @@ import { Card, Text } from '@mantine/core';
 import { FC, useEffect, useRef, useState } from 'react';
 import styles from './MusicCard.module.scss';
 import useKeyPress from '@app/hooks/useKeyPress';
-import { useClickOutside, useIntersection, useMediaQuery } from '@mantine/hooks';
+import { useIntersection, useMediaQuery } from '@mantine/hooks';
 import LinkContainer from '@app/components/LinkContainer/LinkContainer';
+import { IconLink } from '@app/types';
+import useClickOutside from '@app/hooks/useClickOutside';
 
 const MAX_VISIBILITY = 3;
 
@@ -17,13 +19,30 @@ type Props = {
 };
 
 const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChange }) => {
-  const ref = useRef<HTMLButtonElement | null>(null);
+  const ref = useRef<HTMLButtonElement>(null);
   const arrowRightPressed = useKeyPress('ArrowRight');
   const arrowLeftPressed = useKeyPress('ArrowLeft');
   const isMobile = useMediaQuery(`(max-width: 48em)`);
   const [view, setView] = useState<boolean>(false);
+  useClickOutside(ref, () => setView(false));
 
-  /* useClickOutside(ref, () => setView(false)); */
+  const mappedLinks: IconLink[] | undefined = music.distributorUrLs?.map((link) => {
+    let type = '';
+    if (link?.includes('spotify')) {
+      type = 'spotify';
+    } else if (link?.includes('apple')) {
+      type = 'appleMusic';
+    } else {
+      type = 'spotify';
+    }
+
+    return {
+      type,
+      id: `${type}-${music.musicTitle?.toLowerCase().replace(/\s+/g, '-')}`,
+      link,
+    } as IconLink;
+  });
+
   const { ref: intersectionRef, entry } = useIntersection({
     root: null,
     threshold: 0.6,
@@ -31,7 +50,7 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChan
   });
 
   const basicStyle = {
-    '--music-title': `"${music.musicTitle}"`,
+    '--content': `"${!!music.description ? 'View Details' : ''}"`,
     '--offset': `${(activeIndex - musicIndex) / 3}`,
     '--absOffset': `${Math.abs(activeIndex - musicIndex) / 3}`,
     '--direction': `${Math.sign(activeIndex - musicIndex)}`,
@@ -54,7 +73,7 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChan
     <Card
       padding="xl"
       radius="md"
-      component="button"
+      component={'button'}
       /*  href={music.url || ''} */
       /* target="_blank" */
       key={music.musicTitle}
@@ -69,19 +88,22 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChan
               opacity: Math.abs(activeIndex - musicIndex) >= MAX_VISIBILITY ? '0' : '1',
               display: Math.abs(activeIndex - musicIndex) > MAX_VISIBILITY ? 'none' : 'block',
               pointerEvents: activeIndex === musicIndex ? 'auto' : 'none',
+              '--bg-content': music.description ? 'var(--mantine-color-g-dark-2)' : 'transparent',
             }
       }
       ref={ref}
       aria-label={`${music.musicTitle}-music-card`}
       tabIndex={activeIndex === musicIndex ? 0 : -1}
-      onClick={() => !isMobile && setView((prev) => !prev)}
+      onClick={() => !isMobile && !!music.description && setView((prev) => !prev)}
     >
-      <div className={styles.musicCardConten}>
+      <div className={styles.musicCardContent}>
         <div className={styles.musicCardHeader}>
-          <Text>{music.musicTitle}</Text>
-          <LinkContainer />
+          <Text fw={600} ff={'Hind Vadodara'} size="20px" c={'g-dark.9'}>
+            {music.musicTitle}
+          </Text>
+          <LinkContainer iconLinks={mappedLinks} size="small" />
         </div>
-        {music.description && <Text>{music.description}</Text>}
+        {music.description && <Text c={'g-dark.9'}>{music.description}</Text>}
       </div>
       <ContentfulImage
         src={music.musicCover?.url || ''}
@@ -91,6 +113,18 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChan
         style={{ objectFit: 'cover' }}
         ref={intersectionRef}
       />
+      <div
+        className={
+          !isMobile && !music.description
+            ? styles.musicCardNoDescription
+            : styles.musicCardContentMobile
+        }
+      >
+        <Text fw={600} ff={'Hind Vadodara'} size="18px" c={'g-dark.9'}>
+          {music.musicTitle}
+        </Text>
+        <LinkContainer iconLinks={mappedLinks} size="small" />
+      </div>
     </Card>
   );
 };

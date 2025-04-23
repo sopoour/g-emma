@@ -12,6 +12,7 @@ export default async function getMusic(req: NextApiRequest, res: NextApiResponse
                 releaseDate
                 url
                 description
+                distributorUrLs
                 musicCover {
                   url
                 }
