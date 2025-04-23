@@ -633,6 +633,7 @@ export type Music = Entry & _Node & {
   albumCollection?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<Scalars['String']['output']>;
+  distributorUrLs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   linkedFrom?: Maybe<MusicLinkingCollections>;
   musicCover?: Maybe<Asset>;
   musicTitle?: Maybe<Scalars['String']['output']>;
@@ -650,6 +651,12 @@ export type MusicAlbumCollectionArgs = {
 
 /** Music Collection type für Album, Singles etc. [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/music) */
 export type MusicDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Music Collection type für Album, Singles etc. [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/music) */
+export type MusicDistributorUrLsArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -710,6 +717,10 @@ export type MusicFilter = {
   description_not?: InputMaybe<Scalars['String']['input']>;
   description_not_contains?: InputMaybe<Scalars['String']['input']>;
   description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  distributorUrLs_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  distributorUrLs_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  distributorUrLs_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  distributorUrLs_exists?: InputMaybe<Scalars['Boolean']['input']>;
   musicCover_exists?: InputMaybe<Scalars['Boolean']['input']>;
   musicTitle?: InputMaybe<Scalars['String']['input']>;
   musicTitle_contains?: InputMaybe<Scalars['String']['input']>;
