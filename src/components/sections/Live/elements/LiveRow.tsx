@@ -1,5 +1,5 @@
 import { ISOToDate } from '@app/utils/formatDate';
-import { Grid, Text } from '@mantine/core';
+import { Button, Grid, Text } from '@mantine/core';
 import { FC } from 'react';
 import styles from '../Live.module.scss';
 import { Maybe } from '@app/services/graphql/types';
@@ -11,9 +11,17 @@ type Props = {
   location?: Maybe<string>;
   constellation?: Maybe<string>;
   ticketLink?: Maybe<string>;
+  ticketNotiz?: Maybe<string>;
 };
 
-const LiveRow: FC<Props> = ({ date, location, eventType, constellation, ticketLink }) => {
+const LiveRow: FC<Props> = ({
+  date,
+  location,
+  eventType,
+  constellation,
+  ticketLink,
+  ticketNotiz,
+}) => {
   const gridComponent = (isLinked: boolean) => (
     <Grid
       gutter={{ base: 's', xs: 'lg' }}
@@ -24,21 +32,38 @@ const LiveRow: FC<Props> = ({ date, location, eventType, constellation, ticketLi
         <Text fw={600} c={'g-dark.9'} size="lg">
           {date && ISOToDate(date)}
         </Text>
-        <Text c={'g-dark.9'} size="lg">
-          {eventType}
-        </Text>
+        {constellation && (
+          <Text c={'g-dark.9'} size="md">
+            {constellation}
+          </Text>
+        )}
       </Grid.Col>
-      <Grid.Col span={1} className={styles.liveRowCol}>
-        <Text c={'g-dark.9'} size="lg">
+      <Grid.Col span={1}>
+        <Text c={'g-dark.9'} size="md">
+          {eventType},
+        </Text>
+        <Text c={'g-dark.9'} size="md">
           {location}
         </Text>
       </Grid.Col>
       <Grid.Col span={1} className={styles.liveRowCol}>
-        {constellation && (
-          <Text c={'g-dark.9'} size="lg">
-            {constellation}
-          </Text>
-        )}
+        {(ticketLink || ticketNotiz) &&
+          (ticketLink ? (
+            <Button
+              variant="outline"
+              pb={'xs'}
+              pt={'xs'}
+              component="a"
+              href={ticketLink}
+              target="_blank"
+            >
+              {date && new Date(date) >= new Date() ? 'Ticket' : 'Impressions'}
+            </Button>
+          ) : (
+            <Text c={'g-dark.9'} size="md">
+              {ticketNotiz}
+            </Text>
+          ))}
       </Grid.Col>
     </Grid>
   );

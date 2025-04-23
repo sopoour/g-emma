@@ -502,6 +502,7 @@ export type LiveEvents = Entry & _Node & {
   location?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   ticketLink?: Maybe<Scalars['String']['output']>;
+  ticketNotiz?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -537,6 +538,12 @@ export type LiveEventsLocationArgs = {
 
 /** Live Event Collection Type, wo ein Content entry pro Event erstellt wird [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/liveEvents) */
 export type LiveEventsTicketLinkArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Live Event Collection Type, wo ein Content entry pro Event erstellt wird [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/liveEvents) */
+export type LiveEventsTicketNotizArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -590,6 +597,13 @@ export type LiveEventsFilter = {
   ticketLink_not?: InputMaybe<Scalars['String']['input']>;
   ticketLink_not_contains?: InputMaybe<Scalars['String']['input']>;
   ticketLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  ticketNotiz?: InputMaybe<Scalars['String']['input']>;
+  ticketNotiz_contains?: InputMaybe<Scalars['String']['input']>;
+  ticketNotiz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  ticketNotiz_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  ticketNotiz_not?: InputMaybe<Scalars['String']['input']>;
+  ticketNotiz_not_contains?: InputMaybe<Scalars['String']['input']>;
+  ticketNotiz_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type LiveEventsLinkingCollections = {
@@ -623,7 +637,9 @@ export enum LiveEventsOrder {
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
   TicketLinkAsc = 'ticketLink_ASC',
-  TicketLinkDesc = 'ticketLink_DESC'
+  TicketLinkDesc = 'ticketLink_DESC',
+  TicketNotizAsc = 'ticketNotiz_ASC',
+  TicketNotizDesc = 'ticketNotiz_DESC'
 }
 
 /** Music Collection type für Album, Singles etc. [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/music) */
