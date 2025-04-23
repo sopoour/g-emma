@@ -27,7 +27,11 @@ const MusicSectionV2: FC = () => {
   }, [arrowLeftPressed, arrowRightPressed]);
 
   return (
-    <div style={{ background: 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 50%)' }}>
+    <div
+      style={{
+        background: `${isMobile ? 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 80%)' : 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 50%)'}`,
+      }}
+    >
       <SectionContainer id="music" className={styles.musicSection}>
         <VisuallyHidden component={'h2'}>Music</VisuallyHidden>
         {data && (
