@@ -54,7 +54,7 @@
     justify-content: center;
     top: 50%;
     z-index: 2;
-    color: var(--mantine-color-g-dark-1);
+    color: var(--mantine-color-g-dark-0);
     transition: all 0.3s ease-in-out;
 
     &.left {
@@ -68,7 +68,7 @@
     }
 
     &:hover {
-        color: var(--mantine-color-g-dark-4);
+        color: var(--mantine-color-g-dark-3);
     }
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {

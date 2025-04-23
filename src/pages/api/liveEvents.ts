@@ -12,6 +12,7 @@ export default async function getLiveEvents(req: NextApiRequest, res: NextApiRes
                 eventType
                 location
                 ticketLink
+                ticketNotiz
               }
             }
           }`,

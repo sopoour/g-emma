@@ -46,6 +46,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
             eventType={live.eventType}
             location={live.location}
             ticketLink={live.ticketLink}
+            ticketNotiz={live.ticketNotiz}
           />
         ))}
         {!showAll && hasShowAll && (

@@ -21,7 +21,7 @@ const EmailCopy: FC<Props> = ({ email, label }) => {
       label={copied ? 'Copied!' : 'Copy to clipboard'}
       withArrow
       position="bottom"
-      color="g-dark.7"
+      color="g-dark.5"
       offset={12}
       transitionProps={{ transition: 'pop', duration: 300 }}
     >
