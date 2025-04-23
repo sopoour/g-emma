@@ -11,7 +11,7 @@ import useKeyPress from '@app/hooks/useKeyPress';
 import MusicCard from './elements/MusicCard';
 import { useMediaQuery } from '@mantine/hooks';
 
-const MusicSectionV2: FC = () => {
+const MusicSection: FC = () => {
   const { data, isLoading } = useSWR<Music[] | null>('/api/music', fetcher);
   const [activeCard, setActiveCard] = useState<number>(0);
   const isMobile = useMediaQuery(`(max-width: 48em)`);
@@ -20,6 +20,10 @@ const MusicSectionV2: FC = () => {
 
   const arrowRightPressed = useKeyPress('ArrowRight');
   const arrowLeftPressed = useKeyPress('ArrowLeft');
+
+  const sortedData = data?.sort(
+    (a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime(),
+  );
 
   useEffect(() => {
     if (arrowLeftPressed && activeCard !== 0) handlePrev();
@@ -34,7 +38,7 @@ const MusicSectionV2: FC = () => {
     >
       <SectionContainer id="music" className={styles.musicSection}>
         <VisuallyHidden component={'h2'}>Music</VisuallyHidden>
-        {data && (
+        {sortedData && (
           <Text
             size={isMobile ? '24px' : '32px'}
             fw={600}
@@ -44,7 +48,8 @@ const MusicSectionV2: FC = () => {
             style={{ padding: '0 16px' }}
             component="h3"
           >
-            {data[activeCard]?.albumCollection} ({ISOToYear(data[activeCard]?.releaseDate)})
+            {sortedData[activeCard]?.albumCollection} (
+            {ISOToYear(sortedData[activeCard]?.releaseDate)})
           </Text>
         )}
         <div className={styles.carousel}>
@@ -61,22 +66,20 @@ const MusicSectionV2: FC = () => {
             </button>
           )}
 
-          {data
-            ?.sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime())
-            .map((music, index) => (
-              <MusicCard
-                music={music}
-                musicIndex={index}
-                activeIndex={activeCard}
-                key={music.musicTitle}
-                data-index={index}
-                onActiveCardChange={setActiveCard}
-              />
-            ))}
+          {sortedData?.map((music, index) => (
+            <MusicCard
+              music={music}
+              musicIndex={index}
+              activeIndex={activeCard}
+              key={music.musicTitle}
+              data-index={index}
+              onActiveCardChange={setActiveCard}
+            />
+          ))}
         </div>
       </SectionContainer>
     </div>
   );
 };
 
-export default MusicSectionV2;
+export default MusicSection;
