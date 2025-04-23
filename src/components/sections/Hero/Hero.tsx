@@ -6,11 +6,12 @@ import { useGSAP } from '@gsap/react';
 import { useIntersection } from '@mantine/hooks';
 import { GeneralContent } from '@app/services/graphql/types';
 import { fetcher } from '@app/hooks/fetch/useFetch';
-import useSWR, { SWRConfiguration } from 'swr';
+import useSWR from 'swr';
 import { IoIosArrowDown } from 'react-icons/io';
 import { scroller } from 'react-scroll';
 import ContentfulImage from '@app/lib/contentful-image';
-import { Title, VisuallyHidden } from '@mantine/core';
+import { VisuallyHidden } from '@mantine/core';
+import HeroImage from '@app/assets/Titelbild.jpg';
 
 gsap.registerPlugin(useGSAP);
 
@@ -34,7 +35,7 @@ const butterFlyFiles = [
 ];
 
 const Hero = forwardRef<HTMLDivElement>((props, ref) => {
-  const { data: generalContentData } = useSWR<GeneralContent | null>(
+  const { data: generalContentData, isLoading } = useSWR<GeneralContent | null>(
     '/api/generalContent',
     fetcher,
     {},
@@ -110,15 +111,19 @@ const Hero = forwardRef<HTMLDivElement>((props, ref) => {
         style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}
       >
         <VisuallyHidden component={'h1'}>G&apos;emma Music</VisuallyHidden>
-        {generalContentData?.heroImage?.url && (
-          <ContentfulImage
-            src={generalContentData?.heroImage?.url}
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center 13%' }}
-            priority
-            alt={'Hero Background'}
-          />
-        )}
+
+        <ContentfulImage
+          src={
+            !!generalContentData?.heroImage?.url && !isLoading
+              ? generalContentData?.heroImage?.url
+              : HeroImage.src
+          }
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center 13%' }}
+          priority
+          alt={'Hero Background'}
+        />
+
         {butterFlyFiles.map((butterfly, index) => (
           <Image
             key={index}
