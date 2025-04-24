@@ -87,7 +87,7 @@ const Layout: FC<Props> = ({ children }) => {
               style={{ maxHeight: '45px', cursor: 'pointer' }}
               onClick={() => {
                 animateScroll.scrollTo(0, { smooth: true, duration: 800 });
-                router.push('/');
+                router.pathname !== '/' && router.push('/');
               }}
             />
             <Group visibleFrom="md">
