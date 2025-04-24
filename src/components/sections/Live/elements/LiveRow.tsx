@@ -49,7 +49,7 @@ const LiveRow: FC<Props> = ({
       <Grid.Col span={1} className={styles.liveRowCol}>
         {(ticketLink || ticketNotiz) &&
           (ticketLink ? (
-            <Button variant="outline" pb={'xs'} pt={'xs'} component="div">
+            <Button variant="outline" pb={'xs'} pt={'xs'} component="span">
               {date && new Date(date) >= new Date() ? 'Ticket' : 'Impressions'}
             </Button>
           ) : (
