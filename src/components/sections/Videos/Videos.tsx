@@ -1,15 +1,15 @@
-import SectionContainer from '@app/components/SectionContainer/SectionContainer';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Video } from '@app/services/graphql/types';
 import { FC } from 'react';
 import useSWR from 'swr';
 import styles from './Videos.module.scss';
 import { Flex, Text, VisuallyHidden } from '@mantine/core';
+import MaxwidthContainer from '@app/components/MaxwidthContainer/MaxwidthContainer';
 
 const Videos: FC = () => {
   const { data, isLoading } = useSWR<Video[] | null>('/api/video', fetcher);
   return (
-    <SectionContainer id="videos" className={styles.videoSection}>
+    <MaxwidthContainer id="videos" className={styles.videoSection} component={'section'}>
       <VisuallyHidden component={'h2'}>Videos</VisuallyHidden>
       {data?.map((video) => (
         <Flex key={video.title} direction={'column'} gap={32} className={styles.videoContainer}>
@@ -26,7 +26,7 @@ const Videos: FC = () => {
           />
         </Flex>
       ))}
-    </SectionContainer>
+    </MaxwidthContainer>
   );
 };
 

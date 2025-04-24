@@ -4,7 +4,8 @@ import useSWR from 'swr';
 import { LiveEvents } from '@app/services/graphql/types';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import LiveSection from './elements/LiveSection';
-import SectionContainer from '@app/components/SectionContainer/SectionContainer';
+import MaxwidthContainer from '@app/components/MaxwidthContainer/MaxwidthContainer';
+import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
 
 const Live: FC = () => {
   const { data, isLoading } = useSWR<LiveEvents[] | null>('/api/liveEvents', fetcher);
@@ -18,8 +19,8 @@ const Live: FC = () => {
     ?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <div style={{ background: 'linear-gradient(165deg, #BDD3E8 0%, #F4F6FB 50%)' }}>
-      <SectionContainer id="live">
+    <BackgroundSection id="live" background="linear-gradient(165deg, #BDD3E8 0%, #F4F6FB 50%)">
+      <MaxwidthContainer id="live">
         <VisuallyHidden component={'h2'}>Live Shows</VisuallyHidden>
         <Grid gutter="xl" style={{ position: 'relative' }}>
           {upcomingShows && upcomingShows?.length > 0 && (
@@ -27,8 +28,8 @@ const Live: FC = () => {
           )}
           <LiveSection title="Past shows" shows={pastShows} hasShowAll />
         </Grid>
-      </SectionContainer>
-    </div>
+      </MaxwidthContainer>
+    </BackgroundSection>
   );
 };
 

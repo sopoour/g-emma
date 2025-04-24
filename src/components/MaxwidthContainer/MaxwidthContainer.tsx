@@ -1,18 +1,19 @@
 import { Container } from '@mantine/core';
 import { FC, ReactNode } from 'react';
-import styles from './SectionContainer.module.scss';
+import styles from './MaxwidthContainer.module.scss';
 
 type Props = {
   id: string;
   children: ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  component?: React.ElementType;
 };
 
-const SectionContainer: FC<Props> = ({ id, children, className, style }) => (
+const MaxwidthContainer: FC<Props> = ({ id, children, className, style, component }) => (
   <Container
     size={'md'}
-    component={'section'}
+    component={component || 'div'}
     id={id}
     className={`${styles.sectionContainer} ${className}`}
     style={style}
@@ -21,4 +22,4 @@ const SectionContainer: FC<Props> = ({ id, children, className, style }) => (
   </Container>
 );
 
-export default SectionContainer;
+export default MaxwidthContainer;

@@ -1,4 +1,3 @@
-import SectionContainer from '@app/components/SectionContainer/SectionContainer';
 import { FC, useState } from 'react';
 import { useForm } from '@mantine/form';
 import {
@@ -15,6 +14,8 @@ import styles from './Contact.module.scss';
 import LinkContainer from '@app/components/LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
 import EmailCopy from '@app/components/EmailCopy/EmailCopy';
+import MaxwidthContainer from '@app/components/MaxwidthContainer/MaxwidthContainer';
+import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
 
 const links: IconLink[] = [
   { type: 'bandcamp' },
@@ -67,8 +68,11 @@ const Contact: FC = () => {
   };
 
   return (
-    <div style={{ background: 'linear-gradient(160deg, #F4F6FB 35%, #bfc2e2 100% )' }}>
-      <SectionContainer id="contact" className={styles.contactSection}>
+    <BackgroundSection
+      id="contact"
+      background="linear-gradient(160deg, #F4F6FB 35%, #bfc2e2 100% )"
+    >
+      <MaxwidthContainer id="contact" className={styles.contactSection}>
         <VisuallyHidden component={'h2'}>Contact</VisuallyHidden>
         <form onSubmit={form.onSubmit(handleSubmit)} className={styles.contactContainer}>
           <TextInput
@@ -121,8 +125,8 @@ const Contact: FC = () => {
           <EmailCopy email="booking@g-emma.com" label="Booking" />
           <LinkContainer className={styles.contactLinkContainer} iconLinks={links} hasToolTip />
         </Flex>
-      </SectionContainer>
-    </div>
+      </MaxwidthContainer>
+    </BackgroundSection>
   );
 };
 
