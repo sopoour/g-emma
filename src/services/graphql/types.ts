@@ -301,7 +301,9 @@ export type GeneralContent = Entry & _Node & {
   aboutImage?: Maybe<Asset>;
   contentfulMetadata: ContentfulMetadata;
   heroImage?: Maybe<Asset>;
+  impressum?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<GeneralContentLinkingCollections>;
+  privacyPolicy?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   version?: Maybe<Scalars['String']['output']>;
 };
@@ -328,8 +330,20 @@ export type GeneralContentHeroImageArgs = {
 
 
 /** Content der sich nicht wiederholt auf der gesamten Website. Es sollte immer nur einen Content published sein [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/generalContent) */
+export type GeneralContentImpressumArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Content der sich nicht wiederholt auf der gesamten Website. Es sollte immer nur einen Content published sein [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/generalContent) */
 export type GeneralContentLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Content der sich nicht wiederholt auf der gesamten Website. Es sollte immer nur einen Content published sein [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/generalContent) */
+export type GeneralContentPrivacyPolicyArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -359,6 +373,20 @@ export type GeneralContentFilter = {
   aboutImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   heroImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  impressum?: InputMaybe<Scalars['String']['input']>;
+  impressum_contains?: InputMaybe<Scalars['String']['input']>;
+  impressum_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  impressum_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  impressum_not?: InputMaybe<Scalars['String']['input']>;
+  impressum_not_contains?: InputMaybe<Scalars['String']['input']>;
+  impressum_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  privacyPolicy?: InputMaybe<Scalars['String']['input']>;
+  privacyPolicy_contains?: InputMaybe<Scalars['String']['input']>;
+  privacyPolicy_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  privacyPolicy_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  privacyPolicy_not?: InputMaybe<Scalars['String']['input']>;
+  privacyPolicy_not_contains?: InputMaybe<Scalars['String']['input']>;
+  privacyPolicy_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
   version?: InputMaybe<Scalars['String']['input']>;
   version_contains?: InputMaybe<Scalars['String']['input']>;
