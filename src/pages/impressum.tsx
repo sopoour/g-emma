@@ -32,7 +32,7 @@ const Impressum: FC = () => {
   }
   return (
     <section style={{ background: 'linear-gradient(150deg, #bfc2e2 0%, #F4F6FB 80%)' }}>
-      <Container size="md" py="150px">
+      <Container size="md" py={{ base: '80px', sm: '150px' }}>
         <MarkdownConfig content={generalContentData?.impressum as string} />
       </Container>
     </section>

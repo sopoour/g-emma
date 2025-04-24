@@ -1,3 +1,5 @@
+@use '../../styles/variables.module.scss' as *;
+
 .markdown {
 
     li {
@@ -20,5 +22,11 @@
 
     h1 {
         font-size: 36px;
+    }
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        h1 {
+            font-size: 28px;
+        }
     }
 }
