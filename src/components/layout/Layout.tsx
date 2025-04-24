@@ -1,12 +1,13 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import styles from './Layout.module.scss';
 import Logo from '@app/assets/logo.png';
-import { AppShell, Burger, Group, Image, Text } from '@mantine/core';
+import { Anchor, AppShell, Burger, Flex, Group, Image, Text } from '@mantine/core';
 import { useDisclosure, useIntersection, useMediaQuery } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer/LinkContainer';
 import Hero from '../sections/Hero/Hero';
 import { animateScroll, Link } from 'react-scroll';
 import Sidebar from '../Sidebar/Sidebar';
+import { useRouter } from 'next/router';
 
 const navLinks = [
   { label: 'Live' },
@@ -25,6 +26,7 @@ const Layout: FC<Props> = ({ children }) => {
   const [opened, { toggle, close }] = useDisclosure();
   const isMobile = useMediaQuery(`(max-width: 48em)`);
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState<Boolean>(false);
   const { ref, entry } = useIntersection({
     root: null,
@@ -58,6 +60,12 @@ const Layout: FC<Props> = ({ children }) => {
     setScrolled(entry?.isIntersecting === false);
   }, [entry]);
 
+  useEffect(() => {
+    router.pathname === '/impressum' || router.pathname === '/privacy-policy'
+      ? setScrolled(true)
+      : null;
+  }, [router]);
+
   return (
     <AppShell
       header={{ height: 64 }}
@@ -77,7 +85,10 @@ const Layout: FC<Props> = ({ children }) => {
               src={Logo.src}
               alt="G'emma Logo"
               style={{ maxHeight: '45px', cursor: 'pointer' }}
-              onClick={() => animateScroll.scrollTo(0, { smooth: true, duration: 800 })}
+              onClick={() => {
+                animateScroll.scrollTo(0, { smooth: true, duration: 800 });
+                router.push('/');
+              }}
             />
             <Group visibleFrom="md">
               <LinkContainer />
@@ -113,17 +124,40 @@ const Layout: FC<Props> = ({ children }) => {
         </Group>
         <LinkContainer className={styles.linkContainerMobile} />
       </Sidebar>
-      <AppShell.Section>
-        <Hero ref={ref} />
-      </AppShell.Section>
-      <AppShell.Main style={{ padding: '0' }}>{children}</AppShell.Main>
+      <AppShell.Main style={{ padding: '0' }}>
+        {router.pathname !== '/impressum' && router.pathname !== '/privacy-policy' && (
+          <Hero ref={ref} />
+        )}
+        {children}
+      </AppShell.Main>
       <AppShell.Section
         component="footer"
         bg="g-dark.9"
         color="g-dark.0"
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 64 }}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 64,
+          gap: 32,
+        }}
       >
-        <Text c={'g-dark.0'}>Copyright {currentYear} © G&apos;emma GbR</Text>
+        <Flex direction="column" gap={8} align={'center'}>
+          <Flex gap={16}>
+            <Anchor href="/impressum" c={'g-dark.0'} fw={600}>
+              Impressum
+            </Anchor>
+            <Text c={'g-dark.0'} fw={600}>
+              |
+            </Text>
+            <Anchor href="/privacy-policy" c={'g-dark.0'} fw={600}>
+              Privacy Policy
+            </Anchor>
+          </Flex>
+          <Text c={'g-dark.0'} size="14px">
+            Copyright {currentYear} © Nguimba & Nguimba GbR
+          </Text>
+        </Flex>
       </AppShell.Section>
     </AppShell>
   );

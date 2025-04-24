@@ -5,14 +5,16 @@ import MusicSection from '@app/components/sections/MusicSection/MusicSection';
 import Videos from '@app/components/sections/Videos/Videos';
 import { NextPage } from 'next';
 
-const Home: NextPage = () => (
-  <>
-    <Live />
-    <About />
-    <MusicSection />
-    <Videos />
-    <Contact />
-  </>
-);
+const Home: NextPage = () => {
+  return (
+    <>
+      <Live />
+      <About />
+      <MusicSection />
+      <Videos />
+      <Contact />
+    </>
+  );
+};
 
 export default Home;
