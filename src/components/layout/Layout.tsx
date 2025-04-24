@@ -144,13 +144,13 @@ const Layout: FC<Props> = ({ children }) => {
       >
         <Flex direction="column" gap={8} align={'center'}>
           <Flex gap={16}>
-            <Anchor href="/impressum" c={'g-dark.0'} fw={600}>
+            <Anchor href="/impressum" className={styles.footerLink}>
               Impressum
             </Anchor>
             <Text c={'g-dark.0'} fw={600}>
               |
             </Text>
-            <Anchor href="/privacy-policy" c={'g-dark.0'} fw={600}>
+            <Anchor href="/privacy-policy" className={styles.footerLink}>
               Privacy Policy
             </Anchor>
           </Flex>

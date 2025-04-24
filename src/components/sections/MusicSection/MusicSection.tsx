@@ -1,4 +1,3 @@
-import SectionContainer from '@app/components/SectionContainer/SectionContainer';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Music } from '@app/services/graphql/types';
 import { ISOToYear } from '@app/utils/formatDate';
@@ -10,6 +9,8 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import useKeyPress from '@app/hooks/useKeyPress';
 import MusicCard from './elements/MusicCard';
 import { useMediaQuery } from '@mantine/hooks';
+import MaxwidthContainer from '@app/components/MaxwidthContainer/MaxwidthContainer';
+import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
 
 const MusicSection: FC = () => {
   const { data, isLoading } = useSWR<Music[] | null>('/api/music', fetcher);
@@ -31,12 +32,15 @@ const MusicSection: FC = () => {
   }, [arrowLeftPressed, arrowRightPressed]);
 
   return (
-    <div
-      style={{
-        background: `${isMobile ? 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 80%)' : 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 50%)'}`,
-      }}
+    <BackgroundSection
+      id="music"
+      background={
+        isMobile
+          ? 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 80%)'
+          : 'linear-gradient(150deg, #bdd6b2 0%, #F4F6FB 50%)'
+      }
     >
-      <SectionContainer id="music" className={styles.musicSection}>
+      <MaxwidthContainer id="music" className={styles.musicSection}>
         <VisuallyHidden component={'h2'}>Music</VisuallyHidden>
         {sortedData && (
           <Text
@@ -77,8 +81,8 @@ const MusicSection: FC = () => {
             />
           ))}
         </div>
-      </SectionContainer>
-    </div>
+      </MaxwidthContainer>
+    </BackgroundSection>
   );
 };
 

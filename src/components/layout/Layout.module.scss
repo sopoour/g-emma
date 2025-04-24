@@ -67,3 +67,13 @@
         }
     }
 }
+
+.footerLink {
+    color: var(--mantine-color-g-dark-0);
+    font-weight: 600;
+
+    &:hover {
+        text-decoration: underline !important;
+        color: var(--mantine-color-g-dark-2) !important;
+    }
+}
