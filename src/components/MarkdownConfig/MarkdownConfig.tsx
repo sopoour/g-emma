@@ -8,11 +8,12 @@ const MarkdownConfig = ({ content }: { content: string }) => {
   return (
     <div className={styles.markdown}>
       <Markdown
-        children={content}
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeSlug, rehypeRaw]}
         skipHtml={false}
-      />
+      >
+        {content}
+      </Markdown>
     </div>
   );
 };
