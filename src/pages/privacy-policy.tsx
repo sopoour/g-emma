@@ -1,3 +1,4 @@
+import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { GeneralContent } from '@app/services/graphql/types';
@@ -32,11 +33,14 @@ const PrivacyPolicy: FC = () => {
     );
   }
   return (
-    <section style={{ background: 'linear-gradient(220deg, #BDD3E8 0%, #F4F6FB 80%)' }}>
+    <BackgroundSection
+      id="privacy-policy"
+      background="linear-gradient(220deg, #BDD3E8 0%, #F4F6FB 80%)"
+    >
       <Container size="md" py={{ base: '80px', sm: '150px' }}>
         <MarkdownConfig content={generalContentData?.privacyPolicy as string} />
       </Container>
-    </section>
+    </BackgroundSection>
   );
 };
 

@@ -1,3 +1,4 @@
+import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { GeneralContent } from '@app/services/graphql/types';
@@ -31,11 +32,11 @@ const Impressum: FC = () => {
     );
   }
   return (
-    <section style={{ background: 'linear-gradient(150deg, #bfc2e2 0%, #F4F6FB 80%)' }}>
+    <BackgroundSection id="impressum" background="linear-gradient(150deg, #bfc2e2 0%, #F4F6FB 80%)">
       <Container size="md" py={{ base: '80px', sm: '150px' }}>
         <MarkdownConfig content={generalContentData?.impressum as string} />
       </Container>
-    </section>
+    </BackgroundSection>
   );
 };
 
