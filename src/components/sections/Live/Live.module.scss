@@ -31,6 +31,8 @@
 }
 
 .liveGridSection {
+    position: relative;
+
     >.liveRow:last-child {
         border-bottom: 1px solid var(--mantine-color-g-dark-7);
     }

@@ -1,4 +1,4 @@
-import { Container, Grid, VisuallyHidden } from '@mantine/core';
+import { Grid, VisuallyHidden } from '@mantine/core';
 import { FC } from 'react';
 import useSWR from 'swr';
 import { LiveEvents } from '@app/services/graphql/types';
@@ -22,11 +22,13 @@ const Live: FC = () => {
     <BackgroundSection id="live" background="linear-gradient(165deg, #BDD3E8 0%, #F4F6FB 50%)">
       <MaxwidthContainer id="live">
         <VisuallyHidden component={'h2'}>Live Shows</VisuallyHidden>
-        <Grid gutter="xl" style={{ position: 'relative' }}>
+        <Grid gutter="xl" style={{ width: '100%' }}>
           {upcomingShows && upcomingShows?.length > 0 && (
-            <LiveSection title="Upcoming shows" shows={upcomingShows} />
+            <LiveSection title="Upcoming shows" shows={upcomingShows} shownEventsNumber={4} />
           )}
-          <LiveSection title="Past shows" shows={pastShows} hasShowAll />
+          {pastShows && pastShows?.length > 0 && (
+            <LiveSection title="Past shows" shows={pastShows} pastShows />
+          )}
         </Grid>
       </MaxwidthContainer>
     </BackgroundSection>

@@ -8,20 +8,20 @@ import styles from '../Live.module.scss';
 type Props = {
   title: string;
   shows?: LiveEvents[];
-  hasShowAll?: boolean;
+  shownEventsNumber?: number;
+  pastShows?: boolean;
 };
 
-const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
+const LiveSection: FC<Props> = ({ title, shows, shownEventsNumber = 3, pastShows = false }) => {
   const [showAll, setShowAll] = useState<boolean>(false);
-  const visibleShows = showAll ? shows : shows?.slice(0, 3);
-  const liveShows = hasShowAll ? visibleShows : shows;
+  const visibleShows = showAll ? shows : shows?.slice(0, shownEventsNumber);
 
   return (
     <>
       <Grid.Col
         span={{ base: 12, sm: 4 }}
         className={
-          hasShowAll
+          pastShows
             ? `${styles.liveGridPastShows} ${styles.liveGridSection}`
             : styles.liveGridSection
         }
@@ -33,12 +33,12 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
       <Grid.Col
         span={{ base: 12, sm: 8 }}
         className={
-          hasShowAll
+          pastShows
             ? `${styles.liveGridPastShows} ${styles.liveGridSection}`
             : styles.liveGridSection
         }
       >
-        {liveShows?.map((live) => (
+        {visibleShows?.map((live) => (
           <LiveRow
             key={live.date}
             date={live.date}
@@ -49,7 +49,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
             ticketNotiz={live.ticketNotiz}
           />
         ))}
-        {!showAll && hasShowAll && (
+        {!showAll && shows && shows?.length >= shownEventsNumber && (
           <div className={styles.showMore}>
             <Button
               onClick={() => setShowAll(true)}
@@ -58,7 +58,7 @@ const LiveSection: FC<Props> = ({ title, shows, hasShowAll = false }) => {
               rightSection={<IoIosArrowDown />}
               style={{ color: 'var(--mantine-color-g-dark-9)', fontSize: '16px' }}
             >
-              Show all past shows
+              Show all shows
             </Button>
           </div>
         )}
