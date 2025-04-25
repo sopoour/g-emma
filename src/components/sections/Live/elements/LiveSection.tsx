@@ -56,9 +56,12 @@ const LiveSection: FC<Props> = ({ title, shows, shownEventsNumber = 3, pastShows
               variant="subtle"
               radius="md"
               rightSection={<IoIosArrowDown />}
-              style={{ color: 'var(--mantine-color-g-dark-9)', fontSize: '16px' }}
+              style={{
+                color: 'var(--mantine-color-g-dark-9)',
+                fontSize: '16px',
+              }}
             >
-              Show all shows
+              View all shows
             </Button>
           </div>
         )}
