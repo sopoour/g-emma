@@ -33,7 +33,7 @@ const MusicCard: FC<Props> = ({ music, activeIndex, musicIndex, onActiveCardChan
     } else if (link?.includes('apple')) {
       type = 'appleMusic';
     } else {
-      type = 'spotify';
+      type = 'link';
     }
 
     return {

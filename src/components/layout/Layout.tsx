@@ -142,7 +142,7 @@ const Layout: FC<Props> = ({ children }) => {
           gap: 32,
         }}
       >
-        <Flex direction="column" align={'center'} justify={'center'}>
+        <Flex direction="column" align={'center'} justify={'center'} gap={4}>
           <Flex gap={16} align={'center'}>
             <Anchor href="/impressum" className={styles.footerLink}>
               Impressum
