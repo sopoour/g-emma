@@ -142,8 +142,8 @@ const Layout: FC<Props> = ({ children }) => {
           gap: 32,
         }}
       >
-        <Flex direction="column" gap={8} align={'center'}>
-          <Flex gap={16}>
+        <Flex direction="column" align={'center'} justify={'center'}>
+          <Flex gap={16} align={'center'}>
             <Anchor href="/impressum" className={styles.footerLink}>
               Impressum
             </Anchor>
@@ -154,9 +154,25 @@ const Layout: FC<Props> = ({ children }) => {
               Privacy Policy
             </Anchor>
           </Flex>
-          <Text c={'g-dark.0'} size="14px">
-            Copyright {currentYear} © Nguimba & Nguimba GbR
-          </Text>
+          <Flex gap={8} align={'center'}>
+            <Text c={'g-dark.0'} size="14px">
+              © {currentYear} Nguimba und Nguimba GbR.
+            </Text>
+            {/* <Text c={'g-dark.0'}>|</Text> */}
+            <Text c={'g-dark.0'} size="14px">
+              Developed by{' '}
+              <Anchor
+                c={'g-dark.0'}
+                size="14px"
+                href="https://www.sophiaauer.me/"
+                target="_blank"
+                className={styles.footerLink}
+              >
+                Fio Auer
+              </Anchor>
+              .
+            </Text>
+          </Flex>
         </Flex>
       </AppShell.Section>
     </AppShell>
