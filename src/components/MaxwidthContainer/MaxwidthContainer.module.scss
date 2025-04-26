@@ -8,12 +8,8 @@
 
 
     @media (max-width: $mantine-breakpoint-sm) {
-        height: unset;
+        min-height: unset;
         padding-top: 64px;
         padding-bottom: 64px;
-
-        &:first-child {
-            padding-top: 85px;
-        }
     }
 }
