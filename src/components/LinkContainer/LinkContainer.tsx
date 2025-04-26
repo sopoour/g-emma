@@ -60,7 +60,9 @@ const LinkContainer: FC<Props> = ({
             return {
               id: 'spotify',
               icon: <FaSpotify />,
-              link: 'https://open.spotify.com/artist/6ZEMlHydJRHREpHwmNza4T?si=L5NhpgmwSmO2AmJAjRnxWw',
+              link:
+                icon.link ||
+                'https://open.spotify.com/artist/6ZEMlHydJRHREpHwmNza4T?si=L5NhpgmwSmO2AmJAjRnxWw',
             };
           case 'email':
             return { id: 'email', icon: <FaEnvelope />, link: 'mailto:contact@g-emma.com' };
@@ -74,7 +76,7 @@ const LinkContainer: FC<Props> = ({
             return {
               id: 'appleMusic',
               icon: <FaMusic />,
-              link: 'https://music.apple.com/dk/artist/gemma/1469747172',
+              link: icon.link || 'https://music.apple.com/dk/artist/gemma/1469747172',
             };
           case 'youtube':
             return {
