@@ -138,23 +138,24 @@ const Layout: FC<Props> = ({ children }) => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: 64,
+          height: '100%',
           gap: 32,
+          padding: '12px 0',
         }}
       >
-        <Flex direction="column" align={'center'} justify={'center'} gap={4}>
+        <Flex direction="column" align={'center'} justify={'center'} gap={8}>
           <Flex gap={16} align={'center'}>
-            <Anchor href="/impressum" className={styles.footerLink}>
+            <Anchor href="/impressum" className={styles.footerLink} size="14px">
               Impressum
             </Anchor>
-            <Text c={'g-dark.0'} fw={600}>
+            <Text c={'g-dark.0'} fw={600} size="14px">
               |
             </Text>
-            <Anchor href="/privacy-policy" className={styles.footerLink}>
+            <Anchor href="/privacy-policy" className={styles.footerLink} size="14px">
               Privacy Policy
             </Anchor>
           </Flex>
-          <Flex gap={8} align={'center'}>
+          <Flex gap={8} align={'center'} direction={{ base: 'column', sm: 'row' }}>
             <Text c={'g-dark.0'} size="14px">
               © {currentYear} Nguimba und Nguimba GbR.
             </Text>
