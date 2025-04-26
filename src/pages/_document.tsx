@@ -1,6 +1,7 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { createGetInitialProps, createStylesServer, ServerStyles } from '@mantine/next';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
+import { Analytics } from '@vercel/analytics/next';
 
 const stylesServer = createStylesServer();
 const getInitialProps = createGetInitialProps();
@@ -37,6 +38,7 @@ class DocumentApp extends Document {
         <body>
           <Main />
           <NextScript />
+          <Analytics />
         </body>
       </Html>
     );
