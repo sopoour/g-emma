@@ -169,8 +169,8 @@ const Layout: FC<Props> = ({ children }) => {
               {item?.url && (
                 <ContentfulImage
                   src={item?.url}
-                  width={(item?.width as number) / 12 || 100}
-                  height={(item?.height as number) / 12 || 70}
+                  width={(item?.width as number) / 20 || 100}
+                  height={(item?.height as number) / 20 || 70}
                   alt={item.title}
                   sizes="(max-width: 768px) 100vw"
                   style={{ objectFit: 'cover' }}
