@@ -304,6 +304,7 @@ export type GeneralContent = Entry & _Node & {
   impressum?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<GeneralContentLinkingCollections>;
   privacyPolicy?: Maybe<Scalars['String']['output']>;
+  supportLogosCollection?: Maybe<AssetCollection>;
   sys: Sys;
   version?: Maybe<Scalars['String']['output']>;
 };
@@ -348,6 +349,15 @@ export type GeneralContentPrivacyPolicyArgs = {
 
 
 /** Content der sich nicht wiederholt auf der gesamten Website. Es sollte immer nur einen Content published sein [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/generalContent) */
+export type GeneralContentSupportLogosCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** Content der sich nicht wiederholt auf der gesamten Website. Es sollte immer nur einen Content published sein [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/generalContent) */
 export type GeneralContentVersionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
@@ -387,6 +397,7 @@ export type GeneralContentFilter = {
   privacyPolicy_not?: InputMaybe<Scalars['String']['input']>;
   privacyPolicy_not_contains?: InputMaybe<Scalars['String']['input']>;
   privacyPolicy_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  supportLogosCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<SysFilter>;
   version?: InputMaybe<Scalars['String']['input']>;
   version_contains?: InputMaybe<Scalars['String']['input']>;
