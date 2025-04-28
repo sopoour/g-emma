@@ -167,20 +167,14 @@ const Layout: FC<Props> = ({ children }) => {
               key={item?.title}
             >
               {item?.url && (
-                <Anchor
-                  style={{ height: (item?.height as number) / 12 || 70 }}
-                  href={item?.title as string}
-                  target="_blank"
-                >
-                  <ContentfulImage
-                    src={item?.url}
-                    width={(item?.width as number) / 12 || 100}
-                    height={(item?.height as number) / 12 || 70}
-                    alt={item.title}
-                    sizes="(max-width: 768px) 100vw"
-                    style={{ objectFit: 'cover' }}
-                  />
-                </Anchor>
+                <ContentfulImage
+                  src={item?.url}
+                  width={(item?.width as number) / 12 || 100}
+                  height={(item?.height as number) / 12 || 70}
+                  alt={item.title}
+                  sizes="(max-width: 768px) 100vw"
+                  style={{ objectFit: 'cover' }}
+                />
               )}
               <Text c={'g-dark.0'} size="12px" lh={1.5}>
                 {item?.description}
