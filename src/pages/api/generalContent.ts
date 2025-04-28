@@ -17,6 +17,15 @@ export default async function getGeneralContent(req: NextApiRequest, res: NextAp
             } 
             impressum
             privacyPolicy
+            supportLogosCollection {
+              items {
+                title
+                description
+                url
+                width
+                height
+              }
+          }
         }
       }`,
     );

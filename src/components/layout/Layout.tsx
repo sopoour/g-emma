@@ -1,13 +1,17 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import styles from './Layout.module.scss';
 import Logo from '@app/assets/logo.png';
-import { Anchor, AppShell, Burger, Flex, Group, Image, Text } from '@mantine/core';
+import { Anchor, AppShell, Burger, Flex, Group, Image, SimpleGrid, Text } from '@mantine/core';
 import { useDisclosure, useIntersection, useMediaQuery } from '@mantine/hooks';
 import LinkContainer from '../LinkContainer/LinkContainer';
 import Hero from '../sections/Hero/Hero';
 import { animateScroll, Link } from 'react-scroll';
 import Sidebar from '../Sidebar/Sidebar';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import { GeneralContent } from '@app/services/graphql/types';
+import { fetcher } from '@app/hooks/fetch/useFetch';
+import ContentfulImage from '@app/lib/contentful-image';
 
 const navLinks = [
   { label: 'Live' },
@@ -24,6 +28,7 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   const [opened, { toggle, close }] = useDisclosure();
+  const { data } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
   const isMobile = useMediaQuery(`(max-width: 48em)`);
   const currentYear = new Date().getFullYear();
   const router = useRouter();
@@ -130,6 +135,56 @@ const Layout: FC<Props> = ({ children }) => {
         )}
         {children}
       </AppShell.Main>
+      <AppShell.Section
+        bg={'g-dark.4'}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          gap: 32,
+          padding: '12px 16px',
+        }}
+      >
+        <Flex
+          style={{
+            width:
+              data?.supportLogosCollection?.items && data?.supportLogosCollection?.items.length <= 1
+                ? '100%'
+                : '',
+          }}
+          align={'center'}
+          justify={'center'}
+          gap={{ base: 8, sm: 16 }}
+        >
+          {data?.supportLogosCollection?.items.map((item) => (
+            <Flex
+              className={styles.supportLogos}
+              direction={{ base: 'column', sm: 'row' }}
+              gap={{ base: 8, sm: 16 }}
+              justify={'center'}
+              align={'center'}
+              key={item?.title}
+            >
+              {item?.url && (
+                <Anchor style={{ height: '100%' }} href={item?.title as string} target="_blank">
+                  <ContentfulImage
+                    src={item?.url}
+                    width={(item?.width as number) / 12 || 100}
+                    height={(item?.height as number) / 12 || 70}
+                    alt={item.title}
+                    sizes="(max-width: 768px) 100vw"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </Anchor>
+              )}
+              <Text c={'g-dark.0'} size="12px" lh={1.5}>
+                {item?.description}
+              </Text>
+            </Flex>
+          ))}
+        </Flex>
+      </AppShell.Section>
       <AppShell.Section
         component="footer"
         bg="g-dark.9"
