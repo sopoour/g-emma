@@ -164,14 +164,10 @@ const Layout: FC<Props> = ({ children }) => {
               gap={{ base: 8, sm: 16 }}
               justify={'center'}
               align={'center'}
+              key={item?.title}
             >
               {item?.url && (
-                <Anchor
-                  style={{ height: '100%' }}
-                  href={item?.title as string}
-                  target="_blank"
-                  key={item?.title}
-                >
+                <Anchor style={{ height: '100%' }} href={item?.title as string} target="_blank">
                   <ContentfulImage
                     src={item?.url}
                     width={(item?.width as number) / 12 || 100}
