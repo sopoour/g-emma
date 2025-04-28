@@ -167,7 +167,11 @@ const Layout: FC<Props> = ({ children }) => {
               key={item?.title}
             >
               {item?.url && (
-                <Anchor style={{ height: '100%' }} href={item?.title as string} target="_blank">
+                <Anchor
+                  style={{ height: (item?.height as number) / 12 || 70 }}
+                  href={item?.title as string}
+                  target="_blank"
+                >
                   <ContentfulImage
                     src={item?.url}
                     width={(item?.width as number) / 12 || 100}
