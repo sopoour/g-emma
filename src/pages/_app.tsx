@@ -6,9 +6,9 @@ import Layout from '@app/components/layout/Layout';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import theme from '@app/styles/theme';
 import Head from 'next/head';
+import { Analytics } from '@vercel/analytics/next';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  // TODO: Change description and title
   const metaDescription = "G'emma";
   const metaTitle = "G'emma";
   return (
@@ -32,6 +32,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <MantineProvider theme={theme} withGlobalClasses withCssVariables forceColorScheme="light">
         <Layout>
           <Component {...pageProps} />
+          <Analytics />
         </Layout>
       </MantineProvider>
     </>
