@@ -45,7 +45,12 @@ const Layout: FC<Props> = ({ children }) => {
 
     if (item.label === 'Shop')
       return (
-        <LinkNext href="https://shop.g-emma.com" target="_blank" className={styles.navLink}>
+        <LinkNext
+          href="https://shop.g-emma.com"
+          target="_blank"
+          className={styles.navLink}
+          key={item.label + index}
+        >
           {item.label}
         </LinkNext>
       );
