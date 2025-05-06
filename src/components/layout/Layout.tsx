@@ -12,14 +12,15 @@ import useSWR from 'swr';
 import { GeneralContent } from '@app/services/graphql/types';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import ContentfulImage from '@app/lib/contentful-image';
+import LinkNext from 'next/link';
 
 const navLinks = [
   { label: 'Live' },
   { label: 'About' },
   { label: 'Music' },
   { label: 'Videos' },
-  /* { label: 'Shop' }, */
   { label: 'Contact' },
+  { label: 'Shop' },
 ];
 
 type Props = {
@@ -41,6 +42,13 @@ const Layout: FC<Props> = ({ children }) => {
 
   const navLinkItems = navLinks.map((item, index) => {
     const itemHref = item.label.toLowerCase();
+
+    if (item.label === 'Shop')
+      return (
+        <LinkNext href="https://shop.g-emma.com" target="_blank" className={styles.navLink}>
+          {item.label}
+        </LinkNext>
+      );
 
     return (
       <Link
@@ -212,7 +220,6 @@ const Layout: FC<Props> = ({ children }) => {
             <Text c={'g-dark.0'} size="14px">
               © {currentYear} Nguimba und Nguimba GbR.
             </Text>
-            {/* <Text c={'g-dark.0'}>|</Text> */}
             <Text c={'g-dark.0'} size="14px">
               Developed by{' '}
               <Anchor

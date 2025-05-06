@@ -12,7 +12,12 @@ const Videos: FC = () => {
     <MaxwidthContainer id="videos" className={styles.videoSection} component={'section'}>
       <VisuallyHidden component={'h2'}>Videos</VisuallyHidden>
       {data?.map((video) => (
-        <Flex key={video.title} direction={'column'} gap={32} className={styles.videoContainer}>
+        <Flex
+          key={video.title}
+          direction={'column'}
+          gap={{ base: 20, sm: 32 }}
+          className={styles.videoContainer}
+        >
           <Text c={'g-dark.9'} size="20px" fw={600} ff="Hind Vadodara" component="h3">
             {video.title}
           </Text>
