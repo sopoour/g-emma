@@ -12,10 +12,10 @@ const Live: FC = () => {
   const today = new Date();
 
   const upcomingShows = data
-    ?.filter((live) => new Date(live.date) >= today)
+    ?.filter((live) => new Date(live.date).getDate() >= today.getDate())
     ?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   const pastShows = data
-    ?.filter((live) => new Date(live.date) < today)
+    ?.filter((live) => new Date(live.date).getDate() < today.getDate())
     ?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (

@@ -50,7 +50,7 @@ const LiveRow: FC<Props> = ({
         {(ticketLink || ticketNotiz) &&
           (ticketLink ? (
             <Button variant="outline" pb={'xs'} pt={'xs'} component="span">
-              {date && new Date(date) >= new Date() ? 'Ticket' : 'Impressions'}
+              {date && new Date(date).getDate() >= new Date().getDate() ? 'Ticket' : 'Impressions'}
             </Button>
           ) : (
             <Text c={'g-dark.9'} size="md">
