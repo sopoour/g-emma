@@ -82,7 +82,7 @@ const LinkContainer: FC<Props> = ({
             return {
               id: 'youtube',
               icon: <FaYoutube />,
-              link: 'https://youtube.com/channel/UCAIXGihT2_TrYTazM_hkz2w?si=_FBfx7tTdjTPl9on',
+              link: 'https://www.youtube.com/@gemma.msc.',
             };
           case 'bandcamp':
             return {
