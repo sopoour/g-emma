@@ -31,7 +31,7 @@ const About: FC = () => {
               />
             )}
           </span>
-          <Text c={'g-dark.9'} size="xl" fw={500}>
+          <Text c={'g-dark.9'} size="xl" fw={500} ta="justify">
             {data?.aboutDescription}
           </Text>
         </SimpleGrid>
