@@ -7,16 +7,24 @@ import LiveSection from './elements/LiveSection';
 import MaxwidthContainer from '@app/components/MaxwidthContainer/MaxwidthContainer';
 import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
 
+const normalizeDate = (dateString: string) => {
+  const date = new Date(dateString);
+  date.setHours(0, 0, 0, 0); // Strip time
+  return date;
+};
+
 const Live: FC = () => {
   const { data, isLoading } = useSWR<LiveEvents[] | null>('/api/liveEvents', fetcher);
   const today = new Date();
+  today.setHours(0, 0, 0, 0); // Strip time from today
 
   const upcomingShows = data
-    ?.filter((live) => new Date(live.date).getDate() >= today.getDate())
-    ?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    ?.filter((live) => normalizeDate(live.date) >= today)
+    ?.sort((a, b) => normalizeDate(a.date).getTime() - normalizeDate(b.date).getTime());
+
   const pastShows = data
-    ?.filter((live) => new Date(live.date).getDate() < today.getDate())
-    ?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    ?.filter((live) => normalizeDate(live.date) < today)
+    ?.sort((a, b) => normalizeDate(b.date).getTime() - normalizeDate(a.date).getTime());
 
   return (
     <BackgroundSection id="live" background="linear-gradient(165deg, #BDD3E8 0%, #F4F6FB 50%)">

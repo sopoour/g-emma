@@ -49,7 +49,7 @@ const LiveSection: FC<Props> = ({ title, shows, shownEventsNumber = 3, pastShows
             ticketNotiz={live.ticketNotiz}
           />
         ))}
-        {!showAll && shows && shows?.length >= shownEventsNumber && (
+        {!showAll && shows && shows?.length > shownEventsNumber && (
           <div className={styles.showMore}>
             <Button
               onClick={() => setShowAll(true)}
