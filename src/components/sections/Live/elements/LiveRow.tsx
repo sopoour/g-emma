@@ -1,4 +1,4 @@
-import { ISOToDate } from '@app/utils/formatDate';
+import { ISOToDate, normalizeDate } from '@app/utils/formatDate';
 import { Button, Grid, Text } from '@mantine/core';
 import { FC } from 'react';
 import styles from '../Live.module.scss';
@@ -22,44 +22,49 @@ const LiveRow: FC<Props> = ({
   ticketLink,
   ticketNotiz,
 }) => {
-  const gridComponent = (isLinked: boolean) => (
-    <Grid
-      gutter={{ base: 's', xs: 'lg' }}
-      columns={3}
-      className={isLinked ? `${styles.liveRowLinked} ${styles.liveRow}` : styles.liveRow}
-    >
-      <Grid.Col span={1}>
-        <Text fw={600} c={'g-dark.9'} size="lg">
-          {date && ISOToDate(date)}
-        </Text>
-        {constellation && (
-          <Text c={'g-dark.9'} size="md">
-            {constellation}
+  const gridComponent = (isLinked: boolean) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return (
+      <Grid
+        gutter={{ base: 's', xs: 'lg' }}
+        columns={3}
+        className={isLinked ? `${styles.liveRowLinked} ${styles.liveRow}` : styles.liveRow}
+      >
+        <Grid.Col span={1}>
+          <Text fw={600} c={'g-dark.9'} size="lg">
+            {date && ISOToDate(date)}
           </Text>
-        )}
-      </Grid.Col>
-      <Grid.Col span={1}>
-        <Text c={'g-dark.9'} size="md">
-          {eventType},
-        </Text>
-        <Text c={'g-dark.9'} size="md">
-          {location}
-        </Text>
-      </Grid.Col>
-      <Grid.Col span={1} className={styles.liveRowCol}>
-        {(ticketLink || ticketNotiz) &&
-          (ticketLink ? (
-            <Button variant="outline" pb={'xs'} pt={'xs'} component="span">
-              {date && new Date(date).getDate() >= new Date().getDate() ? 'Ticket' : 'Impressions'}
-            </Button>
-          ) : (
+          {constellation && (
             <Text c={'g-dark.9'} size="md">
-              {ticketNotiz}
+              {constellation}
             </Text>
-          ))}
-      </Grid.Col>
-    </Grid>
-  );
+          )}
+        </Grid.Col>
+        <Grid.Col span={1}>
+          <Text c={'g-dark.9'} size="md">
+            {eventType},
+          </Text>
+          <Text c={'g-dark.9'} size="md">
+            {location}
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={1} className={styles.liveRowCol}>
+          {(ticketLink || ticketNotiz) &&
+            (ticketLink ? (
+              <Button variant="outline" pb={'xs'} pt={'xs'} component="span">
+                {date && normalizeDate(date) >= today ? 'Ticket' : 'Impressions'}
+              </Button>
+            ) : (
+              <Text c={'g-dark.9'} size="md">
+                {ticketNotiz}
+              </Text>
+            ))}
+        </Grid.Col>
+      </Grid>
+    );
+  };
 
   return (
     <>

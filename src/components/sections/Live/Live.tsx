@@ -6,12 +6,7 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import LiveSection from './elements/LiveSection';
 import MaxwidthContainer from '@app/components/MaxwidthContainer/MaxwidthContainer';
 import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
-
-const normalizeDate = (dateString: string) => {
-  const date = new Date(dateString);
-  date.setHours(0, 0, 0, 0); // Strip time
-  return date;
-};
+import { normalizeDate } from '@app/utils/formatDate';
 
 const Live: FC = () => {
   const { data, isLoading } = useSWR<LiveEvents[] | null>('/api/liveEvents', fetcher);
