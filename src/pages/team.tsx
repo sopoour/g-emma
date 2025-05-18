@@ -19,7 +19,7 @@ const Team: FC = () => {
         style={{ display: 'flex', gap: '64px', flexDirection: 'column' }}
       >
         <Title ta={'center'} size={'44px'}>
-          Team behind G'emma
+          Team behind G&apos;emma
         </Title>
         <Flex
           rowGap={{ base: '30px', sm: '48px' }}
@@ -29,7 +29,7 @@ const Team: FC = () => {
         >
           {teamData
             ?.sort((a, b) => (a?.orderNumber as number) - (b?.orderNumber as number))
-            ?.map((teamMember) => <TeamMember teamMember={teamMember} />)}
+            ?.map((teamMember) => <TeamMember teamMember={teamMember} key={teamMember.name} />)}
         </Flex>
       </Container>
     </BackgroundSection>
