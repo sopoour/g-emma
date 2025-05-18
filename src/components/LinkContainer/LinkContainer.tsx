@@ -11,7 +11,7 @@ import {
   FaMusic,
   FaYoutube,
   FaBandcamp,
-  FaExternalLinkAlt,
+  FaLink,
 } from 'react-icons/fa';
 
 const formatIdName = (input: string): string => {
@@ -65,7 +65,11 @@ const LinkContainer: FC<Props> = ({
                 'https://open.spotify.com/artist/6ZEMlHydJRHREpHwmNza4T?si=L5NhpgmwSmO2AmJAjRnxWw',
             };
           case 'email':
-            return { id: 'email', icon: <FaEnvelope />, link: 'mailto:contact@g-emma.com' };
+            return {
+              id: 'email',
+              icon: <FaEnvelope />,
+              link: icon.link || 'mailto:contact@g-emma.com',
+            };
           case 'instagram':
             return {
               id: 'instagram',
@@ -91,7 +95,7 @@ const LinkContainer: FC<Props> = ({
               link: 'https://gemmamusic.bandcamp.com/',
             };
           case 'link':
-            return { id: icon.id ?? 'external link', icon: <FaExternalLinkAlt />, link: icon.link };
+            return { id: icon.id ?? 'external link', icon: <FaLink />, link: icon.link };
           default:
             return { id: 'email', icon: <FaEnvelope />, link: 'mailto:contact@g-emma.com' };
         }
