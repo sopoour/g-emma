@@ -6,6 +6,7 @@ import { Card, Flex, Text } from '@mantine/core';
 import LinkContainer from '../LinkContainer/LinkContainer';
 import { IconLink } from '@app/types';
 import useClickOutside from '@app/hooks/useClickOutside';
+import { useMediaQuery } from '@mantine/hooks';
 
 type Props = {
   teamMember: Team;
@@ -14,30 +15,33 @@ type Props = {
 const TeamMember: FC<Props> = ({ teamMember }) => {
   const [view, setView] = useState<boolean>(false);
   const ref = useRef<HTMLButtonElement>(null);
+  const isMobile = useMediaQuery(`(max-width: 48em)`);
 
   const links: IconLink[] = useMemo(() => {
     let array: IconLink[] = [];
-    if (teamMember.email) array.push({ type: 'email', link: teamMember.email });
-    if (teamMember.instagram) array.push({ type: 'instagram', link: teamMember.instagram });
+    if (teamMember.email) array.push({ type: 'email', link: 'mailto:' + teamMember.email });
     if (teamMember.website) array.push({ type: 'link', link: teamMember.website });
+    if (teamMember.instagram) array.push({ type: 'instagram', link: teamMember.instagram });
 
     return array;
   }, [teamMember]);
 
   useClickOutside(ref, () => setView(false));
+
   return (
     <Flex direction={'column'} gap={'16px'} align={'center'}>
       <Card
-        radius="md"
         ref={ref}
         component={'button'}
         className={`${styles.teamCard} ${view ? styles.teamCardContentViewed : ''}`}
-        onClick={() => !!teamMember.description && setView((prev) => !prev)}
+        onMouseEnter={() => !!teamMember.description && !isMobile && setView(true)}
+        onMouseLeave={() => !!teamMember.description && !isMobile && setView(false)}
+        onClick={() => !!teamMember.description && isMobile && setView((prev) => !prev)}
         style={!!teamMember.description ? { cursor: 'pointer' } : {}}
       >
-        <Flex direction={'column'} gap={'40px'} className={styles.description} justify={'center'}>
+        <Flex direction={'column'} gap={'40px'} justify={'center'} className={styles.description}>
           {teamMember.description && (
-            <Text c={'g-dark.9'} size="sm" fw={500}>
+            <Text c={'g-dark.9'} ta="justify">
               {teamMember.description}
             </Text>
           )}

@@ -11,6 +11,7 @@
     position: relative;
     width: 350px;
     height: 350px;
+    border-radius: 10px;
     padding: 0;
     background-color: var(--mantine-color-g-dark-2);
     @include slow-transition;
@@ -22,8 +23,8 @@
         left: 0;
         border-radius: 8px;
         width: 100%;
-        height: 70%;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--mantine-color-g-dark-3) 100%);
+        height: 50%;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--mantine-color-g-dark-3) 90%);
     }
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {
@@ -44,7 +45,7 @@
     column-gap: 4px;
     flex-wrap: wrap;
     z-index: 50;
-    padding: 0 14px;
+    padding: 0 24px;
     @include slow-transition;
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {
@@ -56,38 +57,68 @@
 }
 
 .description {
-    padding: 28px;
+    padding: 48px 24px 24px 24px;
     width: 100%;
     height: 100%;
     opacity: 0;
     @include slow-transition;
-    background-color: var(--mantine-color-g-dark-2);
+    background-color: var(--mantine-color-g-dark-3);
     border-radius: 10px;
-    position: relative;
+    border-color: transparent;
     z-index: 2;
+    transform: translateY(100%);
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    p {
+        font-size: 16px;
+    }
+
+
+
+    @media only screen and (max-width: $mantine-breakpoint-sm) {
+        p {
+            font-size: 13px;
+        }
+    }
 }
 
 .teamCardContentViewed {
     opacity: 1;
-    transform: rotateY(180deg);
+    /*  transform: rotateY(180deg); */
 
-    img {
-        opacity: 0;
-        // so I can use the links in the header
-        z-index: -1;
-    }
 
     .description {
         opacity: 1;
-        transform: rotateY(180deg);
+        transform: translateY(0);
     }
 
     .role {
-        opacity: 0;
+        bottom: 85%;
+        margin-bottom: 8px;
+    }
+}
+
+// TEAM page
+
+.teamsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+
+    >h1 {
+        font-size: 44px;
     }
 
-    &::after {
+    @media only screen and (max-width: $mantine-breakpoint-sm) {
+        gap: 48px;
+        padding-top: 110px !important;
 
-        opacity: 0;
+        >h1 {
+            font-size: 32px;
+        }
     }
 }
