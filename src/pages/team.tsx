@@ -9,14 +9,14 @@ import useSWR from 'swr';
 const Team: FC = () => {
   const { data: teamData, isLoading } = useSWR<TeamType[] | null>('/api/team', fetcher, {});
   return (
-    <BackgroundSection id="impressum" background="linear-gradient(150deg, #bfc2e2 0%, #F4F6FB 80%)">
+    <BackgroundSection id="impressum" background="linear-gradient(150deg, #a1b9e1 0%, #F4F6FB 70%)">
       <Container
         size="lg"
         py={{ base: '80px', sm: '150px' }}
         fw={600}
         ff={'Hind Vadodara'}
         c={'g-dark.9'}
-        style={{ display: 'flex', gap: '64px', flexDirection: 'column' }}
+        style={{ display: 'flex', gap: '68px', flexDirection: 'column' }}
       >
         <Title ta={'center'} size={'44px'}>
           Team behind G&apos;emma
