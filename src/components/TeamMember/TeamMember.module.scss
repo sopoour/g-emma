@@ -31,6 +31,15 @@
         width: 300px;
         height: 300px;
     }
+
+    img {
+        transition: all 0.8s ease-in-out;
+        -webkit-transition: all 0.8s ease-in-out;
+        -moz-transition: all 0.8s ease-in-out;
+        -o-transition: all 0.8s ease-in-out;
+        border-radius: 10px;
+        border: 1px solid transparent;
+    }
 }
 
 .role {
@@ -63,9 +72,9 @@
     opacity: 0;
     @include slow-transition;
     background-color: var(--mantine-color-g-dark-3);
-    border-radius: 10px;
-    border-color: transparent;
+    border-radius: 8px;
     z-index: 2;
+
     transform: translateY(100%);
 
     position: absolute;
@@ -87,17 +96,25 @@
 }
 
 .teamCardContentViewed {
-    opacity: 1;
-
     .description {
         opacity: 1;
         transform: translateY(0);
     }
 
+    img {
+        border: 1px solid var(--mantine-color-g-dark-3);
+    }
+
     .role {
         bottom: 85%;
         margin-bottom: 8px;
+
+        @media only screen and (max-width: $mantine-breakpoint-sm) {
+            bottom: 83%;
+        }
     }
+
+
 }
 
 // TEAM page
