@@ -79,9 +79,7 @@ const Layout: FC<Props> = ({ children }) => {
   }, [entry]);
 
   useEffect(() => {
-    router.pathname === '/impressum' || router.pathname === '/privacy-policy'
-      ? setScrolled(true)
-      : null;
+    router.pathname !== '/' ? setScrolled(true) : null;
   }, [router]);
 
   return (
@@ -143,9 +141,7 @@ const Layout: FC<Props> = ({ children }) => {
         <LinkContainer className={styles.linkContainerMobile} />
       </Sidebar>
       <AppShell.Main style={{ padding: '0' }}>
-        {router.pathname !== '/impressum' && router.pathname !== '/privacy-policy' && (
-          <Hero ref={ref} />
-        )}
+        {router.pathname === '/' && <Hero ref={ref} />}
         {children}
       </AppShell.Main>
       <AppShell.Section
