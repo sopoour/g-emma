@@ -35,7 +35,7 @@ const Team: FC = () => {
   }
 
   return (
-    <BackgroundSection id="impressum" background="linear-gradient(150deg, #a1b9e1 0%, #F4F6FB 70%)">
+    <BackgroundSection id="team" background="linear-gradient(150deg, #a1b9e1 0%, #F4F6FB 70%)">
       <Container size="md" py={{ base: '80px', sm: '150px' }} className={styles.teamsContainer}>
         <Title ta={'center'} fw={600} ff={'Hind Vadodara'} c={'g-dark.9'}>
           Team behind G&apos;emma
