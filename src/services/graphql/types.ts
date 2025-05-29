@@ -171,6 +171,7 @@ export type AssetLinkingCollections = {
   entryCollection?: Maybe<EntryCollection>;
   generalContentCollection?: Maybe<GeneralContentCollection>;
   musicCollection?: Maybe<MusicCollection>;
+  teamCollection?: Maybe<TeamCollection>;
 };
 
 
@@ -191,6 +192,14 @@ export type AssetLinkingCollectionsGeneralContentCollectionArgs = {
 
 
 export type AssetLinkingCollectionsMusicCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsTeamCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -435,6 +444,7 @@ export enum GeneralContentOrder {
 }
 
 export enum ImageFormat {
+  /** AVIF image format. */
   Avif = 'AVIF',
   /** JPG image format. */
   Jpg = 'JPG',
@@ -848,6 +858,8 @@ export type Query = {
   liveEventsCollection?: Maybe<LiveEventsCollection>;
   music?: Maybe<Music>;
   musicCollection?: Maybe<MusicCollection>;
+  team?: Maybe<Team>;
+  teamCollection?: Maybe<TeamCollection>;
   video?: Maybe<Video>;
   videoCollection?: Maybe<VideoCollection>;
 };
@@ -945,6 +957,23 @@ export type QueryMusicCollectionArgs = {
 };
 
 
+export type QueryTeamArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryTeamCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<TeamOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TeamFilter>;
+};
+
+
 export type QueryVideoArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1018,6 +1047,181 @@ export type TaxonomyConcept = {
   __typename?: 'TaxonomyConcept';
   id?: Maybe<Scalars['String']['output']>;
 };
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type Team = Entry & _Node & {
+  __typename?: 'Team';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  description?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  instagram?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<TeamLinkingCollections>;
+  name?: Maybe<Scalars['String']['output']>;
+  orderNumber?: Maybe<Scalars['Int']['output']>;
+  picture?: Maybe<Asset>;
+  role?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  website?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamEmailArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamInstagramArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamNameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamOrderNumberArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamPictureArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamRoleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Team Member, die auf der Teams page gezeigt werden [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/team) */
+export type TeamWebsiteArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TeamCollection = {
+  __typename?: 'TeamCollection';
+  items: Array<Maybe<Team>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type TeamFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TeamFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TeamFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  email_contains?: InputMaybe<Scalars['String']['input']>;
+  email_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  email_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  email_not?: InputMaybe<Scalars['String']['input']>;
+  email_not_contains?: InputMaybe<Scalars['String']['input']>;
+  email_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  instagram?: InputMaybe<Scalars['String']['input']>;
+  instagram_contains?: InputMaybe<Scalars['String']['input']>;
+  instagram_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  instagram_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  instagram_not?: InputMaybe<Scalars['String']['input']>;
+  instagram_not_contains?: InputMaybe<Scalars['String']['input']>;
+  instagram_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  name_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  orderNumber?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  orderNumber_gt?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_gte?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  orderNumber_lt?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_lte?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_not?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  picture_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+  role_contains?: InputMaybe<Scalars['String']['input']>;
+  role_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  role_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  role_not?: InputMaybe<Scalars['String']['input']>;
+  role_not_contains?: InputMaybe<Scalars['String']['input']>;
+  role_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  website?: InputMaybe<Scalars['String']['input']>;
+  website_contains?: InputMaybe<Scalars['String']['input']>;
+  website_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  website_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  website_not?: InputMaybe<Scalars['String']['input']>;
+  website_not_contains?: InputMaybe<Scalars['String']['input']>;
+  website_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type TeamLinkingCollections = {
+  __typename?: 'TeamLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type TeamLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum TeamOrder {
+  EmailAsc = 'email_ASC',
+  EmailDesc = 'email_DESC',
+  InstagramAsc = 'instagram_ASC',
+  InstagramDesc = 'instagram_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  OrderNumberAsc = 'orderNumber_ASC',
+  OrderNumberDesc = 'orderNumber_DESC',
+  RoleAsc = 'role_ASC',
+  RoleDesc = 'role_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  WebsiteAsc = 'website_ASC',
+  WebsiteDesc = 'website_DESC'
+}
 
 /** Video Collection Type für Music Videos [See type definition](https://app.contentful.com/spaces/pfus6eibra5d/content_types/video) */
 export type Video = Entry & _Node & {
