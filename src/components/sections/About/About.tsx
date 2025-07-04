@@ -19,7 +19,7 @@ const About: FC = () => {
           spacing={{ base: 32, sm: 64 }}
           style={{ height: '75%', alignItems: 'center' }}
         >
-          <span style={{ position: 'relative' }}>
+          <span className={styles.aboutWrapper}>
             {data?.aboutImage?.url && (
               <ContentfulImage
                 src={data?.aboutImage?.url}
@@ -30,6 +30,9 @@ const About: FC = () => {
                 style={{ objectFit: 'cover' }}
               />
             )}
+            <Text c={'g-dark.9'} size="xs" fw={500}>
+              Photo by {data?.aboutImage?.title}
+            </Text>
           </span>
           <Text c={'g-dark.9'} size="xl" fw={500} ta="justify">
             {data?.aboutDescription}

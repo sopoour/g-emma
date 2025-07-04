@@ -3,3 +3,10 @@
     height: unset !important;
     position: relative !important;
 }
+
+.aboutWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 8px;
+}
