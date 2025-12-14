@@ -49,7 +49,7 @@ const MusicSection: FC = () => {
             ff="Hind Vadodara"
             c={'g-dark.9'}
             ta="center"
-            style={{ padding: '0 16px' }}
+            style={{ padding: '0 16px', minHeight: '48px' }}
             component="h3"
           >
             {sortedData[activeCard]?.albumCollection} (
