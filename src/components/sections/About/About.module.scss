@@ -10,3 +10,13 @@
     position: relative;
     gap: 8px;
 }
+
+.aboutDescription {
+    color: var(--mantine-color-g-dark-9);
+    p {
+        font-weight: 500;
+        font-size: 18px;
+        text-align: justify;
+    }
+
+}
