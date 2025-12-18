@@ -37,6 +37,7 @@ const About: FC = () => {
           </span>
           <MarkdownConfig
             content={data?.aboutDescription as string}
+            className={styles.aboutDescription}
           />
         </SimpleGrid>
       </MaxwidthContainer>
