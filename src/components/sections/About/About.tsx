@@ -7,6 +7,7 @@ import useSWR from 'swr';
 import styles from './About.module.scss';
 import MaxwidthContainer from '@app/components/MaxwidthContainer/MaxwidthContainer';
 import BackgroundSection from '@app/components/BackgroundSection/BackgroundSection';
+import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 
 const About: FC = () => {
   const { data, isLoading } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
@@ -34,9 +35,9 @@ const About: FC = () => {
               Photo by {data?.aboutImage?.title}
             </Text>
           </span>
-          <Text c={'g-dark.9'} size="xl" fw={500} ta="justify">
-            {data?.aboutDescription}
-          </Text>
+          <MarkdownConfig
+            content={data?.aboutDescription as string}
+          />
         </SimpleGrid>
       </MaxwidthContainer>
     </BackgroundSection>
