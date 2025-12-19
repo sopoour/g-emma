@@ -4,9 +4,14 @@ import rehypeSlug from 'rehype-slug';
 import rehypeRaw from 'rehype-raw';
 import styles from './MarkdownConfig.module.scss';
 
-const MarkdownConfig = ({ content }: { content: string }) => {
+type Props = {
+  content: string;
+  className?: string;
+};
+
+const MarkdownConfig: FC<Props> = ({ content, className }) => {
   return (
-    <div className={styles.markdown}>
+    <div className={`${styles.markdown} ${className}`}>
       <Markdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeSlug, rehypeRaw]}
