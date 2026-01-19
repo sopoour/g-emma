@@ -7,7 +7,7 @@ a, button{
     -moz-appearance: none;
     appearance: none;
     margin: 0;
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: inherit;
     outline: none;
     background: none;
@@ -15,7 +15,7 @@ a, button{
 }
 
 a:hover {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 // visually hide any element accesibly (e.g. you need an h1 element on a page but dont wanna visually show it)
