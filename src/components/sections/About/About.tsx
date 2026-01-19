@@ -1,7 +1,7 @@
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import ContentfulImage from '@app/lib/contentful-image';
 import { GeneralContent } from '@app/services/graphql/types';
-import { Anchor, Button, SimpleGrid, Text, VisuallyHidden } from '@mantine/core';
+import { Button, SimpleGrid, Text, VisuallyHidden } from '@mantine/core';
 import { FC } from 'react';
 import useSWR from 'swr';
 import styles from './About.module.scss';
