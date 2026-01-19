@@ -66,7 +66,7 @@ const TeamMember: FC<Props> = ({ teamMember }) => {
         </div>
       </Card>
 
-      <LinkContainer iconLinks={links} size="small" />
+      <LinkContainer iconLinks={links} size="medium" />
     </Flex>
   );
 };
