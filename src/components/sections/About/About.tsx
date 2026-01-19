@@ -41,7 +41,7 @@ const About: FC = () => {
               className={styles.aboutDescription}
             />
 
-            <Button variant="fill" pb={'xs'} pt={'xs'} component="a" href="/team">
+            <Button variant="fill" pb={'xs'} pt={'xs'} component="a" href="/team" radius={'md'}>
               Meet the Team
             </Button>
           </span>

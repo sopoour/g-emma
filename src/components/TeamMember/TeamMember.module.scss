@@ -24,7 +24,7 @@
         border-radius: 8px;
         width: 100%;
         height: 50%;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--mantine-color-g-dark-3) 90%);
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--mantine-color-g-dark-2) 90%);
     }
 
     @media only screen and (max-width: $mantine-breakpoint-sm) {
@@ -70,7 +70,7 @@
     height: 100%;
     opacity: 0;
     @include slow-transition;
-    background-color: var(--mantine-color-g-dark-3);
+    background-color: var(--mantine-color-g-dark-2);
     border-radius: 8px;
     z-index: 2;
 
