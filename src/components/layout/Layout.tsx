@@ -20,6 +20,7 @@ const navLinks = [
   { label: 'Music' },
   { label: 'Videos' },
   { label: 'Contact' },
+  { label: 'Team' },
   { label: 'Shop' },
 ];
 
@@ -51,6 +52,13 @@ const Layout: FC<Props> = ({ children }) => {
           className={styles.navLink}
           key={item.label + index}
         >
+          {item.label}
+        </LinkNext>
+      );
+
+    if (item.label === 'Team')
+      return (
+        <LinkNext href="/team" className={styles.navLink} key={item.label + index} onClick={close}>
           {item.label}
         </LinkNext>
       );
@@ -215,6 +223,12 @@ const Layout: FC<Props> = ({ children }) => {
             </Text>
             <Anchor href="/privacy-policy" className={styles.footerLink} size="14px">
               Privacy Policy
+            </Anchor>
+            <Text c={'g-dark.0'} fw={600} size="14px">
+              |
+            </Text>
+            <Anchor href="/team" className={styles.footerLink} size="14px">
+              Team
             </Anchor>
           </Flex>
           <Flex gap={8} align={'center'} direction={{ base: 'column', sm: 'row' }}>

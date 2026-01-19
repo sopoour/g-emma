@@ -1,7 +1,7 @@
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import ContentfulImage from '@app/lib/contentful-image';
 import { GeneralContent } from '@app/services/graphql/types';
-import { SimpleGrid, Text, VisuallyHidden } from '@mantine/core';
+import { Anchor, Button, SimpleGrid, Text, VisuallyHidden } from '@mantine/core';
 import { FC } from 'react';
 import useSWR from 'swr';
 import styles from './About.module.scss';
@@ -35,10 +35,16 @@ const About: FC = () => {
               Photo by {data?.aboutImage?.title}
             </Text>
           </span>
-          <MarkdownConfig
-            content={data?.aboutDescription as string}
-            className={styles.aboutDescription}
-          />
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <MarkdownConfig
+              content={data?.aboutDescription as string}
+              className={styles.aboutDescription}
+            />
+
+            <Button variant="fill" pb={'xs'} pt={'xs'} component="a" href="/team">
+              Meet the Team
+            </Button>
+          </span>
         </SimpleGrid>
       </MaxwidthContainer>
     </BackgroundSection>
