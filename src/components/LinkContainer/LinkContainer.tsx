@@ -74,7 +74,7 @@ const LinkContainer: FC<Props> = ({
             return {
               id: 'instagram',
               icon: <FaInstagram />,
-              link: 'https://www.instagram.com/gemma.msc/',
+              link: 'https://www.instagram.com/gemsi3000/',
             };
           case 'appleMusic':
             return {
